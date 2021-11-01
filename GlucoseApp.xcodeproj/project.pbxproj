@@ -1,0 +1,1205 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */; };
+		2397C99827301D7C0079C4F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99727301D7C0079C4F8 /* ContentView.swift */; };
+		2397C99A27301D7F0079C4F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C99927301D7F0079C4F8 /* Assets.xcassets */; };
+		2397C99D27301D7F0079C4F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C99C27301D7F0079C4F8 /* Preview Assets.xcassets */; };
+		2397C9A727301D7F0079C4F8 /* GlucoseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9A627301D7F0079C4F8 /* GlucoseAppTests.swift */; };
+		2397C9B127301D7F0079C4F8 /* GlucoseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9B027301D7F0079C4F8 /* GlucoseAppUITests.swift */; };
+		2397C9B327301D7F0079C4F8 /* GlucoseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9B227301D7F0079C4F8 /* GlucoseAppUITestsLaunchTests.swift */; };
+		2397C9B727301D7F0079C4F8 /* GlucoseApp WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2397C9B627301D7F0079C4F8 /* GlucoseApp WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2397C9BC27301D800079C4F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C9BB27301D800079C4F8 /* Assets.xcassets */; };
+		2397C9C227301D810079C4F8 /* GlucoseApp WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2397C9C127301D810079C4F8 /* GlucoseApp WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2397C9C727301D810079C4F8 /* GlucoseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9C627301D810079C4F8 /* GlucoseAppApp.swift */; };
+		2397C9C927301D810079C4F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9C827301D810079C4F8 /* ContentView.swift */; };
+		2397C9CB27301D810079C4F8 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9CA27301D810079C4F8 /* NotificationController.swift */; };
+		2397C9CD27301D810079C4F8 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9CC27301D810079C4F8 /* NotificationView.swift */; };
+		2397C9CF27301D810079C4F8 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9CE27301D810079C4F8 /* ComplicationController.swift */; };
+		2397C9D127301D820079C4F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C9D027301D820079C4F8 /* Assets.xcassets */; };
+		2397C9D427301D820079C4F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C9D327301D820079C4F8 /* Preview Assets.xcassets */; };
+		2397C9E027301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9DF27301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift */; };
+		2397C9EA27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9E927301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift */; };
+		2397C9EC27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9EB27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2397C9A327301D7F0079C4F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2397C98A27301D7B0079C4F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2397C99127301D7C0079C4F8;
+			remoteInfo = GlucoseApp;
+		};
+		2397C9AD27301D7F0079C4F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2397C98A27301D7B0079C4F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2397C99127301D7C0079C4F8;
+			remoteInfo = GlucoseApp;
+		};
+		2397C9B827301D7F0079C4F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2397C98A27301D7B0079C4F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2397C9B527301D7F0079C4F8;
+			remoteInfo = "GlucoseApp WatchKit App";
+		};
+		2397C9C327301D810079C4F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2397C98A27301D7B0079C4F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2397C9C027301D810079C4F8;
+			remoteInfo = "GlucoseApp WatchKit Extension";
+		};
+		2397C9DC27301D820079C4F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2397C98A27301D7B0079C4F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2397C9C027301D810079C4F8;
+			remoteInfo = "GlucoseApp WatchKit Extension";
+		};
+		2397C9E627301D820079C4F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2397C98A27301D7B0079C4F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2397C9B527301D7F0079C4F8;
+			remoteInfo = "GlucoseApp WatchKit App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2397C9F227301D820079C4F8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2397C9C227301D810079C4F8 /* GlucoseApp WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9F627301D820079C4F8 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				2397C9B727301D7F0079C4F8 /* GlucoseApp WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2397C99227301D7C0079C4F8 /* GlucoseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppApp.swift; sourceTree = "<group>"; };
+		2397C99727301D7C0079C4F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2397C99927301D7F0079C4F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2397C99C27301D7F0079C4F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2397C9A227301D7F0079C4F8 /* GlucoseAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2397C9A627301D7F0079C4F8 /* GlucoseAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppTests.swift; sourceTree = "<group>"; };
+		2397C9AC27301D7F0079C4F8 /* GlucoseAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2397C9B027301D7F0079C4F8 /* GlucoseAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppUITests.swift; sourceTree = "<group>"; };
+		2397C9B227301D7F0079C4F8 /* GlucoseAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2397C9B627301D7F0079C4F8 /* GlucoseApp WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GlucoseApp WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2397C9BB27301D800079C4F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2397C9C127301D810079C4F8 /* GlucoseApp WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GlucoseApp WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2397C9C627301D810079C4F8 /* GlucoseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppApp.swift; sourceTree = "<group>"; };
+		2397C9C827301D810079C4F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2397C9CA27301D810079C4F8 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		2397C9CC27301D810079C4F8 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		2397C9CE27301D810079C4F8 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		2397C9D027301D820079C4F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2397C9D327301D820079C4F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2397C9D527301D820079C4F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2397C9D627301D820079C4F8 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		2397C9DB27301D820079C4F8 /* GlucoseApp WatchKit AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GlucoseApp WatchKit AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2397C9DF27301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseApp_WatchKit_AppTests.swift; sourceTree = "<group>"; };
+		2397C9E527301D820079C4F8 /* GlucoseApp WatchKit AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GlucoseApp WatchKit AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2397C9E927301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseApp_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
+		2397C9EB27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseApp_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2397C98F27301D7C0079C4F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C99F27301D7F0079C4F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9A927301D7F0079C4F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9BE27301D810079C4F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9D827301D820079C4F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9E227301D820079C4F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2397C98927301D7B0079C4F8 = {
+			isa = PBXGroup;
+			children = (
+				2397C99427301D7C0079C4F8 /* GlucoseApp */,
+				2397C9A527301D7F0079C4F8 /* GlucoseAppTests */,
+				2397C9AF27301D7F0079C4F8 /* GlucoseAppUITests */,
+				2397C9BA27301D7F0079C4F8 /* GlucoseApp WatchKit App */,
+				2397C9C527301D810079C4F8 /* GlucoseApp WatchKit Extension */,
+				2397C9DE27301D820079C4F8 /* GlucoseApp WatchKit AppTests */,
+				2397C9E827301D820079C4F8 /* GlucoseApp WatchKit AppUITests */,
+				2397C99327301D7C0079C4F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2397C99327301D7C0079C4F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2397C99227301D7C0079C4F8 /* GlucoseApp.app */,
+				2397C9A227301D7F0079C4F8 /* GlucoseAppTests.xctest */,
+				2397C9AC27301D7F0079C4F8 /* GlucoseAppUITests.xctest */,
+				2397C9B627301D7F0079C4F8 /* GlucoseApp WatchKit App.app */,
+				2397C9C127301D810079C4F8 /* GlucoseApp WatchKit Extension.appex */,
+				2397C9DB27301D820079C4F8 /* GlucoseApp WatchKit AppTests.xctest */,
+				2397C9E527301D820079C4F8 /* GlucoseApp WatchKit AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2397C99427301D7C0079C4F8 /* GlucoseApp */ = {
+			isa = PBXGroup;
+			children = (
+				2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */,
+				2397C99727301D7C0079C4F8 /* ContentView.swift */,
+				2397C99927301D7F0079C4F8 /* Assets.xcassets */,
+				2397C99B27301D7F0079C4F8 /* Preview Content */,
+			);
+			path = GlucoseApp;
+			sourceTree = "<group>";
+		};
+		2397C99B27301D7F0079C4F8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2397C99C27301D7F0079C4F8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2397C9A527301D7F0079C4F8 /* GlucoseAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				2397C9A627301D7F0079C4F8 /* GlucoseAppTests.swift */,
+			);
+			path = GlucoseAppTests;
+			sourceTree = "<group>";
+		};
+		2397C9AF27301D7F0079C4F8 /* GlucoseAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2397C9B027301D7F0079C4F8 /* GlucoseAppUITests.swift */,
+				2397C9B227301D7F0079C4F8 /* GlucoseAppUITestsLaunchTests.swift */,
+			);
+			path = GlucoseAppUITests;
+			sourceTree = "<group>";
+		};
+		2397C9BA27301D7F0079C4F8 /* GlucoseApp WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				2397C9BB27301D800079C4F8 /* Assets.xcassets */,
+			);
+			path = "GlucoseApp WatchKit App";
+			sourceTree = "<group>";
+		};
+		2397C9C527301D810079C4F8 /* GlucoseApp WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2397C9C627301D810079C4F8 /* GlucoseAppApp.swift */,
+				2397C9C827301D810079C4F8 /* ContentView.swift */,
+				2397C9CA27301D810079C4F8 /* NotificationController.swift */,
+				2397C9CC27301D810079C4F8 /* NotificationView.swift */,
+				2397C9CE27301D810079C4F8 /* ComplicationController.swift */,
+				2397C9D027301D820079C4F8 /* Assets.xcassets */,
+				2397C9D527301D820079C4F8 /* Info.plist */,
+				2397C9D627301D820079C4F8 /* PushNotificationPayload.apns */,
+				2397C9D227301D820079C4F8 /* Preview Content */,
+			);
+			path = "GlucoseApp WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		2397C9D227301D820079C4F8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2397C9D327301D820079C4F8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2397C9DE27301D820079C4F8 /* GlucoseApp WatchKit AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				2397C9DF27301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift */,
+			);
+			path = "GlucoseApp WatchKit AppTests";
+			sourceTree = "<group>";
+		};
+		2397C9E827301D820079C4F8 /* GlucoseApp WatchKit AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2397C9E927301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift */,
+				2397C9EB27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift */,
+			);
+			path = "GlucoseApp WatchKit AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2397C99127301D7C0079C4F8 /* GlucoseApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2397C9F727301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp" */;
+			buildPhases = (
+				2397C98E27301D7C0079C4F8 /* Sources */,
+				2397C98F27301D7C0079C4F8 /* Frameworks */,
+				2397C99027301D7C0079C4F8 /* Resources */,
+				2397C9F627301D820079C4F8 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2397C9B927301D7F0079C4F8 /* PBXTargetDependency */,
+			);
+			name = GlucoseApp;
+			productName = GlucoseApp;
+			productReference = 2397C99227301D7C0079C4F8 /* GlucoseApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2397C9A127301D7F0079C4F8 /* GlucoseAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2397C9FA27301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseAppTests" */;
+			buildPhases = (
+				2397C99E27301D7F0079C4F8 /* Sources */,
+				2397C99F27301D7F0079C4F8 /* Frameworks */,
+				2397C9A027301D7F0079C4F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2397C9A427301D7F0079C4F8 /* PBXTargetDependency */,
+			);
+			name = GlucoseAppTests;
+			productName = GlucoseAppTests;
+			productReference = 2397C9A227301D7F0079C4F8 /* GlucoseAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2397C9AB27301D7F0079C4F8 /* GlucoseAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2397C9FD27301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseAppUITests" */;
+			buildPhases = (
+				2397C9A827301D7F0079C4F8 /* Sources */,
+				2397C9A927301D7F0079C4F8 /* Frameworks */,
+				2397C9AA27301D7F0079C4F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2397C9AE27301D7F0079C4F8 /* PBXTargetDependency */,
+			);
+			name = GlucoseAppUITests;
+			productName = GlucoseAppUITests;
+			productReference = 2397C9AC27301D7F0079C4F8 /* GlucoseAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		2397C9B527301D7F0079C4F8 /* GlucoseApp WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2397C9F327301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp WatchKit App" */;
+			buildPhases = (
+				2397C9B427301D7F0079C4F8 /* Resources */,
+				2397C9F227301D820079C4F8 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2397C9C427301D810079C4F8 /* PBXTargetDependency */,
+			);
+			name = "GlucoseApp WatchKit App";
+			productName = "GlucoseApp WatchKit App";
+			productReference = 2397C9B627301D7F0079C4F8 /* GlucoseApp WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		2397C9C027301D810079C4F8 /* GlucoseApp WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2397C9EF27301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp WatchKit Extension" */;
+			buildPhases = (
+				2397C9BD27301D810079C4F8 /* Sources */,
+				2397C9BE27301D810079C4F8 /* Frameworks */,
+				2397C9BF27301D810079C4F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GlucoseApp WatchKit Extension";
+			productName = "GlucoseApp WatchKit Extension";
+			productReference = 2397C9C127301D810079C4F8 /* GlucoseApp WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		2397C9DA27301D820079C4F8 /* GlucoseApp WatchKit AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2397CA0027301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp WatchKit AppTests" */;
+			buildPhases = (
+				2397C9D727301D820079C4F8 /* Sources */,
+				2397C9D827301D820079C4F8 /* Frameworks */,
+				2397C9D927301D820079C4F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2397C9DD27301D820079C4F8 /* PBXTargetDependency */,
+			);
+			name = "GlucoseApp WatchKit AppTests";
+			productName = "GlucoseApp WatchKit AppTests";
+			productReference = 2397C9DB27301D820079C4F8 /* GlucoseApp WatchKit AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2397C9E427301D820079C4F8 /* GlucoseApp WatchKit AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2397CA0327301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp WatchKit AppUITests" */;
+			buildPhases = (
+				2397C9E127301D820079C4F8 /* Sources */,
+				2397C9E227301D820079C4F8 /* Frameworks */,
+				2397C9E327301D820079C4F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2397C9E727301D820079C4F8 /* PBXTargetDependency */,
+			);
+			name = "GlucoseApp WatchKit AppUITests";
+			productName = "GlucoseApp WatchKit AppUITests";
+			productReference = 2397C9E527301D820079C4F8 /* GlucoseApp WatchKit AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2397C98A27301D7B0079C4F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					2397C99127301D7C0079C4F8 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					2397C9A127301D7F0079C4F8 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 2397C99127301D7C0079C4F8;
+					};
+					2397C9AB27301D7F0079C4F8 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 2397C99127301D7C0079C4F8;
+					};
+					2397C9B527301D7F0079C4F8 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					2397C9C027301D810079C4F8 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					2397C9DA27301D820079C4F8 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 2397C9C027301D810079C4F8;
+					};
+					2397C9E427301D820079C4F8 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 2397C9B527301D7F0079C4F8;
+					};
+				};
+			};
+			buildConfigurationList = 2397C98D27301D7B0079C4F8 /* Build configuration list for PBXProject "GlucoseApp" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2397C98927301D7B0079C4F8;
+			productRefGroup = 2397C99327301D7C0079C4F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2397C99127301D7C0079C4F8 /* GlucoseApp */,
+				2397C9A127301D7F0079C4F8 /* GlucoseAppTests */,
+				2397C9AB27301D7F0079C4F8 /* GlucoseAppUITests */,
+				2397C9B527301D7F0079C4F8 /* GlucoseApp WatchKit App */,
+				2397C9C027301D810079C4F8 /* GlucoseApp WatchKit Extension */,
+				2397C9DA27301D820079C4F8 /* GlucoseApp WatchKit AppTests */,
+				2397C9E427301D820079C4F8 /* GlucoseApp WatchKit AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2397C99027301D7C0079C4F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C99D27301D7F0079C4F8 /* Preview Assets.xcassets in Resources */,
+				2397C99A27301D7F0079C4F8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9A027301D7F0079C4F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9AA27301D7F0079C4F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9B427301D7F0079C4F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C9BC27301D800079C4F8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9BF27301D810079C4F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C9D427301D820079C4F8 /* Preview Assets.xcassets in Resources */,
+				2397C9D127301D820079C4F8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9D927301D820079C4F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9E327301D820079C4F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2397C98E27301D7C0079C4F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C99827301D7C0079C4F8 /* ContentView.swift in Sources */,
+				2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C99E27301D7F0079C4F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C9A727301D7F0079C4F8 /* GlucoseAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9A827301D7F0079C4F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C9B127301D7F0079C4F8 /* GlucoseAppUITests.swift in Sources */,
+				2397C9B327301D7F0079C4F8 /* GlucoseAppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9BD27301D810079C4F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C9CB27301D810079C4F8 /* NotificationController.swift in Sources */,
+				2397C9C927301D810079C4F8 /* ContentView.swift in Sources */,
+				2397C9CF27301D810079C4F8 /* ComplicationController.swift in Sources */,
+				2397C9C727301D810079C4F8 /* GlucoseAppApp.swift in Sources */,
+				2397C9CD27301D810079C4F8 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9D727301D820079C4F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C9E027301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2397C9E127301D820079C4F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2397C9EC27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift in Sources */,
+				2397C9EA27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2397C9A427301D7F0079C4F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2397C99127301D7C0079C4F8 /* GlucoseApp */;
+			targetProxy = 2397C9A327301D7F0079C4F8 /* PBXContainerItemProxy */;
+		};
+		2397C9AE27301D7F0079C4F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2397C99127301D7C0079C4F8 /* GlucoseApp */;
+			targetProxy = 2397C9AD27301D7F0079C4F8 /* PBXContainerItemProxy */;
+		};
+		2397C9B927301D7F0079C4F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2397C9B527301D7F0079C4F8 /* GlucoseApp WatchKit App */;
+			targetProxy = 2397C9B827301D7F0079C4F8 /* PBXContainerItemProxy */;
+		};
+		2397C9C427301D810079C4F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2397C9C027301D810079C4F8 /* GlucoseApp WatchKit Extension */;
+			targetProxy = 2397C9C327301D810079C4F8 /* PBXContainerItemProxy */;
+		};
+		2397C9DD27301D820079C4F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2397C9C027301D810079C4F8 /* GlucoseApp WatchKit Extension */;
+			targetProxy = 2397C9DC27301D820079C4F8 /* PBXContainerItemProxy */;
+		};
+		2397C9E727301D820079C4F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2397C9B527301D7F0079C4F8 /* GlucoseApp WatchKit App */;
+			targetProxy = 2397C9E627301D820079C4F8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2397C9ED27301D820079C4F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2397C9EE27301D820079C4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2397C9F027301D820079C4F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlucoseApp WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "GlucoseApp WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "GlucoseApp WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseApp.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		2397C9F127301D820079C4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlucoseApp WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "GlucoseApp WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "GlucoseApp WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseApp.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		2397C9F427301D820079C4F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = GlucoseApp_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "GlucoseApp WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.arnaldoquintero.GlucoseApp;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseApp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		2397C9F527301D820079C4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = GlucoseApp_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "GlucoseApp WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.arnaldoquintero.GlucoseApp;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseApp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		2397C9F827301D820079C4F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlucoseApp/Preview Content\"";
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2397C9F927301D820079C4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlucoseApp/Preview Content\"";
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2397C9FB27301D820079C4F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GlucoseApp.app/GlucoseApp";
+			};
+			name = Debug;
+		};
+		2397C9FC27301D820079C4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GlucoseApp.app/GlucoseApp";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2397C9FE27301D820079C4F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GlucoseApp;
+			};
+			name = Debug;
+		};
+		2397C9FF27301D820079C4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GlucoseApp;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2397CA0127301D820079C4F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arnaldoquintero.GlucoseApp-WatchKit-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GlucoseApp WatchKit Extension.appex/GlucoseApp WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		2397CA0227301D820079C4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arnaldoquintero.GlucoseApp-WatchKit-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GlucoseApp WatchKit Extension.appex/GlucoseApp WatchKit Extension";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		2397CA0427301D820079C4F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arnaldoquintero.GlucoseApp-WatchKit-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "GlucoseApp WatchKit App";
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		2397CA0527301D820079C4F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NSW5WRCP2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arnaldoquintero.GlucoseApp-WatchKit-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "GlucoseApp WatchKit App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2397C98D27301D7B0079C4F8 /* Build configuration list for PBXProject "GlucoseApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397C9ED27301D820079C4F8 /* Debug */,
+				2397C9EE27301D820079C4F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2397C9EF27301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397C9F027301D820079C4F8 /* Debug */,
+				2397C9F127301D820079C4F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2397C9F327301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397C9F427301D820079C4F8 /* Debug */,
+				2397C9F527301D820079C4F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2397C9F727301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397C9F827301D820079C4F8 /* Debug */,
+				2397C9F927301D820079C4F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2397C9FA27301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397C9FB27301D820079C4F8 /* Debug */,
+				2397C9FC27301D820079C4F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2397C9FD27301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397C9FE27301D820079C4F8 /* Debug */,
+				2397C9FF27301D820079C4F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2397CA0027301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp WatchKit AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397CA0127301D820079C4F8 /* Debug */,
+				2397CA0227301D820079C4F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2397CA0327301D820079C4F8 /* Build configuration list for PBXNativeTarget "GlucoseApp WatchKit AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397CA0427301D820079C4F8 /* Debug */,
+				2397CA0527301D820079C4F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2397C98A27301D7B0079C4F8 /* Project object */;
+}
