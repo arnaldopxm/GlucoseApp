@@ -19,12 +19,10 @@ struct ContentView: View {
             UserNameTextField(username: $username)
             PasswordSecureField(password: $password)
             Button(action: {
-                print("Hola")
-                let client = CareLinkClient (username: username, password: password, countryCode: country)
-                while client.loginCookie == nil {
-                    print("not yet")
+                Task.init() {
+                    let client = try! await CareLinkClient (username: username, password: password, countryCode: country)
+                    print(client.loginCookie ?? "empty")
                 }
-                print(client.loginCookie)
             }) {
                 SaveButtonContent()
             }
