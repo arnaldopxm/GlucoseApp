@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct GlucoseAppApp: App {
+    @StateObject var client = CareLinkClient()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if client.isLoggedIn {
+                ContentView()
+                    .environmentObject(client)
+            } else {
+                LoginView()
+                    .environmentObject(client)
+            }
+            
         }
     }
 }

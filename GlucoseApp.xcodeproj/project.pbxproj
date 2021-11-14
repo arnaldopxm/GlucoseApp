@@ -10,8 +10,9 @@
 		2306F80127412A3400519C10 /* CareLinkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80027412A3400519C10 /* CareLinkClient.swift */; };
 		2306F80427412A9B00519C10 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80327412A9B00519C10 /* FetchService.swift */; };
 		2306F806274145C000519C10 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F805274145C000519C10 /* ClientService.swift */; };
+		2306F808274147E900519C10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F807274147E900519C10 /* ContentView.swift */; };
 		2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */; };
-		2397C99827301D7C0079C4F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99727301D7C0079C4F8 /* ContentView.swift */; };
+		2397C99827301D7C0079C4F8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99727301D7C0079C4F8 /* LoginView.swift */; };
 		2397C99A27301D7F0079C4F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C99927301D7F0079C4F8 /* Assets.xcassets */; };
 		2397C99D27301D7F0079C4F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C99C27301D7F0079C4F8 /* Preview Assets.xcassets */; };
 		2397C9A727301D7F0079C4F8 /* GlucoseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9A627301D7F0079C4F8 /* GlucoseAppTests.swift */; };
@@ -106,9 +107,10 @@
 		2306F80027412A3400519C10 /* CareLinkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareLinkClient.swift; sourceTree = "<group>"; };
 		2306F80327412A9B00519C10 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
 		2306F805274145C000519C10 /* ClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
+		2306F807274147E900519C10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2397C99227301D7C0079C4F8 /* GlucoseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppApp.swift; sourceTree = "<group>"; };
-		2397C99727301D7C0079C4F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2397C99727301D7C0079C4F8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2397C99927301D7F0079C4F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2397C99C27301D7F0079C4F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2397C9A227301D7F0079C4F8 /* GlucoseAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,9 +236,10 @@
 			children = (
 				2397CA06273060F60079C4F8 /* GlucoseAppRelease.entitlements */,
 				2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */,
-				2397C99727301D7C0079C4F8 /* ContentView.swift */,
+				2397C99727301D7C0079C4F8 /* LoginView.swift */,
 				2397C99927301D7F0079C4F8 /* Assets.xcassets */,
 				2397C99B27301D7F0079C4F8 /* Preview Content */,
+				2306F807274147E900519C10 /* ContentView.swift */,
 			);
 			path = GlucoseApp;
 			sourceTree = "<group>";
@@ -567,7 +570,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2306F80427412A9B00519C10 /* FetchService.swift in Sources */,
-				2397C99827301D7C0079C4F8 /* ContentView.swift in Sources */,
+				2397C99827301D7C0079C4F8 /* LoginView.swift in Sources */,
+				2306F808274147E900519C10 /* ContentView.swift in Sources */,
 				2306F80127412A3400519C10 /* CareLinkClient.swift in Sources */,
 				2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */,
 				2306F806274145C000519C10 /* ClientService.swift in Sources */,

@@ -1,21 +1,29 @@
 import Foundation
 
-public struct CareLinkClient {
+class CareLinkClient: ObservableObject {
     
-    public private(set) var username: String
-    public private(set) var password: String
-    public private(set) var countryCode: String
-    public var loginCookie: HTTPCookie?
+    @Published var isLoggedIn = false
+    
+    public private(set) var username: String?
+    public private(set) var password: String?
+    public private(set) var countryCode: String?
+    private var cookie: HTTPCookie?
 
-    init(username u: String, password p: String, countryCode c: String) async throws {
-        username = u
-        password = p
-        countryCode = c
-        let cookie = try await login(username: username, password: password)
-        loginCookie = cookie
+    func login(username usr: String, password pwd: String) async throws -> Bool {
+        var res = false
+        if let loginResponseCookie = try? await loginClient(username: usr, password: pwd) {
+            username = usr
+            password = pwd
+            cookie = loginResponseCookie
+            res = true
+        }
+        setLogin(value: res)
+        return res
     }
 
-    func login(username: String, password: String) async throws -> HTTPCookie? {
-        return try await loginClient(username: username, password: password)
+    func setLogin(value: Bool) {
+        DispatchQueue.main.async {
+            self.isLoggedIn = value
+        }
     }
 }
