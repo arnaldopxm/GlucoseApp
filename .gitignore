@@ -88,3 +88,6 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+GlucoseApp.xcodeproj/xcuserdata/arnaldo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+GlucoseApp.xcodeproj/xcuserdata/arnaldo.xcuserdatad/xcschemes/xcschememanagement.plist
+Samples/

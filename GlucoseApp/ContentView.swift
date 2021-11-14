@@ -9,23 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var client: CareLinkClient;
-    @State var res = "Empty"
-
+    @State var sg = "SG"
+    @State var sgTime = "Time"
+    let timer = Timer.publish(every: 20, on: .main, in: .common).autoconnect()
+    
+    func findLastGlucoseTask(_: Any? = nil) {
+        Task.init() {
+            if let sg = try? await client.getLastSensorGlucose() {
+                self.sg = "\(sg.sg)"
+                self.sgTime = sg.datetime
+            }
+        }
+    }
+    
     var body: some View {
         VStack {
-            Button(action: {
-                Task.init() {
-                    res = (try? await client.getData()) ?? res
-                }
-            }) {
-                Text("Country")
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.blue)
-            }
-            Text(res)
-            
+            Text(sg)
+            Text(sgTime)
         }
+        .onAppear(perform: {
+            findLastGlucoseTask()
+        })
+        .onDisappear() {
+            timer.upstream.connect().cancel()
+        }
+        .onReceive(timer, perform: findLastGlucoseTask)
     }
 }
 

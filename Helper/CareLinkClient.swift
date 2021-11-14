@@ -25,6 +25,10 @@ class CareLinkClient: ObservableObject {
         return try await login(username: username, password: password)
 
     }
+    
+    private func reLogin() async throws -> Bool {
+        return try await login(username: username!, password: password!)
+    }
 
     func login(username usr: String? = nil, password pwd: String? = nil) async throws -> Bool {
 
@@ -56,8 +60,8 @@ class CareLinkClient: ObservableObject {
         }
     }
     
-    func getData() async throws -> String {
-        guard try! await checkLogin() else {
+    func getLastSensorGlucose() async throws -> SensorGlucose {
+        if !(try! await reLogin()) {
             throw fatalError("Unauthorized")
         }
         let country = try! await getCountrySettingsClient()
@@ -66,6 +70,6 @@ class CareLinkClient: ObservableObject {
         
         
         let data = try!  await getDataClient(url: country.blePereodicDataEndpoint, username: username!, role: user.apiRole, token: token!)
-        return data
+        return data.lastSG
     }
 }

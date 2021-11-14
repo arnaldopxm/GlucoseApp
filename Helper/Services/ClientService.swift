@@ -61,7 +61,7 @@ func getUserRoleClient(token t: String) async throws -> UserSettings {
     return json
 }
 
-func getDataClient(url: String, username: String, role: String, token t: String) async throws -> String {
+func getDataClient(url: String, username: String, role: String, token t: String) async throws -> DataResponse {
     let headers = [
         "Content-Type": "application/json",
         "Authorization": "Bearer \(t)"
@@ -74,11 +74,23 @@ func getDataClient(url: String, username: String, role: String, token t: String)
     
     let (data, _) = try await makeRequest(url: url, method: .POST, headers: headers, body: jsonBody!)
     
-    return data
+    let stringData = data.data(using: .utf8)!
+    let json = try! JSONDecoder().decode(DataResponse.self, from: stringData)
+    
+    return json
 }
 
 
 //---------
+struct SensorGlucose: Codable {
+    let sg: Int
+    let datetime: String
+}
+
+struct DataResponse: Codable {
+    let lastSG: SensorGlucose
+}
+
 struct CountrySettings: Codable {
     let blePereodicDataEndpoint: String
 }
