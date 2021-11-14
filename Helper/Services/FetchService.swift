@@ -33,7 +33,7 @@ func extractFromBody(body: String, pattern: String = "<input type=\"hidden\" nam
 
 
 
-func makeRequest(url u: String, method: HttpMethod = .GET, headers: [String: String]? = nil, queryParams: [(String, String)] = [], params: [(String, String)] = []) async throws -> (String, URLResponse) {
+func makeRequest(url u: String, method: HttpMethod = .GET, headers: [String: String]? = nil, queryParams: [(String, String)] = [], params: [(String, String)] = [], body: Data? = nil) async throws -> (String, URLResponse) {
     
     guard var url = URLComponents(string: u) else {
         throw fatalError("Invalid URL")
@@ -51,6 +51,10 @@ func makeRequest(url u: String, method: HttpMethod = .GET, headers: [String: Str
         var body = URLComponents()
         body.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
         req.httpBody = body.query?.data(using: .utf8)
+    }
+    
+    if (body != nil) {
+        req.httpBody = body
     }
     
     req.allHTTPHeaderFields = headers
