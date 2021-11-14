@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2306F80127412A3400519C10 /* CareLinkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80027412A3400519C10 /* CareLinkClient.swift */; };
+		2306F80427412A9B00519C10 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80327412A9B00519C10 /* FetchService.swift */; };
 		2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */; };
 		2397C99827301D7C0079C4F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99727301D7C0079C4F8 /* ContentView.swift */; };
 		2397C99A27301D7F0079C4F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C99927301D7F0079C4F8 /* Assets.xcassets */; };
@@ -100,6 +102,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2306F80027412A3400519C10 /* CareLinkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareLinkClient.swift; sourceTree = "<group>"; };
+		2306F80327412A9B00519C10 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
 		2397C99227301D7C0079C4F8 /* GlucoseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppApp.swift; sourceTree = "<group>"; };
 		2397C99727301D7C0079C4F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 		2397C9E527301D820079C4F8 /* GlucoseApp WatchKit AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GlucoseApp WatchKit AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2397C9E927301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseApp_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
 		2397C9EB27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseApp_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2397CA06273060F60079C4F8 /* GlucoseAppRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlucoseAppRelease.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,9 +180,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2306F7FF27412A0B00519C10 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				2306F80227412A7F00519C10 /* Services */,
+				2306F80027412A3400519C10 /* CareLinkClient.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		2306F80227412A7F00519C10 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2306F80327412A9B00519C10 /* FetchService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		2397C98927301D7B0079C4F8 = {
 			isa = PBXGroup;
 			children = (
+				2306F7FF27412A0B00519C10 /* Helper */,
 				2397C99427301D7C0079C4F8 /* GlucoseApp */,
 				2397C9A527301D7F0079C4F8 /* GlucoseAppTests */,
 				2397C9AF27301D7F0079C4F8 /* GlucoseAppUITests */,
@@ -206,6 +229,7 @@
 		2397C99427301D7C0079C4F8 /* GlucoseApp */ = {
 			isa = PBXGroup;
 			children = (
+				2397CA06273060F60079C4F8 /* GlucoseAppRelease.entitlements */,
 				2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */,
 				2397C99727301D7C0079C4F8 /* ContentView.swift */,
 				2397C99927301D7F0079C4F8 /* Assets.xcassets */,
@@ -539,7 +563,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2306F80427412A9B00519C10 /* FetchService.swift in Sources */,
 				2397C99827301D7C0079C4F8 /* ContentView.swift in Sources */,
+				2306F80127412A3400519C10 /* CareLinkClient.swift in Sources */,
 				2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -860,6 +886,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GlucoseApp/Preview Content\"";
@@ -879,6 +906,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -891,6 +919,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GlucoseApp/GlucoseAppRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GlucoseApp/Preview Content\"";
@@ -910,6 +940,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.arnaldoquintero.GlucoseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
