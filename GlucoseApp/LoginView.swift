@@ -12,8 +12,8 @@ struct LoginView: View {
     
     @EnvironmentObject var client: CareLinkClient;
 
-    @State private var username: String = "1581862"
-    @State private var password: String = "Candelaria"
+    @State private var username: String = ""
+    @State private var password: String = ""
     @State private var country: String = "es"
     
     var body: some View {

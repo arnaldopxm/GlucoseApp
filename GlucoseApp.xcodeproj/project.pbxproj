@@ -33,6 +33,7 @@
 		2397C9E027301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9DF27301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift */; };
 		2397C9EA27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9E927301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift */; };
 		2397C9EC27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9EB27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift */; };
+		23A18841274AB718004AF3C3 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 23A18840274AB718004AF3C3 /* SwiftKeychainWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23A18841274AB718004AF3C3 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +346,9 @@
 				2397C9B927301D7F0079C4F8 /* PBXTargetDependency */,
 			);
 			name = GlucoseApp;
+			packageProductDependencies = (
+				23A18840274AB718004AF3C3 /* SwiftKeychainWrapper */,
+			);
 			productName = GlucoseApp;
 			productReference = 2397C99227301D7C0079C4F8 /* GlucoseApp.app */;
 			productType = "com.apple.product-type.application";
@@ -500,6 +505,9 @@
 				Base,
 			);
 			mainGroup = 2397C98927301D7B0079C4F8;
+			packageReferences = (
+				23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+			);
 			productRefGroup = 2397C99327301D7C0079C4F8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1251,6 +1259,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		23A18840274AB718004AF3C3 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2397C98A27301D7B0079C4F8 /* Project object */;
 }

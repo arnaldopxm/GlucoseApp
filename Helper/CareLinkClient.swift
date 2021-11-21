@@ -1,18 +1,43 @@
 import Foundation
+import SwiftKeychainWrapper
+
 
 class CareLinkClient: ObservableObject {
     
     @Published var isLoggedIn = false
-    
-    public private(set) var username: String?
-    public private(set) var password: String?
+    private let keychain = KeychainWrapper(serviceName: "com.arnaldoquintero.glucoseapp")
+
+    var username: String? {
+        get {
+            return keychain.string(forKey: "username")
+        }
+        set (val) {
+            if val != nil && !val!.isEmpty {
+                keychain.set(val!, forKey: "username")
+            }
+        }
+    }
+    var password: String? {
+        get {
+            return keychain.string(forKey: "password")
+        }
+        set (val) {
+            if val != nil && !val!.isEmpty {
+                keychain.set(val!, forKey: "password")
+            }
+        }
+    }
     public private(set) var countryCode: String?
     private var cookie: HTTPCookie?
+    
     
     init(username u: String? = nil, password p: String? = nil, countryCode cc: String? = nil){
         username = u ?? username
         password = p ?? password
         countryCode = cc ?? countryCode
+        Task.init() {
+            try? await checkLogin()
+        }
     }
     
     private func checkLogin() async throws -> Bool {
