@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    var model = ViewModelPhone()
+    @EnvironmentObject var model: ViewModelPhone;
     @EnvironmentObject var client: CareLinkClient;
     @State var sg = "SG"
     @State var sgTime = "Time"
@@ -17,13 +17,16 @@ struct ContentView: View {
     func findLastGlucoseTask(_: Any? = nil) {
         Task.init() {
             if let sg = try? await client.getLastSensorGlucose() {
-                self.sg = "\(sg.lastSG.sg) \(sg.lastSGTrend.icon)"
-                self.sgTime = sg.lastSG.datetime
-                model.send(message: ["SG": self.sg])
+                model.sg = "\(sg.lastSG.sg) \(sg.lastSGTrend.icon)"
+                model.sgTime = sg.lastSG.datetime
+                model.send(message: ["SG": model.sg])
             }
         }
+        // print("sg fetch \(model.sg)")
+        self.sg = model.sg
+        self.sgTime = model.sgTime
     }
-    
+       
     var body: some View {
         VStack {
             Text(sg)
