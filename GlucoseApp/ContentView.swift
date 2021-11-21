@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    var model = ViewModelPhone()
     @EnvironmentObject var client: CareLinkClient;
     @State var sg = "SG"
     @State var sgTime = "Time"
@@ -16,8 +17,9 @@ struct ContentView: View {
     func findLastGlucoseTask(_: Any? = nil) {
         Task.init() {
             if let sg = try? await client.getLastSensorGlucose() {
-                self.sg = "\(sg.sg)"
-                self.sgTime = sg.datetime
+                self.sg = "\(sg.lastSG.sg) \(sg.lastSGTrend.icon)"
+                self.sgTime = sg.lastSG.datetime
+                model.send(message: ["SG": self.sg])
             }
         }
     }

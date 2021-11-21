@@ -29,7 +29,7 @@ struct LoginView: View {
             }
         }
         .padding()
-        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.gray/*@END_MENU_TOKEN@*/)
+        .background(Color.gray)
     }
 }
 
@@ -41,7 +41,8 @@ struct UserNameTextField : View {
             .textInputAutocapitalization(.never)
             .disableAutocorrection(true)
             .textContentType(.username)
-            .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.white/*@END_MENU_TOKEN@*/)
+            .background(Color.white)
+            .foregroundColor(Color.black)
     }
 }
 
@@ -52,7 +53,8 @@ struct PasswordSecureField : View {
         SecureField("Password", text: $password)
             .padding()
             .textContentType(.password)
-            .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.white/*@END_MENU_TOKEN@*/)
+            .background(Color.white)
+            .foregroundColor(Color.black)
     }
 }
 

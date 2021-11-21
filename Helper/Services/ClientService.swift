@@ -31,7 +31,7 @@ func loginClient(username: String, password: String) async throws -> HTTPCookie?
     guard let cookie = cookies.first( where: { $0.name == "auth_tmp_token" }) else {
         throw fatalError("Invalid Login")
     }
-
+    
     return cookie
 }
 
@@ -54,7 +54,7 @@ func getUserRoleClient(token t: String) async throws -> UserSettings {
     let headers = ["Authorization": "Bearer \(t)"]
     
     let (data, _) = try await makeRequest(url: url + "/patient/users/me", headers: headers)
-
+    
     let stringData = data.data(using: .utf8)!
     let json = try! JSONDecoder().decode(UserSettings.self, from: stringData)
     
@@ -82,6 +82,30 @@ func getDataClient(url: String, username: String, role: String, token t: String)
 
 
 //---------
+enum SgTrend: String, Codable {
+    case NONE
+    case DOWN
+    case DOWN_DOUBLE
+    case DOWN_TRIPLE
+    case UP
+    case UP_DOUBLE
+    case UP_TRIPLE
+}
+
+extension SgTrend {
+    var icon: String {
+        switch self {
+        case .DOWN: return "↓"
+        case .DOWN_DOUBLE: return "↓↓"
+        case .DOWN_TRIPLE: return "↓↓↓"
+        case .UP: return "↑"
+        case .UP_DOUBLE: return "↑↑"
+        case .UP_TRIPLE: return "↑↑↑"
+        case .NONE: return ""
+        }
+    }
+}
+
 struct SensorGlucose: Codable {
     let sg: Int
     let datetime: String
@@ -89,6 +113,7 @@ struct SensorGlucose: Codable {
 
 struct DataResponse: Codable {
     let lastSG: SensorGlucose
+    let lastSGTrend: SgTrend
 }
 
 struct CountrySettings: Codable {

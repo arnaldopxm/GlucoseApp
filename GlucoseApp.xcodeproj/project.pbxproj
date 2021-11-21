@@ -11,6 +11,8 @@
 		2306F80427412A9B00519C10 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80327412A9B00519C10 /* FetchService.swift */; };
 		2306F806274145C000519C10 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F805274145C000519C10 /* ClientService.swift */; };
 		2306F808274147E900519C10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F807274147E900519C10 /* ContentView.swift */; };
+		2306F80A274187CA00519C10 /* ViewModelPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F809274187CA00519C10 /* ViewModelPhone.swift */; };
+		2306F80C2741883C00519C10 /* ViewModelWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80B2741883C00519C10 /* ViewModelWatch.swift */; };
 		2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */; };
 		2397C99827301D7C0079C4F8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99727301D7C0079C4F8 /* LoginView.swift */; };
 		2397C99A27301D7F0079C4F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C99927301D7F0079C4F8 /* Assets.xcassets */; };
@@ -108,6 +110,9 @@
 		2306F80327412A9B00519C10 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
 		2306F805274145C000519C10 /* ClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
 		2306F807274147E900519C10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2306F809274187CA00519C10 /* ViewModelPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelPhone.swift; sourceTree = "<group>"; };
+		2306F80B2741883C00519C10 /* ViewModelWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelWatch.swift; sourceTree = "<group>"; };
+		2327E9DF274195C900858BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2397C99227301D7C0079C4F8 /* GlucoseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppApp.swift; sourceTree = "<group>"; };
 		2397C99727301D7C0079C4F8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -234,12 +239,14 @@
 		2397C99427301D7C0079C4F8 /* GlucoseApp */ = {
 			isa = PBXGroup;
 			children = (
+				2327E9DF274195C900858BAB /* Info.plist */,
 				2397CA06273060F60079C4F8 /* GlucoseAppRelease.entitlements */,
 				2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */,
 				2397C99727301D7C0079C4F8 /* LoginView.swift */,
 				2397C99927301D7F0079C4F8 /* Assets.xcassets */,
 				2397C99B27301D7F0079C4F8 /* Preview Content */,
 				2306F807274147E900519C10 /* ContentView.swift */,
+				2306F809274187CA00519C10 /* ViewModelPhone.swift */,
 			);
 			path = GlucoseApp;
 			sourceTree = "<group>";
@@ -289,6 +296,7 @@
 				2397C9D527301D820079C4F8 /* Info.plist */,
 				2397C9D627301D820079C4F8 /* PushNotificationPayload.apns */,
 				2397C9D227301D820079C4F8 /* Preview Content */,
+				2306F80B2741883C00519C10 /* ViewModelWatch.swift */,
 			);
 			path = "GlucoseApp WatchKit Extension";
 			sourceTree = "<group>";
@@ -573,6 +581,7 @@
 				2397C99827301D7C0079C4F8 /* LoginView.swift in Sources */,
 				2306F808274147E900519C10 /* ContentView.swift in Sources */,
 				2306F80127412A3400519C10 /* CareLinkClient.swift in Sources */,
+				2306F80A274187CA00519C10 /* ViewModelPhone.swift in Sources */,
 				2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */,
 				2306F806274145C000519C10 /* ClientService.swift in Sources */,
 			);
@@ -603,6 +612,7 @@
 				2397C9C927301D810079C4F8 /* ContentView.swift in Sources */,
 				2397C9CF27301D810079C4F8 /* ComplicationController.swift in Sources */,
 				2397C9C727301D810079C4F8 /* GlucoseAppApp.swift in Sources */,
+				2306F80C2741883C00519C10 /* ViewModelWatch.swift in Sources */,
 				2397C9CD27301D810079C4F8 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -901,6 +911,7 @@
 				DEVELOPMENT_TEAM = NSW5WRCP2X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlucoseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -935,6 +946,7 @@
 				DEVELOPMENT_TEAM = NSW5WRCP2X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlucoseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

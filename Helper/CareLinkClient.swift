@@ -60,7 +60,7 @@ class CareLinkClient: ObservableObject {
         }
     }
     
-    func getLastSensorGlucose() async throws -> SensorGlucose {
+    func getLastSensorGlucose() async throws -> DataResponse {
         if !(try! await reLogin()) {
             throw fatalError("Unauthorized")
         }
@@ -70,6 +70,6 @@ class CareLinkClient: ObservableObject {
         
         
         let data = try!  await getDataClient(url: country.blePereodicDataEndpoint, username: username!, role: user.apiRole, token: token!)
-        return data.lastSG
+        return data
     }
 }
