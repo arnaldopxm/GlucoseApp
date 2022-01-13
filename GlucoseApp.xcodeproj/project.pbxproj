@@ -13,6 +13,15 @@
 		2306F808274147E900519C10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F807274147E900519C10 /* ContentView.swift */; };
 		2306F80A274187CA00519C10 /* ViewModelPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F809274187CA00519C10 /* ViewModelPhone.swift */; };
 		2306F80C2741883C00519C10 /* ViewModelWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80B2741883C00519C10 /* ViewModelWatch.swift */; };
+		232F40B3278DFF2600E89FA0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 232F40B2278DFF2600E89FA0 /* Alamofire */; };
+		232F40B5278E025B00E89FA0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 232F40B4278E025B00E89FA0 /* Alamofire */; };
+		232F40C0278E081700E89FA0 /* HTTPCookieStorageShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232F40BF278E081700E89FA0 /* HTTPCookieStorageShim.swift */; };
+		232F40C1278E081700E89FA0 /* HTTPCookieStorageShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232F40BF278E081700E89FA0 /* HTTPCookieStorageShim.swift */; };
+		234916042762922600A18A8E /* ComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234916032762922600A18A8E /* ComplicationView.swift */; };
+		2356E3BC27845FFE00B65F91 /* CareLinkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80027412A3400519C10 /* CareLinkClient.swift */; };
+		2356E3BF2784612F00B65F91 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2356E3BE2784612F00B65F91 /* SwiftKeychainWrapper */; };
+		2356E3C0278461A400B65F91 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80327412A9B00519C10 /* FetchService.swift */; };
+		2356E3C1278461A400B65F91 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F805274145C000519C10 /* ClientService.swift */; };
 		2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */; };
 		2397C99827301D7C0079C4F8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99727301D7C0079C4F8 /* LoginView.swift */; };
 		2397C99A27301D7F0079C4F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C99927301D7F0079C4F8 /* Assets.xcassets */; };
@@ -114,6 +123,8 @@
 		2306F809274187CA00519C10 /* ViewModelPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelPhone.swift; sourceTree = "<group>"; };
 		2306F80B2741883C00519C10 /* ViewModelWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelWatch.swift; sourceTree = "<group>"; };
 		2327E9DF274195C900858BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		232F40BF278E081700E89FA0 /* HTTPCookieStorageShim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPCookieStorageShim.swift; sourceTree = "<group>"; };
+		234916032762922600A18A8E /* ComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationView.swift; sourceTree = "<group>"; };
 		2397C99227301D7C0079C4F8 /* GlucoseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppApp.swift; sourceTree = "<group>"; };
 		2397C99727301D7C0079C4F8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -150,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23A18841274AB718004AF3C3 /* SwiftKeychainWrapper in Frameworks */,
+				232F40B3278DFF2600E89FA0 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +183,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2356E3BF2784612F00B65F91 /* SwiftKeychainWrapper in Frameworks */,
+				232F40B5278E025B00E89FA0 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +210,7 @@
 			children = (
 				2306F80227412A7F00519C10 /* Services */,
 				2306F80027412A3400519C10 /* CareLinkClient.swift */,
+				232F40BF278E081700E89FA0 /* HTTPCookieStorageShim.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -207,6 +222,13 @@
 				2306F805274145C000519C10 /* ClientService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		2356E3BD2784612F00B65F91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2397C98927301D7B0079C4F8 = {
@@ -221,6 +243,7 @@
 				2397C9DE27301D820079C4F8 /* GlucoseApp WatchKit AppTests */,
 				2397C9E827301D820079C4F8 /* GlucoseApp WatchKit AppUITests */,
 				2397C99327301D7C0079C4F8 /* Products */,
+				2356E3BD2784612F00B65F91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -299,6 +322,7 @@
 				2397C9D627301D820079C4F8 /* PushNotificationPayload.apns */,
 				2397C9D227301D820079C4F8 /* Preview Content */,
 				2306F80B2741883C00519C10 /* ViewModelWatch.swift */,
+				234916032762922600A18A8E /* ComplicationView.swift */,
 			);
 			path = "GlucoseApp WatchKit Extension";
 			sourceTree = "<group>";
@@ -348,6 +372,7 @@
 			name = GlucoseApp;
 			packageProductDependencies = (
 				23A18840274AB718004AF3C3 /* SwiftKeychainWrapper */,
+				232F40B2278DFF2600E89FA0 /* Alamofire */,
 			);
 			productName = GlucoseApp;
 			productReference = 2397C99227301D7C0079C4F8 /* GlucoseApp.app */;
@@ -419,6 +444,10 @@
 			dependencies = (
 			);
 			name = "GlucoseApp WatchKit Extension";
+			packageProductDependencies = (
+				2356E3BE2784612F00B65F91 /* SwiftKeychainWrapper */,
+				232F40B4278E025B00E89FA0 /* Alamofire */,
+			);
 			productName = "GlucoseApp WatchKit Extension";
 			productReference = 2397C9C127301D810079C4F8 /* GlucoseApp WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -471,6 +500,7 @@
 				TargetAttributes = {
 					2397C99127301D7C0079C4F8 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1320;
 					};
 					2397C9A127301D7F0079C4F8 = {
 						CreatedOnToolsVersion = 13.1;
@@ -485,6 +515,7 @@
 					};
 					2397C9C027301D810079C4F8 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1320;
 					};
 					2397C9DA27301D820079C4F8 = {
 						CreatedOnToolsVersion = 13.1;
@@ -507,6 +538,7 @@
 			mainGroup = 2397C98927301D7B0079C4F8;
 			packageReferences = (
 				23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				232F40B1278DFF2600E89FA0 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 2397C99327301D7C0079C4F8 /* Products */;
 			projectDirPath = "";
@@ -591,6 +623,7 @@
 				2306F80127412A3400519C10 /* CareLinkClient.swift in Sources */,
 				2306F80A274187CA00519C10 /* ViewModelPhone.swift in Sources */,
 				2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */,
+				232F40C0278E081700E89FA0 /* HTTPCookieStorageShim.swift in Sources */,
 				2306F806274145C000519C10 /* ClientService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,12 +649,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2356E3C0278461A400B65F91 /* FetchService.swift in Sources */,
+				232F40C1278E081700E89FA0 /* HTTPCookieStorageShim.swift in Sources */,
+				2356E3C1278461A400B65F91 /* ClientService.swift in Sources */,
+				2356E3BC27845FFE00B65F91 /* CareLinkClient.swift in Sources */,
 				2397C9CB27301D810079C4F8 /* NotificationController.swift in Sources */,
 				2397C9C927301D810079C4F8 /* ContentView.swift in Sources */,
 				2397C9CF27301D810079C4F8 /* ComplicationController.swift in Sources */,
 				2397C9C727301D810079C4F8 /* GlucoseAppApp.swift in Sources */,
 				2306F80C2741883C00519C10 /* ViewModelWatch.swift in Sources */,
 				2397C9CD27301D810079C4F8 /* NotificationView.swift in Sources */,
+				234916042762922600A18A8E /* ComplicationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,6 +1299,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		232F40B1278DFF2600E89FA0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
@@ -1272,6 +1318,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		232F40B2278DFF2600E89FA0 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 232F40B1278DFF2600E89FA0 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		232F40B4278E025B00E89FA0 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 232F40B1278DFF2600E89FA0 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		2356E3BE2784612F00B65F91 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		23A18840274AB718004AF3C3 /* SwiftKeychainWrapper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;

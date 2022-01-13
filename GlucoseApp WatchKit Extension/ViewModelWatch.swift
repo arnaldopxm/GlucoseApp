@@ -14,14 +14,13 @@ class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
         session.activate()
     }
     
-    
-    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
             DispatchQueue.main.async {
+                //request user/pass from app. then fetch backgorund jobs to update data straight from the watch
                 self.sg = message["SG"] as? String ?? self.sg
             }
         }
