@@ -8,13 +8,14 @@
 import Foundation
 
 let url = "https://carelink.minimed.eu"
+let reqHelper = RequestHelper()
 
 func loginClient(username: String, password: String) async throws -> HTTPCookie? {
     
     var params: [(String, String)] = []
     let formEncodedHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
     
-    var (data, response) = try await makeRequest(url: url + "/patient/sso/login?country=es&lang=en")
+    var (data, response, cookies) = try await reqHelper.makeRequest(url: url + "/patient/sso/login?country=es&lang=en")
     params = extractFromBody(body: data)
     params += [
         ("username", username),
@@ -23,11 +24,21 @@ func loginClient(username: String, password: String) async throws -> HTTPCookie?
     ]
     
     let baseUrl = "https://mdtlogin.medtronic.com/mmcl/auth/oauth/v2/authorize"
-    (data, response) = try await makeRequest(url: baseUrl + "/login?country=es&locale=en", method: .POST, headers: formEncodedHeaders, params: params)
+    (data, response, cookies) = try await reqHelper.makeRequest(url: baseUrl + "/login?country=es&locale=en", method: .POST, headers: formEncodedHeaders, params: params)
     params = extractFromBody(body: data)
     
-    (data, response) = try await makeRequest(url: baseUrl + "/consent", method: .POST, headers: formEncodedHeaders, params: params)
-    let cookies:[HTTPCookie] = HTTPCookieStorage.shared.cookies! as [HTTPCookie]
+    (data, response, cookies) = try await reqHelper.makeRequest(url: baseUrl + "/consent", method: .POST, headers: formEncodedHeaders, params: params)
+    
+    if let location = response.allHeaderFields["Location"] as? String {
+        (data, response, cookies) = try await reqHelper.makeRequest(url: location, method: .GET)
+    }
+    
+    
+    for cookie:HTTPCookie in cookies as [HTTPCookie] {
+        print(cookie.name, cookie.value)
+    }
+    
+    
     guard let cookie = cookies.first( where: { $0.name == "auth_tmp_token" }) else {
         throw fatalError("Invalid Login")
     }
@@ -41,7 +52,7 @@ func getCountrySettingsClient() async throws -> CountrySettings {
         ("language","en")
     ]
     
-    let (data, _) = try await makeRequest(url: url + "/patient/countries/settings", queryParams: queryParams)
+    let (data, _, _) = try await reqHelper.makeRequest(url: url + "/patient/countries/settings", queryParams: queryParams)
     
     let stringData = data.data(using: .utf8)!
     let json = try! JSONDecoder().decode(CountrySettings.self, from: stringData)
@@ -53,7 +64,7 @@ func getUserRoleClient(token t: String) async throws -> UserSettings {
     
     let headers = ["Authorization": "Bearer \(t)"]
     
-    let (data, _) = try await makeRequest(url: url + "/patient/users/me", headers: headers)
+    let (data, _, _) = try await reqHelper.makeRequest(url: url + "/patient/users/me", headers: headers)
     
     let stringData = data.data(using: .utf8)!
     let json = try! JSONDecoder().decode(UserSettings.self, from: stringData)
@@ -72,7 +83,7 @@ func getDataClient(url: String, username: String, role: String, token t: String)
     ]
     let jsonBody = try? JSONEncoder().encode(body)
     
-    let (data, _) = try await makeRequest(url: url, method: .POST, headers: headers, body: jsonBody!)
+    let (data, _, _) = try await reqHelper.makeRequest(url: url, method: .POST, headers: headers, body: jsonBody!)
     
     let stringData = data.data(using: .utf8)!
     let json = try! JSONDecoder().decode(DataResponse.self, from: stringData)
