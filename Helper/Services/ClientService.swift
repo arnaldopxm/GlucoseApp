@@ -14,7 +14,7 @@ func loginClient(username: String, password: String) async throws -> HTTPCookie?
     var params: [(String, String)] = []
     let formEncodedHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
     
-    var (data, response) = try await makeRequest(url: url + "/patient/sso/login?country=es&lang=en")
+    var (data, _) = try await makeRequest(url: url + "/patient/sso/login?country=es&lang=en")
     params = extractFromBody(body: data)
     params += [
         ("username", username),
@@ -23,10 +23,10 @@ func loginClient(username: String, password: String) async throws -> HTTPCookie?
     ]
     
     let baseUrl = "https://mdtlogin.medtronic.com/mmcl/auth/oauth/v2/authorize"
-    (data, response) = try await makeRequest(url: baseUrl + "/login?country=es&locale=en", method: .POST, headers: formEncodedHeaders, params: params)
+    (data, _) = try await makeRequest(url: baseUrl + "/login?country=es&locale=en", method: .POST, headers: formEncodedHeaders, params: params)
     params = extractFromBody(body: data)
     
-    (data, response) = try await makeRequest(url: baseUrl + "/consent", method: .POST, headers: formEncodedHeaders, params: params)
+    (data, _) = try await makeRequest(url: baseUrl + "/consent", method: .POST, headers: formEncodedHeaders, params: params)
     let cookies:[HTTPCookie] = HTTPCookieStorage.shared.cookies! as [HTTPCookie]
     guard let cookie = cookies.first( where: { $0.name == "auth_tmp_token" }) else {
         throw fatalError("Invalid Login")
@@ -78,62 +78,4 @@ func getDataClient(url: String, username: String, role: String, token t: String)
     let json = try! JSONDecoder().decode(DataResponse.self, from: stringData)
     
     return json
-}
-
-
-//---------
-enum SgTrend: String, Codable {
-    case NONE
-    case DOWN
-    case DOWN_DOUBLE
-    case DOWN_TRIPLE
-    case UP
-    case UP_DOUBLE
-    case UP_TRIPLE
-}
-
-extension SgTrend {
-    var icon: String {
-        switch self {
-        case .DOWN: return "↓"
-        case .DOWN_DOUBLE: return "↓↓"
-        case .DOWN_TRIPLE: return "↓↓↓"
-        case .UP: return "↑"
-        case .UP_DOUBLE: return "↑↑"
-        case .UP_TRIPLE: return "↑↑↑"
-        case .NONE: return ""
-        }
-    }
-}
-
-struct SensorGlucose: Codable {
-    let sg: Int
-    let datetime: String
-}
-
-struct DataResponse: Codable {
-    let lastSG: SensorGlucose
-    let lastSGTrend: SgTrend
-}
-
-struct CountrySettings: Codable {
-    let blePereodicDataEndpoint: String
-}
-
-enum UserRoles: String {
-    case ROLE_CARE_PARTNER = "CARE_PARTNER"
-    case ROLE_CARE_PARTNER_OUS = "CARE_PARTNER_OUS"
-    case USER_ROLE_CARE_PARTNER = "carepartner"
-    case USER_ROLE_PATIENT = "patient"
-}
-
-struct UserSettings: Codable {
-    let role: String
-    var apiRole: String {
-        if role == UserRoles.ROLE_CARE_PARTNER.rawValue || role == UserRoles.ROLE_CARE_PARTNER.rawValue {
-            return UserRoles.USER_ROLE_CARE_PARTNER.rawValue
-        } else {
-            return UserRoles.USER_ROLE_PATIENT.rawValue
-        }
-    }
 }
