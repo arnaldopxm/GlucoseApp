@@ -23,6 +23,7 @@
 		2319589E2790A71D00062F9B /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231958962790A65E00062F9B /* UserSettingsModel.swift */; };
 		2319589F2790A71D00062F9B /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231958982790A67F00062F9B /* CountryModel.swift */; };
 		231958A02790A71D00062F9B /* UserRolesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2319589A2790A69D00062F9B /* UserRolesEnum.swift */; };
+		231958A22790A8CD00062F9B /* AsyncExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231958A12790A8CD00062F9B /* AsyncExtensions.swift */; };
 		232F40B5278E025B00E89FA0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 232F40B4278E025B00E89FA0 /* Alamofire */; };
 		234916042762922600A18A8E /* ComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234916032762922600A18A8E /* ComplicationView.swift */; };
 		2356E3BC27845FFE00B65F91 /* CareLinkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80027412A3400519C10 /* CareLinkClient.swift */; };
@@ -134,6 +135,7 @@
 		231958962790A65E00062F9B /* UserSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
 		231958982790A67F00062F9B /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		2319589A2790A69D00062F9B /* UserRolesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRolesEnum.swift; sourceTree = "<group>"; };
+		231958A12790A8CD00062F9B /* AsyncExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncExtensions.swift; sourceTree = "<group>"; };
 		2327E9DF274195C900858BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		234916032762922600A18A8E /* ComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationView.swift; sourceTree = "<group>"; };
 		2397C99227301D7C0079C4F8 /* GlucoseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +223,7 @@
 				231958912790A5D100062F9B /* Models */,
 				2306F80227412A7F00519C10 /* Services */,
 				2306F80027412A3400519C10 /* CareLinkClient.swift */,
+				231958A12790A8CD00062F9B /* AsyncExtensions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				2397C99827301D7C0079C4F8 /* LoginView.swift in Sources */,
 				2306F808274147E900519C10 /* ContentView.swift in Sources */,
 				2306F80127412A3400519C10 /* CareLinkClient.swift in Sources */,
+				231958A22790A8CD00062F9B /* AsyncExtensions.swift in Sources */,
 				231958952790A62F00062F9B /* SgTrendEnum.swift in Sources */,
 				2306F80A274187CA00519C10 /* ViewModelPhone.swift in Sources */,
 				2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */,
