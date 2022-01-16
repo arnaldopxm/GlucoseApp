@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var model = ViewModelWatch()
+    @StateObject var model = ViewModelWatch.singleton
     var body: some View {
-        Text(model.sg)
-            .padding()
+        VStack {
+            Text(model.sg)
+                .padding()
+        }
     }
 }
 

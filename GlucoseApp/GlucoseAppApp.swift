@@ -11,7 +11,7 @@ import BackgroundTasks
 @main
 struct GlucoseAppApp: App {
     private let identifier = "com.arnaldoquintero.GlucoseApp.Refresh"
-    @StateObject var model = ViewModelPhone()
+    @StateObject var model = ViewModelPhone.singleton
     @StateObject var client = CareLinkClient()
     @State var set: Bool = true
     @Environment(\.scenePhase) private var scenePhase
@@ -41,10 +41,14 @@ struct GlucoseAppApp: App {
             do {
                 print("FETCHING")
                 let sg = try await client.getLastSensorGlucose()
-                model.sg = "\(sg.lastSG.sg) \(sg.lastSGTrend.icon)"
-                model.sgTime = sg.lastSG.datetime
-                //model.send(message: ["SG": model.sg])
-                print("ASYNC BG CALL -> " + model.sg)
+                if sg.lastSG.datetime != nil {
+                    model.sg = "\(sg.lastSG.sg) \(sg.lastSGTrend.icon)"
+                    model.sgTime = sg.lastSG.datetime!
+                    model.send(message: ["SG": model.sg])
+                    print("ASYNC BG CALL -> " + model.sg)
+                } else {
+//                    app is closed
+                }
                 task.setTaskCompleted(success: true)
             } catch {
                 print ("ERROR FETCHING \(error.localizedDescription)")

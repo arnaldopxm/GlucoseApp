@@ -10,27 +10,17 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var model: ViewModelPhone;
     @EnvironmentObject var client: CareLinkClient;
-    @State var sg = "SG"
-    @State var sgTime = "Time"
+
     let timer = Timer.publish(every: 20, on: .main, in: .common).autoconnect()
     
     func findLastGlucoseTask(_: Any? = nil) {
-        Task.init() {
-            if let sg = try? await client.getLastSensorGlucose() {
-                model.sg = "\(sg.lastSG.sg) \(sg.lastSGTrend.icon)"
-                model.sgTime = sg.lastSG.datetime
-                model.send(message: ["SG": model.sg])
-            }
-        }
-        // print("sg fetch \(model.sg)")
-        self.sg = model.sg
-        self.sgTime = model.sgTime
+        client.findLastGlucoseTaskSync(updateHandler: model.update)
     }
        
     var body: some View {
         VStack {
-            Text(sg)
-            Text(sgTime)
+            Text(model.sg)
+            Text(model.sgTime)
         }
         .onAppear(perform: {
             findLastGlucoseTask()

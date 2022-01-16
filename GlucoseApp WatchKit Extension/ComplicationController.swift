@@ -6,16 +6,10 @@
 //
 
 import ClockKit
+import WatchConnectivity
 
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
-    
-    private var model: ViewModelWatch
-    
-    override init() {
-        model = ViewModelWatch()
-        super.init()
-    }
     
     // MARK: - Complication Configuration
     
@@ -48,34 +42,28 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Timeline Population
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        // Call the handler with the current timeline 
+        // Call the handler with the current timeline
+        // let login = CareLinkClient(username: "1581862", password: "Candelaria")
         
-        Task.init() {
-            let login = CareLinkClient(username: "1581862", password: "Candelaria")
-            var entry: CLKComplicationTimelineEntry? = nil
-            var template: CLKComplicationTemplate? = nil
-            if let sg = try? await login.getLastSensorGlucose() {
-                let sgValue = "\(sg.lastSG.sg) \(sg.lastSGTrend.icon)"
-                print(sgValue)
-                
-                
-                switch complication.family {
-                case .circularSmall:
-                    // face 2
-                    template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: sgValue), fillFraction: 0.5, ringStyle: .closed)
-                case .graphicCircular:
-                    //face 1
-                    template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: sgValue), line2TextProvider: CLKSimpleTextProvider(text: sgValue))
-                case .utilitarianLarge:
-                    template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: sgValue) )
-                default:
-                    handler(nil)
-                    return
-                }
-                entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template!)
-                handler(entry)
-            }
+        var entry: CLKComplicationTimelineEntry? = nil
+        var template: CLKComplicationTemplate? = nil
+        let displayValue = ViewModelWatch.singleton.sgString
+        
+        switch complication.family {
+        case .circularSmall:
+            // face 2
+            template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: displayValue), fillFraction: 0.5, ringStyle: .closed)
+        case .graphicCircular:
+            //face 1
+            template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: displayValue), line2TextProvider: CLKSimpleTextProvider(text: displayValue))
+        case .utilitarianLarge:
+            template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: displayValue) )
+        default:
+            handler(nil)
+            return
         }
+        entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template!)
+        handler(entry)
         
     }
     
@@ -85,7 +73,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     // MARK: - Sample Templates
-    
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached
         switch complication.family {
