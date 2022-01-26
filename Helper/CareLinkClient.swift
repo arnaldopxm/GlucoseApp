@@ -6,6 +6,7 @@ class CareLinkClient: ObservableObject {
     
     @Published var isLoggedIn = false
     private let keychain = KeychainWrapper(serviceName: "com.arnaldoquintero.glucoseapp")
+    static public var singleton = CareLinkClient()
 
     var username: String? {
         get {
@@ -85,16 +86,20 @@ class CareLinkClient: ObservableObject {
         }
     }
     
-    func getLastSensorGlucose() async throws -> DataResponse {
-        if !(try! await reLogin()) {
-            throw fatalError("Unauthorized")
+    func getLastSensorGlucose() async throws -> DataResponse? {
+        
+        guard
+            try await reLogin(),
+            let country = try? await getCountrySettingsClient(),
+            let token = cookie?.value,
+            let user = try? await getUserRoleClient(token: token),
+            let data = try? await getDataClient(url: country.blePereodicDataEndpoint, username: username!, role: user.apiRole, token: token)
+        else {
+            print("Error fetching last glucose")
+            return nil
         }
-        let country = try! await getCountrySettingsClient()
-        let token = cookie?.value
-        let user = try! await getUserRoleClient(token: token!)
-        
-        
-        let data = try!  await getDataClient(url: country.blePereodicDataEndpoint, username: username!, role: user.apiRole, token: token!)
+                    
+                
         return data
     }
 }

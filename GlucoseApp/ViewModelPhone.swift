@@ -39,6 +39,14 @@ class ViewModelPhone : NSObject,  WCSessionDelegate, ObservableObject{
         // code
     }
     
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        DispatchQueue.main.async {
+            if (message["REQUEST"]) != nil && message["REQUEST"] as! Bool == true {
+                CareLinkClient.singleton.findLastGlucoseTaskSync(updateHandler: ViewModelPhone.singleton.update)
+            }
+        }
+    }
+    
     func sessionDidBecomeInactive(_ session: WCSession) {
         // code
     }

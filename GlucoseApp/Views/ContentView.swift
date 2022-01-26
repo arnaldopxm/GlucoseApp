@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var model: ViewModelPhone;
-    @EnvironmentObject var client: CareLinkClient;
+    var model = ViewModelPhone.singleton;
+    var client = CareLinkClient.singleton;
+    
+    init() {
+        findLastGlucoseTask()
+    }
 
-    let timer = Timer.publish(every: 20, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1*60, on: .main, in: .common).autoconnect()
     
     func findLastGlucoseTask(_: Any? = nil) {
         client.findLastGlucoseTaskSync(updateHandler: model.update)
@@ -22,9 +26,6 @@ struct ContentView: View {
             Text(model.sg)
             Text(model.sgTime)
         }
-        .onAppear(perform: {
-            findLastGlucoseTask()
-        })
         .onDisappear() {
             timer.upstream.connect().cancel()
         }

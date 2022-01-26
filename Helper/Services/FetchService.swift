@@ -13,7 +13,7 @@ enum HttpMethod: String {
     case POST = "POST"
 }
 
-func extractFromBody(body: String, pattern: String = "<input type=\"hidden\" name=\"([^\"]*)\" value=\"([^\"]*)\"") -> [(String,String)] {
+func extractFromBody(body: String, pattern: String = HttpTranspontConst.ExtractInputKeyValuePairRegex) -> [(String,String)] {
     guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
         return []
     }
@@ -33,35 +33,38 @@ func extractFromBody(body: String, pattern: String = "<input type=\"hidden\" nam
 
 
 
-func makeRequest(url u: String, method: HttpMethod = .GET, headers: [String: String]? = nil, queryParams: [(String, String)] = [], params: [(String, String)] = [], body: Data? = nil) async throws -> (String, URLResponse) {
-    
-    guard var url = URLComponents(string: u) else {
-        throw fatalError("Invalid URL")
+func makeRequest(
+    url u: String,
+    method: HttpMethod = .GET,
+    headers: [String: String]? = nil, queryParams: [(String, String)] = [], params: [(String, String)] = [], body: Data? = nil) async throws -> (String, URLResponse) {
+        
+        guard var url = URLComponents(string: u) else {
+            throw fatalError("Invalid URL")
+        }
+        
+        if !queryParams.isEmpty {
+            let parsedParams = queryParams.map { URLQueryItem(name: $0, value: $1) }
+            url.queryItems = parsedParams
+        }
+        
+        var req = URLRequest(url: url.url!)
+        req.httpMethod = method.rawValue
+        
+        if !params.isEmpty {
+            var body = URLComponents()
+            body.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
+            req.httpBody = body.query?.data(using: .utf8)
+        }
+        
+        if (body != nil) {
+            req.httpBody = body
+        }
+        
+        req.allHTTPHeaderFields = headers
+        
+        let (data, response) = try await URLSession.shared.data(for: req)
+        guard let dataString = String(data:data, encoding: .utf8) else {
+            throw fatalError("Impossible to parse data")
+        }
+        return (dataString, response)
     }
-    
-    if !queryParams.isEmpty {
-        let parsedParams = queryParams.map { URLQueryItem(name: $0, value: $1) }
-        url.queryItems = parsedParams
-    }
-    
-    var req = URLRequest(url: url.url!)
-    req.httpMethod = method.rawValue
-    
-    if !params.isEmpty {
-        var body = URLComponents()
-        body.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
-        req.httpBody = body.query?.data(using: .utf8)
-    }
-    
-    if (body != nil) {
-        req.httpBody = body
-    }
-    
-    req.allHTTPHeaderFields = headers
-    
-    let (data, response) = try await URLSession.shared.data(for: req)
-    guard let dataString = String(data:data, encoding: .utf8) else {
-        throw fatalError("Impossible to parse data")
-    }
-    return (dataString, response)
-}

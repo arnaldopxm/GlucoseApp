@@ -15,7 +15,7 @@ class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
         return "\(sg) - \(sgTime)"
     }
     
-    init(session: WCSession = .default){
+    init(session: WCSession = .default) {
         self.session = session
         super.init()
         self.session.delegate = self
@@ -29,12 +29,16 @@ class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         DispatchQueue.main.async {
             //request user/pass from app. then fetch backgorund jobs to update data straight from the watch
-            self.sg = message["SG"] as? String ?? self.sg
-            self.sgTime = message["SGTIME"] as? String ?? self.sgTime
-            let complications = CLKComplicationServer.sharedInstance()
-            for c in complications.activeComplications! {
-                complications.reloadTimeline(for: c)
-            }
+            self.process(message: message)
+        }
+    }
+    
+    func process(message: [String : Any]) {
+        self.sg = message["SG"] as? String ?? self.sg
+        self.sgTime = message["SGTIME"] as? String ?? self.sgTime
+        let complications = CLKComplicationServer.sharedInstance()
+        for c in complications.activeComplications! {
+            complications.reloadTimeline(for: c)
         }
     }
 }

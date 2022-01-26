@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct GlucoseAppApp: App {
+    @WKExtensionDelegateAdaptor(WatchDelegate.self) var delegate
+    
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
             }
         }
-
-        WKNotificationScene(controller: NotificationController.self, category: "myCategory")
     }
 }

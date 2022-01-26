@@ -29,7 +29,8 @@ func loginClient(username: String, password: String) async throws -> HTTPCookie?
     (data, _) = try await makeRequest(url: baseUrl + "/consent", method: .POST, headers: formEncodedHeaders, params: params)
     let cookies:[HTTPCookie] = HTTPCookieStorage.shared.cookies! as [HTTPCookie]
     guard let cookie = cookies.first( where: { $0.name == "auth_tmp_token" }) else {
-        throw fatalError("Invalid Login")
+        return nil
+//        throw fatalError("Invalid Login")
     }
     
     return cookie
@@ -44,7 +45,7 @@ func getCountrySettingsClient() async throws -> CountrySettings {
     let (data, _) = try await makeRequest(url: url + "/patient/countries/settings", queryParams: queryParams)
     
     let stringData = data.data(using: .utf8)!
-    let json = try! JSONDecoder().decode(CountrySettings.self, from: stringData)
+    let json = try JSONDecoder().decode(CountrySettings.self, from: stringData)
     
     return json
 }
@@ -56,12 +57,12 @@ func getUserRoleClient(token t: String) async throws -> UserSettings {
     let (data, _) = try await makeRequest(url: url + "/patient/users/me", headers: headers)
     
     let stringData = data.data(using: .utf8)!
-    let json = try! JSONDecoder().decode(UserSettings.self, from: stringData)
+    let json = try JSONDecoder().decode(UserSettings.self, from: stringData)
     
     return json
 }
 
-func getDataClient(url: String, username: String, role: String, token t: String) async throws -> DataResponse {
+func getDataClient(url: String, username: String, role: String, token t: String) async throws -> DataResponse? {
     let headers = [
         "Content-Type": "application/json",
         "Authorization": "Bearer \(t)"
@@ -74,8 +75,13 @@ func getDataClient(url: String, username: String, role: String, token t: String)
     
     let (data, _) = try await makeRequest(url: url, method: .POST, headers: headers, body: jsonBody!)
     
-    let stringData = data.data(using: .utf8)!
-    let json = try! JSONDecoder().decode(DataResponse.self, from: stringData)
+    let stringData =  data.data(using: .utf8)!
+    guard
+        let json = try? JSONDecoder().decode(DataResponse.self, from: stringData)
+    else {
+        return nil
+    }
+        
     
     return json
 }

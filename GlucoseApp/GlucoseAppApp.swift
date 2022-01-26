@@ -12,7 +12,7 @@ import BackgroundTasks
 struct GlucoseAppApp: App {
     private let identifier = "com.arnaldoquintero.GlucoseApp.Refresh"
     @StateObject var model = ViewModelPhone.singleton
-    @StateObject var client = CareLinkClient()
+    @StateObject var client = CareLinkClient.singleton
     @State var set: Bool = true
     @Environment(\.scenePhase) private var scenePhase
     
@@ -41,6 +41,12 @@ struct GlucoseAppApp: App {
             do {
                 print("FETCHING")
                 let sg = try await client.getLastSensorGlucose()
+                guard let sg = sg
+                else {
+                    task.setTaskCompleted(success: false)
+                    return
+                }
+
                 if sg.lastSG.datetime != nil {
                     model.sg = "\(sg.lastSG.sg) \(sg.lastSGTrend.icon)"
                     model.sgTime = sg.lastSG.datetime!
@@ -49,6 +55,7 @@ struct GlucoseAppApp: App {
                 } else {
 //                    app is closed
                 }
+
                 task.setTaskCompleted(success: true)
             } catch {
                 print ("ERROR FETCHING \(error.localizedDescription)")
@@ -73,11 +80,8 @@ struct GlucoseAppApp: App {
         WindowGroup {
             if client.isLoggedIn {
                 ContentView()
-                    .environmentObject(client)
-                    .environmentObject(model)
             } else {
-                LoginView()
-                    .environmentObject(client)
+                LoginView().environmentObject(client)
             }
         }.onChange(of: scenePhase) { phase in
             if (phase == .active && set) {
