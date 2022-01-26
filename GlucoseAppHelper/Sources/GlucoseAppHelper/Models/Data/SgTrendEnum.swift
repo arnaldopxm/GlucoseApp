@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SgTrend: String, Codable {
+public enum SgTrend: String, Codable {
     case NONE
     case DOWN
     case DOWN_DOUBLE
@@ -17,7 +17,7 @@ enum SgTrend: String, Codable {
     case UP_TRIPLE
 }
 
-extension SgTrend {
+public extension SgTrend {
     var icon: String {
         switch self {
         case .DOWN: return "↓"

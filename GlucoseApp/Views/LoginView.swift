@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import GlucoseAppHelper
 
 struct LoginView: View {
     
@@ -70,6 +70,6 @@ struct SaveButtonContent : View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            .environmentObject(CareLinkClient())
+//            .environmentObject(CareLinkClient())
     }
 }

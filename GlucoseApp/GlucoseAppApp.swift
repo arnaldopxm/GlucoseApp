@@ -7,6 +7,7 @@
 
 import SwiftUI
 import BackgroundTasks
+import GlucoseAppHelper
 
 @main
 struct GlucoseAppApp: App {

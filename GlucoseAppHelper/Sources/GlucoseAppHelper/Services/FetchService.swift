@@ -7,12 +7,6 @@
 
 import Foundation
 
-
-enum HttpMethod: String {
-    case GET = "GET"
-    case POST = "POST"
-}
-
 func extractFromBody(body: String, pattern: String = HttpTranspontConst.ExtractInputKeyValuePairRegex) -> [(String,String)] {
     guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
         return []
@@ -33,13 +27,15 @@ func extractFromBody(body: String, pattern: String = HttpTranspontConst.ExtractI
 
 
 
+@available(watchOS 8.0, *)
+@available(iOS 15.0.0, *)
 func makeRequest(
     url u: String,
     method: HttpMethod = .GET,
-    headers: [String: String]? = nil, queryParams: [(String, String)] = [], params: [(String, String)] = [], body: Data? = nil) async throws -> (String, URLResponse) {
+    headers: [String: String]? = nil, queryParams: [(String, String)] = [], params: [(String, String)] = [], body: Data? = nil) async throws -> (String, URLResponse)? {
         
-        guard var url = URLComponents(string: u) else {
-            throw fatalError("Invalid URL")
+        guard var url = URLComponents(string: u), url.url != nil else {
+            return nil
         }
         
         if !queryParams.isEmpty {

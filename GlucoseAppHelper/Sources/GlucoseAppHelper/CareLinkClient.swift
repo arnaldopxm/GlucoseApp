@@ -2,9 +2,12 @@ import Foundation
 import SwiftKeychainWrapper
 
 
-class CareLinkClient: ObservableObject {
+@available(iOS 15.0.0, *)
+@available(watchOS 8.0.0, *)
+public class CareLinkClient: ObservableObject {
     
-    @Published var isLoggedIn = false
+    @Published public var isLoggedIn = false
+    private var fetching = false
     private let keychain = KeychainWrapper(serviceName: "com.arnaldoquintero.glucoseapp")
     static public var singleton = CareLinkClient()
 
@@ -56,9 +59,9 @@ class CareLinkClient: ObservableObject {
         return try await login(username: username!, password: password!)
     }
 
-    func login(username usr: String? = nil, password pwd: String? = nil) async throws -> Bool {
+    public func login(username usr: String? = nil, password pwd: String? = nil) async throws -> Bool {
 
-        if (cookie != nil && cookie?.expiresDate != nil && (cookie?.expiresDate)! >= Date.now) {
+        if (cookie != nil && cookie?.expiresDate != nil && (cookie?.expiresDate)! >= Date(timeIntervalSinceNow: 0)) {
             return true
         }
         
@@ -70,7 +73,7 @@ class CareLinkClient: ObservableObject {
         }
 
         var res = false
-        if let loginResponseCookie = try? await loginClient(username: usr, password: pwd) {
+        if let loginResponseCookie = try? await ClientService.loginClient(username: usr, password: pwd) {
             username = usr
             password = pwd
             cookie = loginResponseCookie
@@ -86,14 +89,14 @@ class CareLinkClient: ObservableObject {
         }
     }
     
-    func getLastSensorGlucose() async throws -> DataResponse? {
+    public func getLastSensorGlucose() async throws -> DataResponse? {
         
         guard
             try await reLogin(),
-            let country = try? await getCountrySettingsClient(),
+            let country = try? await ClientService.getCountrySettingsClient(),
             let token = cookie?.value,
-            let user = try? await getUserRoleClient(token: token),
-            let data = try? await getDataClient(url: country.blePereodicDataEndpoint, username: username!, role: user.apiRole, token: token)
+            let user = try? await ClientService.getUserRoleClient(token: token),
+            let data = try? await ClientService.getDataClient(url: country.blePereodicDataEndpoint, username: username!, role: user.apiRole, token: token)
         else {
             print("Error fetching last glucose")
             return nil

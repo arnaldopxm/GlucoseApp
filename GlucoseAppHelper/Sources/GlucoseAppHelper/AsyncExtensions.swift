@@ -7,8 +7,10 @@
 
 import Foundation
 
+@available(iOS 15.0, *)
+@available(watchOS 8.0, *)
 extension CareLinkClient {
-    func findLastGlucoseTaskSync(updateHandler: @escaping (_ data: DataResponse) -> () ) {
+    public func findLastGlucoseTaskSync(updateHandler: @escaping (_ data: DataResponse) -> () ) {
         Task.init() {
             if let data = try? await getLastSensorGlucose() {
                 updateHandler(data)

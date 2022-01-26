@@ -1,5 +1,6 @@
 import Foundation
 import WatchConnectivity
+import GlucoseAppHelper
 
 class ViewModelPhone : NSObject,  WCSessionDelegate, ObservableObject{
     

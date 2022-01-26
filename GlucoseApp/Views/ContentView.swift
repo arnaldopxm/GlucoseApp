@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GlucoseAppHelper
 
 struct ContentView: View {
     var model = ViewModelPhone.singleton;
@@ -35,8 +36,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let client = CareLinkClient(username:"1581862", password: "Candelaria")
+//        let client = CareLinkClient(username:"1581862", password: "Candelaria")
         return ContentView()
-            .environmentObject(client)
+//            .environmentObject(client)
     }
 }

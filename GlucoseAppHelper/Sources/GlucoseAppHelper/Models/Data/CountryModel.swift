@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct CountrySettings: Codable {
-    let blePereodicDataEndpoint: String
+public struct CountrySettings: Codable {
+    public let blePereodicDataEndpoint: String
 }
