@@ -2,12 +2,9 @@ import Foundation
 import WatchConnectivity
 import GlucoseAppHelper
 
-class ViewModelPhone : NSObject,  WCSessionDelegate, ObservableObject{
+class ViewModelPhone : NSObject,  WCSessionDelegate{
     
     static let singleton = ViewModelPhone()
-    
-    var sg: String = "SG"
-    var sgTime: String = "... fetching ..."
     private let session: WCSession
     
     init(session: WCSession = .default) {
@@ -18,14 +15,8 @@ class ViewModelPhone : NSObject,  WCSessionDelegate, ObservableObject{
     }
     
     func update(from data: DataResponse) {
-        if data.lastSG.datetime != nil {
-            sg = "\(data.lastSG.sg) \(data.lastSGTrend.icon)"
-            sgTime = data.lastSG.datetime!
-        } else {
-            sg = "---"
-            sgTime = "No Data"
-        }
-        send(message: ["SG": sg, "SGTIME":sgTime])
+        AppState.singleton.update(from: data)
+        send(message: ["SG": AppState.singleton.sg, "SGTIME":AppState.singleton.sgTime])
     }
     
     func send(message: [String:Any]) -> Void {

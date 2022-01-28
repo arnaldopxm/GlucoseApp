@@ -4,10 +4,8 @@ import SwiftKeychainWrapper
 
 @available(iOS 15.0.0, *)
 @available(watchOS 8.0.0, *)
-public class CareLinkClient: ObservableObject {
+public class CareLinkClient {
     
-    @Published public var isLoggedIn = false
-    private var fetching = false
     private let keychain = KeychainWrapper(serviceName: "com.arnaldoquintero.glucoseapp")
     static public var singleton = CareLinkClient()
 
@@ -79,14 +77,8 @@ public class CareLinkClient: ObservableObject {
             cookie = loginResponseCookie
             res = true
         }
-        setLogin(value: res)
+        AppState.singleton.setLogin(value: res)
         return res
-    }
-
-    func setLogin(value: Bool) {
-        DispatchQueue.main.async {
-            self.isLoggedIn = value
-        }
     }
     
     public func getLastSensorGlucose() async throws -> DataResponse? {

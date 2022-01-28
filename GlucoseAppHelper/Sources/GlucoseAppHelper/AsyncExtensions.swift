@@ -13,6 +13,7 @@ extension CareLinkClient {
     public func findLastGlucoseTaskSync(updateHandler: @escaping (_ data: DataResponse) -> () ) {
         Task.init() {
             if let data = try? await getLastSensorGlucose() {
+                print("Data received: ", data)
                 updateHandler(data)
             }
         }

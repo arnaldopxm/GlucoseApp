@@ -61,7 +61,7 @@ class WatchDelegate: NSObject, WKExtensionDelegate {
     }
     
     func scheduleNextReload() {
-        let targetDate = Date(timeIntervalSinceNow: 5 * 60)
+        let targetDate = Date(timeIntervalSinceNow: 1 * 60)
         print("ExtensionDelegate: scheduling next update at \(targetDate)")
         
         WKExtension.shared().scheduleBackgroundRefresh(

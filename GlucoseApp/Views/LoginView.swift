@@ -10,7 +10,7 @@ import GlucoseAppHelper
 
 struct LoginView: View {
     
-    @EnvironmentObject var client: CareLinkClient;
+    var client: CareLinkClient = CareLinkClient.singleton
 
     @State private var username: String = ""
     @State private var password: String = ""
@@ -70,6 +70,5 @@ struct SaveButtonContent : View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-//            .environmentObject(CareLinkClient())
     }
 }
