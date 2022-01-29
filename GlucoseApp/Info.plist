@@ -10,5 +10,14 @@
 	<array>
 		<string>fetch</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>launchImage</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
+		<key>UIColorName</key>
+		<string>launchBackground</string>
+	</dict>
 </dict>
 </plist>

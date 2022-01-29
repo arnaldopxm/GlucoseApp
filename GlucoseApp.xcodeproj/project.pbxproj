@@ -10,7 +10,7 @@
 		2306F808274147E900519C10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F807274147E900519C10 /* ContentView.swift */; };
 		2306F80A274187CA00519C10 /* ViewModelPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F809274187CA00519C10 /* ViewModelPhone.swift */; };
 		2306F80C2741883C00519C10 /* ViewModelWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80B2741883C00519C10 /* ViewModelWatch.swift */; };
-		2356E3BF2784612F00B65F91 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2356E3BE2784612F00B65F91 /* SwiftKeychainWrapper */; };
+		23114D6827A57D0700A70CFE /* GlucoseAppHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 23114D6727A57D0700A70CFE /* GlucoseAppHelper */; };
 		2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */; };
 		2397C99827301D7C0079C4F8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C99727301D7C0079C4F8 /* LoginView.swift */; };
 		2397C99A27301D7F0079C4F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2397C99927301D7F0079C4F8 /* Assets.xcassets */; };
@@ -29,9 +29,7 @@
 		2397C9E027301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9DF27301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift */; };
 		2397C9EA27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9E927301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift */; };
 		2397C9EC27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9EB27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift */; };
-		23A18841274AB718004AF3C3 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 23A18840274AB718004AF3C3 /* SwiftKeychainWrapper */; };
 		23EECB5E27A1C121004B7CEA /* WatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EECB5D27A1C121004B7CEA /* WatchDelegate.swift */; };
-		23EECB7327A1D673004B7CEA /* GlucoseAppHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 23EECB7227A1D673004B7CEA /* GlucoseAppHelper */; };
 		23EECB7527A1DD7B004B7CEA /* GlucoseAppHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 23EECB7427A1DD7B004B7CEA /* GlucoseAppHelper */; };
 /* End PBXBuildFile section */
 
@@ -146,8 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23A18841274AB718004AF3C3 /* SwiftKeychainWrapper in Frameworks */,
-				23EECB7327A1D673004B7CEA /* GlucoseAppHelper in Frameworks */,
+				23114D6827A57D0700A70CFE /* GlucoseAppHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +166,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2356E3BF2784612F00B65F91 /* SwiftKeychainWrapper in Frameworks */,
 				23EECB7527A1DD7B004B7CEA /* GlucoseAppHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,8 +373,7 @@
 			);
 			name = GlucoseApp;
 			packageProductDependencies = (
-				23A18840274AB718004AF3C3 /* SwiftKeychainWrapper */,
-				23EECB7227A1D673004B7CEA /* GlucoseAppHelper */,
+				23114D6727A57D0700A70CFE /* GlucoseAppHelper */,
 			);
 			productName = GlucoseApp;
 			productReference = 2397C99227301D7C0079C4F8 /* GlucoseApp.app */;
@@ -451,7 +446,6 @@
 			);
 			name = "GlucoseApp WatchKit Extension";
 			packageProductDependencies = (
-				2356E3BE2784612F00B65F91 /* SwiftKeychainWrapper */,
 				23EECB7427A1DD7B004B7CEA /* GlucoseAppHelper */,
 			);
 			productName = "GlucoseApp WatchKit Extension";
@@ -543,7 +537,6 @@
 			);
 			mainGroup = 2397C98927301D7B0079C4F8;
 			packageReferences = (
-				23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 2397C99327301D7C0079C4F8 /* Products */;
 			projectDirPath = "";
@@ -955,7 +948,7 @@
 				INFOPLIST_FILE = GlucoseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -970,7 +963,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -990,7 +983,7 @@
 				INFOPLIST_FILE = GlucoseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1005,7 +998,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1293,29 +1286,8 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		2356E3BE2784612F00B65F91 /* SwiftKeychainWrapper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
-			productName = SwiftKeychainWrapper;
-		};
-		23A18840274AB718004AF3C3 /* SwiftKeychainWrapper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 23A1883F274AB718004AF3C3 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
-			productName = SwiftKeychainWrapper;
-		};
-		23EECB7227A1D673004B7CEA /* GlucoseAppHelper */ = {
+		23114D6727A57D0700A70CFE /* GlucoseAppHelper */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GlucoseAppHelper;
 		};
