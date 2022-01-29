@@ -7,6 +7,7 @@
 
 import WatchKit
 import ClockKit
+import GlucoseAppHelper
 
 class WatchDelegate: NSObject, WKExtensionDelegate {
     
@@ -57,11 +58,12 @@ class WatchDelegate: NSObject, WKExtensionDelegate {
     
     func reloadActiveComplications() {
         print("ExtensionDelegate: requesting reload of complications")
-        ViewModelWatch.singleton.session.sendMessage(["REQUEST":true], replyHandler: nil, errorHandler: nil)
+        ViewModelWatch.singleton.send(message: ["REQUEST":true])
     }
     
     func scheduleNextReload() {
-        let targetDate = Date(timeIntervalSinceNow: 1 * 60)
+        let targetDate = Date(timeIntervalSinceNow: 2 * 60)
+        ViewModelWatch.singleton.nextUpdateTime = "\(targetDate)"
         print("ExtensionDelegate: scheduling next update at \(targetDate)")
         
         WKExtension.shared().scheduleBackgroundRefresh(

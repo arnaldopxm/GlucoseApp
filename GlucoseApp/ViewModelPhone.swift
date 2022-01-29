@@ -15,6 +15,7 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
     }
     
     func update(from data: DataResponse) {
+        print("ViewModelPhone: Updating data, sending to Watch")
         AppState.singleton.update(from: data)
         send(message: ["SG": AppState.singleton.sg, "SGTIME":AppState.singleton.sgTime])
     }
@@ -34,7 +35,12 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         DispatchQueue.main.async {
             if (message["REQUEST"]) != nil && message["REQUEST"] as! Bool == true {
+                print("ViewModelPhone: Message received, Reload Data")
                 CareLinkClient.singleton.findLastGlucoseTaskSync(updateHandler: ViewModelPhone.singleton.update)
+            }
+            if (message["CURRENT-DATA"]) != nil && message["REQUEST"] as! Bool == true {
+                print("ViewModelPhone: Message received, Send Current Data")
+                self.send(message: ["SG": AppState.singleton.sg, "SGTIME":AppState.singleton.sgTime])
             }
         }
     }
@@ -46,6 +52,5 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
     func sessionDidDeactivate(_ session: WCSession) {
         // code
     }
-    
     
 }

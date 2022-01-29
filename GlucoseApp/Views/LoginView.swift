@@ -22,7 +22,13 @@ struct LoginView: View {
             PasswordSecureField(password: $password)
             Button(action: {
                 Task.init() {
-                    try await client.login(username: username, password: password)
+                    do {
+                        print("LoginView: calling login")
+                        try await client.login(username: username, password: password)
+                    } catch {
+                        print("\(error)")
+                    }
+                    
                 }
             }) {
                 SaveButtonContent()

@@ -13,6 +13,10 @@ struct ContentView: View {
         VStack {
             Text(model.sg)
                 .padding()
+            Text(model.sgTime)
+                .padding()
+            Text(model.nextUpdateTime)
+                .padding()
         }
     }
 }

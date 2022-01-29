@@ -75,12 +75,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // This method will be called once per supported complication, and the results will be cached
         switch complication.family {
         case .circularSmall:
-            // face 2
-            let template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: "111"), fillFraction: 0.5, ringStyle: .closed)
+            let template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: "---"), fillFraction: 0.5, ringStyle: .closed)
             handler(template)
         case .graphicCircular:
-            //face 1
-            let template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: "121"), line2TextProvider: CLKSimpleTextProvider(text: "122"))
+            let template = CLKComplicationTemplateGraphicCircularClosedGaugeText(gaugeProvider: CLKSimpleGaugeProvider(style: CLKGaugeProviderStyle.fill, gaugeColor: .gray, fillFraction: 1), centerTextProvider: CLKSimpleTextProvider(text: "---"))
+//            CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: "---"), line2TextProvider: CLKSimpleTextProvider(text: ""))
+            handler(template)
+        case .utilitarianLarge:
+            let template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: "--- date-time"))
             handler(template)
         default:
             handler(nil)

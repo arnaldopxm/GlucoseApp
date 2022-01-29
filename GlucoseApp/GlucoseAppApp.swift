@@ -20,6 +20,7 @@ struct GlucoseAppApp: App {
     
     init() {
         self.registerBgTask()
+        self.scheduleAppRefresh()
     }
     
     func registerBgTask() {
@@ -34,21 +35,15 @@ struct GlucoseAppApp: App {
     
     func handleAppRefresh(task: BGAppRefreshTask) {
         scheduleAppRefresh()
-        findLastGlucoseTask(task: task)
-        print("AppMain: Task handled")
-    }
-    
-    
-    func findLastGlucoseTask(task: BGAppRefreshTask) {
         print("AppMain: Fetch BG")
         client.findLastGlucoseTaskSync(updateHandler: model.update)
-        task.setTaskCompleted(success: false)
-        print("AppMain: BG finished")
+        task.setTaskCompleted(success: true)
+        print("AppMain: BG finished, Task handled")
     }
     
     func scheduleAppRefresh() {
         let req = BGAppRefreshTaskRequest(identifier: AppIdentifiers.RefreshTaskIdentifier)
-        req.earliestBeginDate = Date(timeIntervalSinceNow: 5*60)
+        req.earliestBeginDate = Date(timeIntervalSinceNow: 0.5*60)
         
         do {
             print("AppMain: schedule refresh")
@@ -70,17 +65,17 @@ struct GlucoseAppApp: App {
         .onChange(of: scenePhase) { phase in
             if (phase == .active && set) {
                 print("AppMain: goes to foreground")
-                BGTaskScheduler.shared.cancelAllTaskRequests()
-                print("AppMain: load data from store")
-                PersistStore.load { result in
-                    print("AppMain: data loaded", result)
-                    switch result {
-                    case .failure(_):
-                        break
-                    case .success(let data):
-                        state.loadData(from: data)
-                    }
-                }
+//                BGTaskScheduler.shared.cancelAllTaskRequests()
+//                print("AppMain: load data from store")
+//                PersistStore.load { result in
+//                    print("AppMain: data loaded", result)
+//                    switch result {
+//                    case .failure(_):
+//                        break
+//                    case .success(let data):
+//                        state.loadData(from: data)
+//                    }
+//                }
             }
             if (phase == .background) {
                 print("AppMain: goes to background")
@@ -88,12 +83,12 @@ struct GlucoseAppApp: App {
             }
             if (phase == .inactive) {
                 print("AppMain: goes inactive")
-                PersistStore.save(glucoseData: state.storeModel) { result in
-                    if case .failure(let error) = result {
-                        print("AppMain: failure saving persistance data")
-                        fatalError(error.localizedDescription)
-                    }
-                }
+//                PersistStore.save(glucoseData: state.storeModel) { result in
+//                    if case .failure(let error) = result {
+//                        print("AppMain: failure saving persistance data")
+//                        fatalError(error.localizedDescription)
+//                    }
+//                }
             }
         }
     }
