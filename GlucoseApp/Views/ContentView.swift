@@ -33,6 +33,15 @@ struct ContentView: View {
         VStack {
             Text(state.sg)
             Text(state.sgTime)
+            Button(action: {
+                print("logout")
+                client.logout()
+            }) {
+                Text("Logout")
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.blue)
+            }
         }
         .onDisappear() {
             timer.upstream.connect().cancel()
