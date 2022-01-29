@@ -24,18 +24,15 @@ func extractFromBody(body: String, pattern: String = HttpTranspontConst.ExtractI
     return parsedMatches
 }
 
-
-
-
 @available(watchOS 8.0, *)
 @available(iOS 15.0.0, *)
 func makeRequest(
     url u: String,
     method: HttpMethod = .GET,
-    headers: [String: String]? = nil, queryParams: [(String, String)] = [], params: [(String, String)] = [], body: Data? = nil) async throws -> (String, URLResponse)? {
+    headers: [String: String]? = nil, queryParams: [(String, String)] = [], params: [(String, String)] = [], body: Data? = nil) async throws -> (String, URLResponse) {
         
         guard var url = URLComponents(string: u), url.url != nil else {
-            return nil
+            throw HttpErrors.WrongUrlFormatError
         }
         
         if !queryParams.isEmpty {
@@ -58,9 +55,22 @@ func makeRequest(
         
         req.allHTTPHeaderFields = headers
         
-        let (data, response) = try await URLSession.shared.data(for: req)
-        guard let dataString = String(data:data, encoding: .utf8) else {
-            throw fatalError("Impossible to parse data")
+        guard let (data, response) = try? await URLSession.shared.data(for: req) else {
+            throw HttpErrors.HttpRequestFailError
         }
+        let dataString = dataToString(data: data)
+//        guard let res = response as? HTTPURLResponse, res.statusCode != 200 else {
+//            throw HttpErrors.HttpRequestNotOkError
+//        }
         return (dataString, response)
     }
+
+func dataToString(data: Data?) -> String {
+    if data == nil{
+        return ""
+    }
+    guard let dataString = String(data:data!, encoding: .utf8) else {
+        return ""
+    }
+    return dataString
+}

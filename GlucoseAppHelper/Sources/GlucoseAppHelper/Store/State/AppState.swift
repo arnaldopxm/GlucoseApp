@@ -23,7 +23,7 @@ public class AppState: ObservableObject {
     
     @Published public private(set) var isLoggedIn = false
     
-    @Published public private(set) var sg: String = "SG"
+    @Published public private(set) var sg: String = "---"
     
     @Published public private(set) var sgTime: String = "... fetching ..."
     
@@ -62,5 +62,17 @@ public class AppState: ObservableObject {
         DispatchQueue.main.async {
             self.isLoggedIn = value
         }
+    }
+    
+    public func clear() {
+        DispatchQueue.main.async {
+            self.lastDataResponse = nil
+            self.firstDataLoaded = false
+            self.isLoggedIn = false
+            self.sgTime = "... fetching ..."
+            self.sg = "---"
+        }
+        
+        
     }
 }

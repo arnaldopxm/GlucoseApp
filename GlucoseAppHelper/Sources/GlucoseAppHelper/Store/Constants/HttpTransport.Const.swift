@@ -9,5 +9,6 @@ import Foundation
 
 struct HttpTranspontConst {
     static let ExtractInputKeyValuePairRegex = "<input type=\"hidden\" name=\"([^\"]*)\" value=\"([^\"]*)\""
+    static let CarelinkUrl = "https://carelink.minimed.eu"
 }
 

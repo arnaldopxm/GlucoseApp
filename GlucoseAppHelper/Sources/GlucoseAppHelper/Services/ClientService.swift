@@ -7,21 +7,18 @@
 
 import Foundation
 
-let url = "https://carelink.minimed.eu"
-
 @available(iOS 15.0, *)
 @available(watchOS 8.0.0, *)
 struct ClientService {
     
-    
-    static func loginClient(username: String, password: String) async throws -> HTTPCookie? {
+    static func loginClient(username: String, password: String) async throws -> HTTPCookie {
         
         var params: [(String, String)] = []
         let formEncodedHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
         
-        guard var (data, _) = try await makeRequest(url: url + "/patient/sso/login?country=es&lang=en")
+        guard let (data, _) = try? await makeRequest(url: HttpTranspontConst.CarelinkUrl + "/patient/sso/login?country=es&lang=en")
         else {
-            return nil
+            throw HttpErrors.LoginError
         }
         
         params = extractFromBody(body: data)
@@ -32,32 +29,40 @@ struct ClientService {
         ]
         
         let baseUrl = "https://mdtlogin.medtronic.com/mmcl/auth/oauth/v2/authorize"
-        do {
-            (data, _) = try await makeRequest(url: baseUrl + "/login?country=es&locale=en", method: .POST, headers: formEncodedHeaders, params: params)!
-            params = extractFromBody(body: data)
-            (data, _) = try await makeRequest(url: baseUrl + "/consent", method: .POST, headers: formEncodedHeaders, params: params)!
-        } catch {
-            return nil
+        guard let (data, _) = try? await makeRequest(url: baseUrl + "/login?country=es&locale=en", method: .POST, headers: formEncodedHeaders, params: params) else {
+            throw HttpErrors.CredentialsError
         }
         
+        params = extractFromBody(body: data)
         
-        let cookies:[HTTPCookie] = HTTPCookieStorage.shared.cookies! as [HTTPCookie]
+        guard let (_, _) = try? await makeRequest(url: baseUrl + "/consent", method: .POST, headers: formEncodedHeaders, params: params)
+        else {
+            throw HttpErrors.ConsentError
+        }
+        
+        guard let cookies = HTTPCookieStorage.shared.cookies else {
+            throw HttpErrors.CookieStorageMissingError
+        }
         guard let cookie = cookies.first( where: { $0.name == "auth_tmp_token" }) else {
-            return nil
+            throw HttpErrors.CookieNotFoundError
         }
         
         return cookie
     }
     
-    static func getCountrySettingsClient() async throws -> CountrySettings? {
+    static func getCountrySettingsClient() async throws -> CountrySettings {
         let queryParams = [
             ("countryCode","es"),
             ("language","en")
         ]
-        let (data, _) = try await makeRequest(url: url + "/patient/countries/settings", queryParams: queryParams)!
+        guard let (data, _) = try? await makeRequest(url: HttpTranspontConst.CarelinkUrl + "/patient/countries/settings", queryParams: queryParams) else {
+            throw HttpErrors.GetSettingsError
+        }
         
         let stringData = data.data(using: .utf8)!
-        let json = try JSONDecoder().decode(CountrySettings.self, from: stringData)
+        guard let json = try? JSONDecoder().decode(CountrySettings.self, from: stringData) else {
+            throw HttpErrors.JsonSerializationError
+        }
         
         return json
     }
@@ -66,15 +71,19 @@ struct ClientService {
         
         let headers = ["Authorization": "Bearer \(t)"]
         
-        let (data, _) = try await makeRequest(url: url + "/patient/users/me", headers: headers)!
+        guard let (data, _) = try? await makeRequest(url: HttpTranspontConst.CarelinkUrl + "/patient/users/me", headers: headers) else {
+            throw HttpErrors.GetUserRoleError
+        }
         
         let stringData = data.data(using: .utf8)!
-        let json = try JSONDecoder().decode(UserSettings.self, from: stringData)
+        guard let json = try? JSONDecoder().decode(UserSettings.self, from: stringData) else {
+            throw HttpErrors.JsonSerializationError
+        }
         
         return json
     }
     
-    static func getDataClient(url: String, username: String, role: String, token t: String) async throws -> DataResponse? {
+    static func getDataClient(url dataUrl: String, username: String, role: String, token t: String) async throws -> DataResponse {
         let headers = [
             "Content-Type": "application/json",
             "Authorization": "Bearer \(t)"
@@ -83,17 +92,19 @@ struct ClientService {
             "username": username,
             "role": role
         ]
-        let jsonBody = try? JSONEncoder().encode(body)
-        
-        let (data, _) = try await makeRequest(url: url, method: .POST, headers: headers, body: jsonBody!)!
-        
-        let stringData =  data.data(using: .utf8)!
-        guard
-            let json = try? JSONDecoder().decode(DataResponse.self, from: stringData)
-        else {
-            return nil
+        guard let jsonBody = try? JSONEncoder().encode(body) else {
+            throw HttpErrors.JsonSerializationError
         }
         
+        guard let (data, _) = try? await makeRequest(url: dataUrl, method: .POST, headers: headers, body: jsonBody) else {
+            throw HttpErrors.GetDataError
+        }
+        
+        let stringData =  data.data(using: .utf8)!
+        guard let json = try? JSONDecoder().decode(DataResponse.self, from: stringData)
+        else {
+            throw HttpErrors.JsonSerializationError
+        }
         
         return json
     }
