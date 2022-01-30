@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "GlucoseAppHelper",
+    platforms: [.iOS(.v15), .watchOS(.v8)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
