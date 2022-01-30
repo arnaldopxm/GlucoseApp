@@ -7,8 +7,6 @@
 
 import Foundation
 
-@available(iOS 15.0, *)
-@available(watchOS 8.0, *)
 extension CareLinkClient {
     public func findLastGlucoseTaskSync(updateHandler: @escaping (_ data: DataResponse) -> () ) {
         Task.init() {
@@ -18,6 +16,28 @@ extension CareLinkClient {
                 updateHandler(data)
             } catch {
                 print("ERROR FETCHING: \(error)")
+            }
+        }
+    }
+    
+    public func loginSync(username: String, password: String, _ completion: @escaping (_ loggedIn: Bool) -> () ) {
+        Task.init() {
+            do {
+                let data = try await login(username: username, password: password)
+                completion(data)
+            } catch {
+                completion(false)
+            }
+        }
+    }
+    
+    public func checkLoginSync(_ completion: @escaping (_ loggedIn: Bool) -> () ) {
+        Task.init() {
+            do {
+                let data = try await checkLogin()
+                completion(data)
+            } catch {
+                completion(false)
             }
         }
     }
