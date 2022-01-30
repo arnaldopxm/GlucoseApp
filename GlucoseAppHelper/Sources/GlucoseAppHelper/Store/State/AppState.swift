@@ -32,6 +32,20 @@ public class AppState: ObservableObject {
     
     @Published public private(set) var sgColor: Color = ColorsConst.SG_OK
 
+    private static func getHour(_ dateString: String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        guard let date = dateFormatter.date(from: dateString) else {
+            return "- - -"
+        }
+        dateFormatter.dateFormat = "HH:mm 'h'"
+        let formatedDate = dateFormatter.string(from: date)
+        
+        return formatedDate
+        
+    }
+    
     public var storeModel: StoreModel? {
         if (isLoggedIn && lastDataResponse != nil) {
             return StoreModel(data: lastDataResponse!, isLoggedIn: isLoggedIn)
@@ -49,14 +63,14 @@ public class AppState: ObservableObject {
 
     public func update(from data: DataResponse) {
         var newSg = "---"
-        var newSgTime = "No Data"
+        var newSgTime = "- - -"
         var newSgTrend: SgTrend = .NONE
         var newSgColor: Color = ColorsConst.SG_OK
         lastDataResponse = data;
         
         if data.lastSG.datetime != nil {
             newSg = "\(data.lastSG.sg)"
-            newSgTime = data.lastSG.datetime!
+            newSgTime = AppState.getHour(data.lastSG.datetime!)
             newSgTrend = data.lastSGTrend
             newSgColor = data.lastSG.sgColor
         }
