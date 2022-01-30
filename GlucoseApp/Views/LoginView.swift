@@ -11,33 +11,34 @@ import GlucoseAppHelper
 struct LoginView: View {
     
     var client: CareLinkClient = CareLinkClient.singleton
+    @StateObject var state: AppState = AppState.singleton
     
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var country: String = "es"
     
     var body: some View {
-        VStack {
-            LogoBlock()
-            InputBlock(username: $username, password: $password)
-            Spacer()
-            Button(action: {
-                Task.init() {
-                    do {
-                        print("LoginView: calling login")
-                        try await client.login(username: username, password: password)
-                    } catch {
-                        print("\(error)")
+        if (state.loading) {
+            LoaderView()
+        } else {
+            VStack {
+                LogoBlock()
+                InputBlock(username: $username, password: $password)
+                Spacer()
+                Button(action: {
+                    state.setLoading(true)
+                    client.loginSync(username: username, password: password) { _ in
+                        state.setLoading(false)
                     }
-                    
+                }) {
+                    SaveButtonContent()
                 }
-            }) {
-                SaveButtonContent()
+                .padding(.vertical)
             }
-            .padding(.vertical)
+            .padding()
+            .background(ColorsConst.APP_BACKGROUND_COLOR)
         }
-        .padding()
-        .background(Color("backgroundColor"))
+        
     }
 }
 
@@ -53,15 +54,24 @@ struct InputBlock : View {
     }
 }
 
+struct LoaderView : View {
+    var body: some View {
+        VStack {
+            Spacer()
+            ProgressView().scaleEffect(3, anchor: .center)
+            Spacer()
+            StylesConst.GlucoseAppName()
+        }
+        .padding()
+        .background(ColorsConst.APP_BACKGROUND_COLOR)
+    }
+}
+
 struct LogoBlock : View {
     var body: some View {
-        Spacer().frame(width: nil, height: 50, alignment: .center)
-        Image("loginScreenLogo").padding().frame(width: 121, height: 121, alignment: .center)
-        Text("glucosapp")
-            .font(.custom("Outfit", size: 24, relativeTo: .body).weight(.medium))
-            .padding(.bottom)
-            .frame(height: 30.0)
-            .foregroundColor(Color("inputTextColor"))
+        Spacer().frame(width: nil, height: 40, alignment: .center)
+        StylesConst.GlucoseAppLogo()
+        StylesConst.GlucoseAppName()
         Spacer().frame(width: nil, height: 50, alignment: .center)
     }
 }
@@ -69,58 +79,39 @@ struct LogoBlock : View {
 struct UserNameTextField : View {
     @Binding var username: String
     var body: some View {
-        TextField(
-            ""
-            , text: $username
-            
-        )
-
-            .placeholder("Usuario CareLink™", when: username.isEmpty)
-            .padding()
-            .frame(width: nil, height: 45, alignment: .center)
-            .overlay(
-                RoundedRectangle(cornerRadius: 23)
-                    .stroke(Color("inputBorderColor"), lineWidth: 1)
+        TextField("", text: $username)
+            .GlucoseAppRoundInput(
+                placeholder: "Usuario CareLink™",
+                condition: username.isEmpty
             )
-            .font(.custom("Outfit", size: 17, relativeTo: .body).weight(.regular))
-            .textInputAutocapitalization(.never)
-            .disableAutocorrection(true)
             .textContentType(.username)
-            .foregroundColor(Color("inputTextColor"))
-        
     }
 }
 
 struct PasswordSecureField : View {
-    
     @Binding var password: String
     var body: some View {
         SecureField("", text: $password)
-            .placeholder("Password", when: password.isEmpty)
-            .padding()
-            .textContentType(.password)
-            .frame(width: nil, height: 45, alignment: .center)
-            .overlay(
-                RoundedRectangle(cornerRadius: 23)
-                    .stroke(Color("inputBorderColor"), lineWidth: 1)
+            .GlucoseAppRoundInput(
+                placeholder: "Contraseña",
+                condition: password.isEmpty
             )
-            .font(.custom("Outfit", size: 17, relativeTo: .body).weight(.regular))
-            .textInputAutocapitalization(.never)
-            .disableAutocorrection(true)
-            .textContentType(.username)
-            .foregroundColor(Color("inputTextColor"))
+            .textContentType(.password)
     }
 }
 
 struct SaveButtonContent : View {
     var body: some View {
+        let height: CGFloat = 50
         ZStack {
             RoundedRectangle(cornerRadius: 23)
-                .fill(Color("loginButtonColor"))
-                .frame(width: nil, height: 50, alignment: .center)
+                .fill(ColorsConst.BUTTON_LOGIN_BACKGROUND_COLOR)
+                .frame(width: nil, height: height, alignment: .center)
             Text("Iniciar sesión")
-                .font(.custom("Outfit", size: 17, relativeTo: .body).weight(.regular))
-                .foregroundColor(Color.white)
+                .modifier(ViewModifiers.GlucoseAppTextStyle(
+                    color: ColorsConst.BUTTON_LOGIN_TEXT_COLOR,
+                    height: height
+                ))
         }
     }
 }
@@ -128,39 +119,18 @@ struct SaveButtonContent : View {
 struct ForgottenPassword : View {
     var body: some View {
         Text("¿Ha olvidado su contraseña?")
-            .font(.custom("Outfit", size: 16, relativeTo: .body).weight(.light))
-            .foregroundColor(Color("forgottenPasswordTextColor"))
+            .modifier(ViewModifiers.GlucoseAppTextStyle(
+                fontSize: 16,
+                fontWeight: .light,
+                color: ColorsConst.TEXT_FORGOTTEN_PASSWORD_COLOR
+            ))
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+        LoginView()
             .preferredColorScheme(.dark)
-    }
-}
-
-
-
-extension View {
-    func placeholder<Content: View>(
-        when shouldShow: Bool,
-        alignment: Alignment = .leading,
-        @ViewBuilder placeholder: () -> Content) -> some View {
-
-        ZStack(alignment: alignment) {
-            placeholder().opacity(shouldShow ? 1 : 0)
-            self
-        }
-    }
-}
-
-extension View {
-    func placeholder(
-        _ text: String,
-        when shouldShow: Bool,
-        alignment: Alignment = .leading) -> some View {
-            
-        placeholder(when: shouldShow, alignment: alignment) { Text(text).foregroundColor(Color("inputTextColor")).font(.custom("Outfit", size: 17, relativeTo: .body).weight(.regular)) }
     }
 }

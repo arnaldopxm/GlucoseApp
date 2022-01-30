@@ -49,13 +49,9 @@ public class CareLinkClient {
         if (cc != nil && cc!.isEmpty) {
             countryCode = cc
         }
-        
-        Task.init() {
-            try? await checkLogin()
-        }
     }
     
-    private func checkLogin() async throws -> Bool {
+    func checkLogin() async throws -> Bool {
         guard
             let username = self.username,
             let password = self.password
@@ -68,8 +64,13 @@ public class CareLinkClient {
 
     public func login(username usr: String, password pwd: String) async throws -> Bool {
         
+        if (usr.isEmpty || pwd.isEmpty) {
+            AppState.singleton.setLogin(false)
+            return false
+        }
+        
         if (cookie != nil && cookie?.expiresDate != nil && (cookie?.expiresDate)! >= Date(timeIntervalSinceNow: 0)) {
-            AppState.singleton.setLogin(value: true)
+            AppState.singleton.setLogin(true)
             return true
         }
         
@@ -80,7 +81,7 @@ public class CareLinkClient {
             self.cookie = loginResponseCookie
             res = true
         }
-        AppState.singleton.setLogin(value: res)
+        AppState.singleton.setLogin(res)
         return res
     }
     
@@ -97,6 +98,9 @@ public class CareLinkClient {
     }
     
     public func logout() {
+        if (self.cookie != nil){
+            HTTPCookieStorage.shared.deleteCookie(self.cookie!)
+        }
         keychain.removeAllKeys()
         AppState.singleton.clear()
     }
