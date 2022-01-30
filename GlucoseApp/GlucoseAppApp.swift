@@ -14,7 +14,7 @@ struct GlucoseAppApp: App {
     var model = ViewModelPhone.singleton
     var client = CareLinkClient.singleton
     var store = PersistStore.singleton
-    @State var set: Bool = true
+    @State var checkForLogin: Bool = true
     @StateObject var state = AppState.singleton
     @Environment(\.scenePhase) private var scenePhase
     
@@ -63,19 +63,15 @@ struct GlucoseAppApp: App {
             }
         }
         .onChange(of: scenePhase) { phase in
-            if (phase == .active && set) {
+            if (phase == .active) {
                 print("AppMain: goes to foreground")
-//                BGTaskScheduler.shared.cancelAllTaskRequests()
-//                print("AppMain: load data from store")
-//                PersistStore.load { result in
-//                    print("AppMain: data loaded", result)
-//                    switch result {
-//                    case .failure(_):
-//                        break
-//                    case .success(let data):
-//                        state.loadData(from: data)
-//                    }
-//                }
+                if (checkForLogin) {
+                    state.setLoading(true)
+                    client.checkLoginSync() { _ in
+                        state.setLoading(false)
+                        checkForLogin = false
+                    }
+                }
             }
             if (phase == .background) {
                 print("AppMain: goes to background")
@@ -83,12 +79,6 @@ struct GlucoseAppApp: App {
             }
             if (phase == .inactive) {
                 print("AppMain: goes inactive")
-//                PersistStore.save(glucoseData: state.storeModel) { result in
-//                    if case .failure(let error) = result {
-//                        print("AppMain: failure saving persistance data")
-//                        fatalError(error.localizedDescription)
-//                    }
-//                }
             }
         }
     }
