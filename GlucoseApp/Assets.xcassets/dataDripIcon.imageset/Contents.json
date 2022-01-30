@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "UI Iphone_Icono gota - 46 x 46 px.svg",
+      "filename" : "62.png",
       "idiom" : "universal"
     },
     {
@@ -11,6 +11,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "62-1.png",
       "idiom" : "universal"
     }
   ],
