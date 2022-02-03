@@ -9,19 +9,15 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
     private let state = AppState.singleton
     private let session: WCSession
     
-    public var currentSession {
-        return session
-    }
-    
-    public func updateWatchStatus() {
+    public var getWatchStatus: (String, Color) {
         if session.isWatchAppInstalled {
             if session.isReachable {
-                state.setWatchStatus(statusColorPair: WatchStatusModel.CONNECTED)
+                return WatchStatusModel.CONNECTED
             } else {
-                state.setWatchStatus(statusColorPair: WatchStatusModel.DISCONNECTED)
+                return WatchStatusModel.DISCONNECTED
             }
         }
-        state.setWatchStatus(statusColorPair: WatchStatusModel.NOT_INSTALLED)
+        return WatchStatusModel.NOT_INSTALLED
     }
     
     init(session: WCSession = .default) {
@@ -32,8 +28,12 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
     }
     
     private func sendCurrentData() {
+        print(state.sg, state.sgTime, state.sgTrend)
+        let data = state.getWatchState()
+        print(state.sg, state.sgTime, state.sgTrend)
+        print(data)
         send([
-            MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH: state.getWatchState().getStringSerialized()
+            MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH: data
         ])
     }
     
@@ -62,31 +62,11 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
             if (message["CURRENT-DATA"]) != nil && message["REQUEST"] as! Bool == true {
                 print("ViewModelPhone: Message received, Send Current Data")
                 let response = [
-                    MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH: self.state.getWatchState().getStringSerialized()
+                    MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH: self.state.getWatchState()
                 ]
                 replyHandler(response)
             }
         }
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        self.updateWatchStatus()
-    }
-    
-    func sessionReachabilityDidChange(_ session: WCSession) {
-        self.updateWatchStatus()
-    }
-    
-    func sessionWatchStateDidChange(_ session: WCSession) {
-        self.updateWatchStatus()
-    }
-    
-    func sessionDidBecomeInactive(_ session: WCSession) {
-        self.updateWatchStatus()
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-        self.updateWatchStatus()
     }
     
 }

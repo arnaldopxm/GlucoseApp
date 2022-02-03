@@ -33,10 +33,7 @@ public class AppState: ObservableObject {
     @Published public private(set) var sgTrend: SgTrend = .NONE
     
     @Published public private(set) var sgColor: Color = ColorsConst.SG_LOW
-    
-    @Published public private(set) var watchStatus: String = "App No Instalada"
-    
-    @Published public private(set) var watchStatusColor: Color = ColorsConst.SG_LOW
+
 
     
     public static func getDateFormated(_ dateString: String) -> String {
@@ -91,7 +88,7 @@ public class AppState: ObservableObject {
             newSgTimeOffset = "Hace \(timeOffset) min."
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             self.lastDataResponse = data;
             self.sg = newSg
             self.sgTime = newSgTime
@@ -105,7 +102,7 @@ public class AppState: ObservableObject {
     }
     
     public func setLogin(_ value: Bool) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             self.isLoggedIn = value
         }
     }
@@ -117,7 +114,7 @@ public class AppState: ObservableObject {
     }
     
     public func clear() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             self.lastDataResponse = nil
             self.firstDataLoaded = false
             self.isLoggedIn = false
@@ -127,14 +124,9 @@ public class AppState: ObservableObject {
         }
     }
     
-    public func getWatchState() -> WatchState {
-        return WatchState(appState: self)
-    }
-    
-    public func setWatchStatus(statusColorPair: (String, Color)) {
-        DispatchQueue.main.async {
-            self.watchStatus = statusColorPair.0
-            self.watchStatusColor = statusColorPair.1
-        }
+    public func getWatchState() -> String {
+        let model = WatchStateModel(sg: self.sg, sgTime: self.lastSG?.datetime ?? "", sgTrend: self.sgTrend)
+        print("model", model.sg, model.sgTime, model.sgTrend, self.sg, self.sgTrend)
+        return model.getStringSerialized()
     }
 }

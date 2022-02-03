@@ -9,23 +9,34 @@ import Foundation
 import SwiftUI
 
 public struct WatchStateModel: Codable {
+    
+    public var sg: String
+    public var sgTime: String
+    public var sgTrend: SgTrend
 
-    init(sg: String, sgTime: String, sgTrend: SgTrend) {
+    init(sg: String = "---", sgTime: String = "", sgTrend: SgTrend = .NONE) {
         self.sg = sg
         self.sgTime = sgTime
         self.sgTrend = sgTrend
     }
     
-    init(from state: WatchState) {
-        self.init(
-            sg: state.sg,
-            sgTime: state.sgTime,
-            sgTrend: state.sgTrend
-        )
+    public static func parseFrom(jsonString: String) -> WatchStateModel? {
+        guard
+            let jsonData = jsonString.data(using: .utf8),
+            let json = try? JSONDecoder().decode(WatchStateModel.self, from: jsonData)
+        else {
+            return nil
+        }
+        return json
     }
     
-    public var sg: String
-    public var sgTime: String
-    public var sgTrend: SgTrend
+    public func getStringSerialized() -> String {
+        guard
+            let jsonData = try? JSONEncoder().encode(self),
+            let jsonString = String(data: jsonData, encoding: .utf8)
+        else {
+            return ""
+        }
+        return jsonString
+    }
 }
-

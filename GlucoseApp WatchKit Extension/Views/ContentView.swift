@@ -38,7 +38,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView(state: WatchState.sample_ok_notrend)
-            ContentView(state: WatchState.sample_ok_up)
+            ContentView(state: WatchState.sample_high_down)
+            ContentView(state: WatchState.sample_low_up)
         }
     }
 }

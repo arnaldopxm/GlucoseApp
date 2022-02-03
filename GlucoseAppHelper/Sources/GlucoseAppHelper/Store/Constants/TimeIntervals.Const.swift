@@ -10,5 +10,5 @@ import Foundation
 public struct TimeIntervalsConst {
     public static let IPHONE_BG_REFRESH_TIME = 5.0 * 60
     public static let WATCH_BG_REFRESH_TIME = 5.0 * 60
-    public static let IPHONE_SCREEN_REFRESH_TIME = 1.0 * 60
+    public static let IPHONE_SCREEN_REFRESH_TIME = 1.0
 }

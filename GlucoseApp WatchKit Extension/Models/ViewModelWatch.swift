@@ -29,7 +29,7 @@ class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
     
     func process(message: [String : Any]) {
         if let message = message[MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH] as? String {
-            state.update(from: message)
+            state.updateFromStateModelString(from: message)
         }
         print("ViewModelWatch: new data received")
         let complications = CLKComplicationServer.sharedInstance()

@@ -10,67 +10,51 @@ import SwiftUI
 
 public class WatchState: ObservableObject {
     
-    public static let singleton = AppState.singleton.getWatchState()
+    private var model = WatchStateModel()
+    public static let singleton = WatchState()
     
-    public init(sg: String, sgTime: String, sgTrend: SgTrend) {
-        self.sg = sg
-        self.sgTime = sgTime
-        self.sgColor = SensorGlucose.getSgColor(sg: sg)
-        self.sgTrend = sgTrend
-    }
-    
-    convenience init(appState state: AppState) {
-        self.init(
-            sg: state.sg,
-            sgTime: state.lastSG?.datetime ?? "",
-            sgTrend: state.sgTrend
-        )
-    }
-    
-    public func update(from state: WatchState) {
-        DispatchQueue.main.async {
-            self.sg = state.sg
-            self.sgTime = state.sgTime
-            self.sgColor = SensorGlucose.getSgColor(sg: state.sg)
-            self.sgTrend = state.sgTrend
-        }
-    }
-    
-    func update(from state: WatchStateModel) {
-        DispatchQueue.main.async {
-            self.sg = state.sg
-            self.sgTime = state.sgTime
-            self.sgColor = SensorGlucose.getSgColor(sg: state.sg)
-            self.sgTrend = state.sgTrend
-        }
-    }
-    
-    public func update(from json: String) {
-        guard
-            let jsonData = json.data(using: .utf8),
-            let json = try? JSONDecoder().decode(WatchStateModel.self, from: jsonData)
-        else {
-            return
-        }
-        self.update(from: json)
-    }
     
     @Published public var sg: String
     @Published public var sgTime: String
     @Published public var sgColor: Color
     @Published public var sgTrend: SgTrend
     
-    private func getStateModel() -> WatchStateModel {
-        return WatchStateModel(from: self)
+    public init(sg: String = "---", sgTime: String = "", sgTrend: SgTrend = .NONE) {
+        self.sg = sg
+        self.sgTime = sgTime
+        self.sgTrend = sgTrend
+        self.sgColor = SensorGlucose.getSgColor(sg: sg)
+
+        update(sg: sg, sgTime: sgTime, sgTrend: sgTrend)
     }
     
-    public func getStringSerialized() -> String {
-        guard
-            let jsonData = try? JSONEncoder().encode(self.getStateModel()),
-            let jsonString = String(data: jsonData, encoding: .utf8)
-        else {
-            return ""
+    private func update(sg: String, sgTime: String, sgTrend: SgTrend) {
+        self.model.sg = sg
+        self.model.sgTime = sgTime
+        self.model.sgTrend = sgTrend
+        
+        DispatchQueue.main.sync {
+            self.sg = self.model.sg
+            self.sgTime = self.model.sgTime
+            self.sgTrend = self.model.sgTrend
+            self.sgColor = SensorGlucose.getSgColor(sg: self.model.sg)
         }
-        return jsonString
+    }
+    
+    public func update(from state: WatchState) {
+        update(sg: state.sg, sgTime: state.sgTime, sgTrend: state.sgTrend)
+    }
+    
+    private func update(from state: WatchStateModel) {
+        update(sg: state.sg, sgTime: state.sgTime, sgTrend: state.sgTrend)
+    }
+    
+    public func updateFromStateModelString(from json: String) {
+        guard
+            let model = WatchStateModel.parseFrom(jsonString: json)
+        else {
+            return
+        }
+        self.update(from: model)
     }
 }

@@ -9,9 +9,10 @@ import SwiftUI
 import GlucoseAppHelper
 
 struct ContentView: View {
-    var model = ViewModelPhone.singleton;
-    var client = CareLinkClient.singleton;
-    @StateObject var state = AppState.singleton;
+    var model = ViewModelPhone.singleton
+    var client = CareLinkClient.singleton
+    @StateObject var state = AppState.singleton
+    @State var watchStatus: (String, Color) = WatchStatusModel.NOT_INSTALLED
     @Environment(\.scenePhase) private var scenePhase
     
     func onAppear() {
@@ -26,7 +27,9 @@ struct ContentView: View {
     
     func findLastGlucoseTask(_: Any? = nil) {
         print("ContentView: ask for glucose")
-        print(model.currentSession)
+        DispatchQueue.main.async {
+            self.watchStatus = model.getWatchStatus
+        }
         client.findLastGlucoseTaskSync(updateHandler: model.update)
     }
     
@@ -42,9 +45,9 @@ struct ContentView: View {
                 HStack {
                     
                     VStack(alignment: .leading) {
-                        Text("Watch")
+                        Text("Sensor")
                             .modifier(titleModifier)
-                        Text("Estado conexión")
+                        Text("Última lectura")
                             .modifier(subtitleModifier)
                     }
                     .frame(height: 40)
@@ -65,16 +68,16 @@ struct ContentView: View {
                 HStack {
                     
                     VStack(alignment: .leading) {
-                        Text("Sensor")
+                        Text("Watch")
                             .modifier(titleModifier)
-                        Text("Última lectura")
+                        Text("Estado conexión")
                             .modifier(subtitleModifier)
                     }
                     .frame(height: 40)
                     Spacer()
                     VStack(alignment: .trailing) {
-                        Text(state.watchStatus)
-                            .modifier(ViewModifiers.GlucoseAppTextStyle(color: state.watchStatusColor, height: 21))
+                        Text(watchStatus.0)
+                            .modifier(ViewModifiers.GlucoseAppTextStyle(color: watchStatus.1, height: 21))
                     }
                 }
                 .frame(height: 20)

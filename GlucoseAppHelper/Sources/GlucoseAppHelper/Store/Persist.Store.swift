@@ -22,21 +22,21 @@ public class PersistStore {
     }
     
     public static func load(completion: @escaping (Result<StoreModel?, Error>)->Void) {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).sync {
             do {
                 let fileURL = try fileURL()
                 guard let file = try? FileHandle(forReadingFrom: fileURL) else {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.sync {
                         completion(.success(nil))
                     }
                     return
                 }
                 let currentData = try JSONDecoder().decode(StoreModel.self, from: file.availableData)
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     completion(.success(currentData))
                 }
             } catch {
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     completion(.failure(error))
                 }
             }
@@ -45,20 +45,20 @@ public class PersistStore {
     
     public static func save(glucoseData: StoreModel?, completion: @escaping (Result<Int, Error>)->Void) {
         if glucoseData == nil {
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 completion(.success(0))
             }
         }
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).sync {
             do {
                 let data = try JSONEncoder().encode(glucoseData)
                 let outfile = try fileURL()
                 try data.write(to: outfile)
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     completion(.success(1))
                 }
             } catch {
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     completion(.failure(error))
                 }
             }
