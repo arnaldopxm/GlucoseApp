@@ -23,12 +23,47 @@ public struct SensorGlucose: Codable {
 
 extension SensorGlucose {
     public var sgColor: Color {
-        if (self.sg >= 250) {
+        return SensorGlucose.getSgColor(sg: self.sg)
+    }
+    
+    public static func getSgColor(sg: String) -> Color {
+        let sgInt = Int(sg) ?? 0
+        return getSgColor(sg: sgInt)
+    }
+    
+    public static func getSgColor(sg: Int) -> Color {
+        if (sg > 180) {
             return ColorsConst.SG_HIGH
         }
-        if (self.sg < 70) {
+        if (sg < 70) {
             return ColorsConst.SG_LOW
         }
         return ColorsConst.SG_OK
+    }
+    
+    public static func getDate(datetime: String?) -> Date? {
+        guard let date = datetime else {
+            return nil
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        return dateFormatter.date(from: date)
+    }
+    
+    public static func getTimeOffsetInMinutes(from date: Date?) -> Int? {
+        guard let date = date else {
+            return nil
+        }
+        
+        let offsetInSeconds = date.distance(to: Date())
+        let offsetInMinutes = offsetInSeconds / 60
+        return Int(offsetInMinutes)
+    }
+    
+    public static func getTimeOffsetInMinutes(from date: String?) -> Int? {
+        guard let date = getDate(datetime: date) else {
+            return nil
+        }
+        return getTimeOffsetInMinutes(from: date)
     }
 }

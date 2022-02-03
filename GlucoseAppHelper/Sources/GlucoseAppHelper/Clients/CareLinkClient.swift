@@ -9,6 +9,7 @@ public class CareLinkClient {
     
     static public var singleton = CareLinkClient()
     private let keychain = KeychainWrapper(serviceName: "com.arnaldoquintero.glucoseapp")
+    private var data: DataResponse? = nil
     public private(set) var countryCode: String?
     private var cookie: HTTPCookie?
     
@@ -90,10 +91,18 @@ public class CareLinkClient {
         guard try await checkLogin(), let token = cookie?.value else {
             throw HttpErrors.GetLastSensorGlucoseError
         }
+        
+        let lastDataDatetime = SensorGlucose.getDate(datetime: data?.lastSG.datetime)
+        if (self.data != nil && lastDataDatetime?.distance(to: Date()) ?? 100 < 5) {
+            return self.data!
+        }
+        print("fetching")
+        
         let country = try await ClientService.getCountrySettingsClient()
         let user = try await ClientService.getUserRoleClient(token: token)
         let data = try await ClientService.getDataClient(url: country.blePereodicDataEndpoint, username: username!, role: user.apiRole, token: token)
         
+        self.data = data
         return data
     }
     

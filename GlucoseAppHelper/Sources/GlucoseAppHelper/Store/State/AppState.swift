@@ -26,13 +26,20 @@ public class AppState: ObservableObject {
     
     @Published public private(set) var sg: String = "---"
     
-    @Published public private(set) var sgTime: String = "... fetching ..."
+    @Published public private(set) var sgTime: String = ""
+    
+    @Published public private(set) var sgTimeOffset: String = "Hace X min."
     
     @Published public private(set) var sgTrend: SgTrend = .NONE
     
-    @Published public private(set) var sgColor: Color = ColorsConst.SG_OK
+    @Published public private(set) var sgColor: Color = ColorsConst.SG_LOW
+    
+    @Published public private(set) var watchStatus: String = "App No Instalada"
+    
+    @Published public private(set) var watchStatusColor: Color = ColorsConst.SG_LOW
 
-    private static func getHour(_ dateString: String) -> String {
+    
+    public static func getDateFormated(_ dateString: String) -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -60,27 +67,41 @@ public class AppState: ObservableObject {
             update(from: data!.data)
         }
     }
-
-    public func update(from data: DataResponse) {
-        var newSg = "---"
-        var newSgTime = "- - -"
-        var newSgTrend: SgTrend = .NONE
-        var newSgColor: Color = ColorsConst.SG_OK
-        lastDataResponse = data;
+    
+    public func update(from data: DataResponse) -> Bool {
+        var newSg = self.sg
+        var newSgTime = self.sgTime
+        var newSgTimeOffset = "Hace X min."
+        var newSgTrend: SgTrend = self.sgTrend
+        var newSgColor: Color = self.sgColor
+        var res = false
         
-        if data.lastSG.datetime != nil {
+        if data.lastSG.datetime != nil && lastSG?.datetime != data.lastSG.datetime {
             newSg = "\(data.lastSG.sg)"
-            newSgTime = AppState.getHour(data.lastSG.datetime!)
+            newSgTime = AppState.getDateFormated(data.lastSG.datetime!)
+            if let timeOffset = SensorGlucose.getTimeOffsetInMinutes(from: lastSG?.datetime) {
+                newSgTimeOffset = "Hace \(timeOffset) min."
+            }
             newSgTrend = data.lastSGTrend
             newSgColor = data.lastSG.sgColor
+            res = true
+        }
+        
+        if let timeOffset = SensorGlucose.getTimeOffsetInMinutes(from: lastSG?.datetime) {
+            newSgTimeOffset = "Hace \(timeOffset) min."
         }
         
         DispatchQueue.main.async {
+            self.lastDataResponse = data;
             self.sg = newSg
             self.sgTime = newSgTime
             self.sgTrend = newSgTrend
             self.sgColor = newSgColor
+            self.sgTimeOffset = newSgTimeOffset
         }
+
+        return res
+        
     }
     
     public func setLogin(_ value: Bool) {
@@ -100,10 +121,20 @@ public class AppState: ObservableObject {
             self.lastDataResponse = nil
             self.firstDataLoaded = false
             self.isLoggedIn = false
-            self.sgTime = "... fetching ..."
+            self.sgTimeOffset = "Hace X min."
+            self.sgTime = ""
             self.sg = "---"
         }
-        
-        
+    }
+    
+    public func getWatchState() -> WatchState {
+        return WatchState(appState: self)
+    }
+    
+    public func setWatchStatus(statusColorPair: (String, Color)) {
+        DispatchQueue.main.async {
+            self.watchStatus = statusColorPair.0
+            self.watchStatusColor = statusColorPair.1
+        }
     }
 }
