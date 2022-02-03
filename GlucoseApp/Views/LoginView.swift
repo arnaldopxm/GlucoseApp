@@ -57,6 +57,9 @@ struct InputBlock : View {
 struct LoaderView : View {
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+            }
             Spacer()
             ProgressView().scaleEffect(3, anchor: .center)
             Spacer()
