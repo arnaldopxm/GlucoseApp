@@ -62,8 +62,7 @@ class WatchDelegate: NSObject, WKExtensionDelegate {
     }
     
     func scheduleNextReload() {
-        let targetDate = Date(timeIntervalSinceNow: 2 * 60)
-        ViewModelWatch.singleton.nextUpdateTime = "\(targetDate)"
+        let targetDate = Date(timeIntervalSinceNow: TimeIntervalsConst.WATCH_BG_REFRESH_TIME)
         print("ExtensionDelegate: scheduling next update at \(targetDate)")
         
         WKExtension.shared().scheduleBackgroundRefresh(

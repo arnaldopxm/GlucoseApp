@@ -1,11 +1,28 @@
 import Foundation
 import WatchConnectivity
 import GlucoseAppHelper
+import SwiftUI
 
 class ViewModelPhone : NSObject,  WCSessionDelegate{
     
     static let singleton = ViewModelPhone()
+    private let state = AppState.singleton
     private let session: WCSession
+    
+    public var currentSession {
+        return session
+    }
+    
+    public func updateWatchStatus() {
+        if session.isWatchAppInstalled {
+            if session.isReachable {
+                state.setWatchStatus(statusColorPair: WatchStatusModel.CONNECTED)
+            } else {
+                state.setWatchStatus(statusColorPair: WatchStatusModel.DISCONNECTED)
+            }
+        }
+        state.setWatchStatus(statusColorPair: WatchStatusModel.NOT_INSTALLED)
+    }
     
     init(session: WCSession = .default) {
         self.session = session
@@ -14,13 +31,21 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
         session.activate()
     }
     
-    func update(from data: DataResponse) {
-        print("ViewModelPhone: Updating data, sending to Watch")
-        AppState.singleton.update(from: data)
-        send(message: ["SG": AppState.singleton.sg, "SGTIME":AppState.singleton.sgTime])
+    private func sendCurrentData() {
+        send([
+            MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH: state.getWatchState().getStringSerialized()
+        ])
     }
     
-    func send(message: [String:Any]) -> Void {
+    func update(from data: DataResponse) {
+        print("ViewModelPhone: Updating data")
+        if AppState.singleton.update(from: data) {
+            print("ViewModelPhone: new data, sending to Watch")
+            sendCurrentData()
+        }
+    }
+    
+    func send(_ message: [String:Any]) -> Void {
         if session.isReachable {
             session.sendMessage(message, replyHandler: nil) { (error) in
                 print(error.localizedDescription)
@@ -28,11 +53,7 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
         }
     }
     
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        // code
-    }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         DispatchQueue.main.async {
             if (message["REQUEST"]) != nil && message["REQUEST"] as! Bool == true {
                 print("ViewModelPhone: Message received, Reload Data")
@@ -40,17 +61,32 @@ class ViewModelPhone : NSObject,  WCSessionDelegate{
             }
             if (message["CURRENT-DATA"]) != nil && message["REQUEST"] as! Bool == true {
                 print("ViewModelPhone: Message received, Send Current Data")
-                self.send(message: ["SG": AppState.singleton.sg, "SGTIME":AppState.singleton.sgTime])
+                let response = [
+                    MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH: self.state.getWatchState().getStringSerialized()
+                ]
+                replyHandler(response)
             }
         }
     }
     
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        self.updateWatchStatus()
+    }
+    
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        self.updateWatchStatus()
+    }
+    
+    func sessionWatchStateDidChange(_ session: WCSession) {
+        self.updateWatchStatus()
+    }
+    
     func sessionDidBecomeInactive(_ session: WCSession) {
-        // code
+        self.updateWatchStatus()
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        // code
+        self.updateWatchStatus()
     }
     
 }

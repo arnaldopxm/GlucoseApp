@@ -2,19 +2,14 @@
 import Foundation
 import WatchConnectivity
 import ClockKit
+import GlucoseAppHelper
 
 class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
     
     static let singleton = ViewModelWatch()
 
     var session: WCSession
-    @Published var sg = "---"
-    @Published var sgTime = ""
-    @Published var nextUpdateTime = ""
-    
-    var sgString: String {
-        return "\(sg) - \(sgTime)"
-    }
+    @Published var state: WatchState = WatchState.singleton
     
     init(session: WCSession = .default) {
         self.session = session
@@ -26,20 +21,16 @@ class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
         self.send(message: ["CURRENT-DATA":true])
     }
     
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        
-    }
-    
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         DispatchQueue.main.async {
-            //request user/pass from app. then fetch backgorund jobs to update data straight from the watch
             self.process(message: message)
         }
     }
     
     func process(message: [String : Any]) {
-        self.sg = message["SG"] as? String ?? self.sg
-        self.sgTime = message["SGTIME"] as? String ?? self.sgTime
+        if let message = message[MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH] as? String {
+            state.update(from: message)
+        }
         print("ViewModelWatch: new data received")
         let complications = CLKComplicationServer.sharedInstance()
         for c in complications.activeComplications! {
@@ -47,9 +38,9 @@ class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
         }
     }
     
-    func send(message: [String:Any]) -> Void {
+    func send(message: [String:Any], replyHandler: (([String: Any]) -> Void)? = nil) -> Void {
         if session.isReachable {
-            session.sendMessage(message, replyHandler: nil) { (error) in
+            session.sendMessage(message, replyHandler: replyHandler) { (error) in
                 print(error.localizedDescription)
             }
         }
@@ -58,7 +49,11 @@ class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
     func sessionReachabilityDidChange(_ session: WCSession) {
         if (session.isReachable) {
             print("ViewModelWatch: Request current data")
-            self.send(message: ["CURRENT-DATA":true])
+            self.send(message: ["CURRENT-DATA":true], replyHandler: self.process)
         }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+            // code
     }
 }
