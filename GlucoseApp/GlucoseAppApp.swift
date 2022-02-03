@@ -43,7 +43,7 @@ struct GlucoseAppApp: App {
     
     func scheduleAppRefresh() {
         let req = BGAppRefreshTaskRequest(identifier: AppIdentifiers.RefreshTaskIdentifier)
-        req.earliestBeginDate = Date(timeIntervalSinceNow: 0.5*60)
+        req.earliestBeginDate = Date(timeIntervalSinceNow: TimeIntervalsConst.IPHONE_BG_REFRESH_TIME)
         
         do {
             print("AppMain: schedule refresh")

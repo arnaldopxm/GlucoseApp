@@ -15,7 +15,7 @@ public struct StylesConst {
     
     public struct GlucoseAppName: View {
         public init() { }
-
+        
         public var body: some View {
             Text("glucosapp")
                 .modifier(ViewModifiers.GlucoseAppTextStyle(
@@ -30,11 +30,53 @@ public struct StylesConst {
     
     public struct GlucoseAppLogo: View {
         public init() { }
-
+        
         public var body: some View {
             Image("loginScreenLogo")
                 .frame(width: 121, height: 121, alignment: .center)
                 .padding()
+        }
+    }
+    
+    public struct GlucoseShowCircle: View {
+        
+        public init(sgColor: Color, sg: String, sgTrend: SgTrend) {
+            self.sgColor = sgColor
+            self.sg = sg
+            self.sgTrend = sgTrend
+        }
+        
+        var sgColor: Color
+        var sg: String
+        var sgTrend: SgTrend
+        
+        public var body: some View {
+            ZStack {
+                Circle()
+                    .stroke(sgColor, lineWidth: 5)
+                    .frame(width: 256, height: 256, alignment: .center)
+                    .shadow(color: sgColor.opacity(0.3), radius: 10)
+                VStack {
+                    Image("dataDripIcon")
+                        .resizable()
+                        .frame(width: 64, height: 64)
+                    Spacer().frame(width: nil, height: 10, alignment: .center)
+                    HStack() {
+                        Text(sg)
+                            .modifier(ViewModifiers.GlucoseAppTextStyle(
+                                fontSize: 56,
+                                fontWeight: .medium,
+                                color: sgColor,
+                                height: 71
+                            ))
+                        sgTrend.stacked_icons
+                    }
+                    Text("mg/dL").modifier(ViewModifiers.GlucoseAppTextStyle(
+                        height: 21
+                    ))
+                }.frame(width: 256, height: 256, alignment: .center)
+                
+            }.padding(.top)
         }
     }
 }
