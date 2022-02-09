@@ -15,5 +15,6 @@ public protocol IKeychain {
     @discardableResult func setValue(_ value: String, forKey key: String) -> Bool
     func removeKey(_ key: String)
     func removeAll()
+    func get(key: String) -> String?
     
 }

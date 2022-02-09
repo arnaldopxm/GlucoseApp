@@ -26,5 +26,9 @@ public class Keychain: KeychainWrapper, IKeychain {
         removeAllKeys()
     }
     
+    public func get(key: String) -> String? {
+        return string(forKey: key)
+    }
+    
     
 }

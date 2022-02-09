@@ -18,7 +18,6 @@ struct GlucoseAppApp: App {
     var model = ViewModelPhone.singleton
     var client = CareLinkClient.singleton
     var store = PersistStore.singleton
-    @State var checkForLogin: Bool = true
     @StateObject var state = AppState.singleton
     @Environment(\.scenePhase) private var scenePhase
     
@@ -69,13 +68,7 @@ struct GlucoseAppApp: App {
         .onChange(of: scenePhase) { phase in
             if (phase == .active) {
                 print("AppMain: goes to foreground")
-                if (checkForLogin) {
-//                    state.setLoading(true)
-                    client.checkLoginSync() { _ in
-//                        state.setLoading(false)
-                        checkForLogin = false
-                    }
-                }
+                presenter.checkIfCredentialsAreSaved()
             }
             if (phase == .background) {
                 print("AppMain: goes to background")

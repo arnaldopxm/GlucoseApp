@@ -14,9 +14,19 @@ public class KeychainController: IKeychainController {
     
     private let keychain: IKeychain = Keychain(serviceName: "com.arnaldoquintero.glucoseapp")
     
-    public func store(username: String, password: String) {
+    public func storeCredentials(username: String, password: String) {
         keychain.setValue(username, forKey: "username")
         keychain.setValue(password, forKey: "password")
+    }
+    
+    public func getCredentials() -> Credentials? {
+        guard
+            let username = keychain.get(key: "username"),
+            let password = keychain.get(key: "password")
+        else {
+            return nil
+        }
+        return Credentials(username: username, password: password)
     }
     
     public func deleteAll() {

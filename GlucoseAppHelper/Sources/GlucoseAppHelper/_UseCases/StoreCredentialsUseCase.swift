@@ -12,6 +12,10 @@ public class StoreCredentials {
     private let keychainController: IKeychainController = KeychainController.singleton
     
     public func store(username: String, password: String) {
-        keychainController.store(username: username, password: password)
+        keychainController.storeCredentials(username: username, password: password)
+    }
+    
+    public func getCredentials() -> Credentials? {
+        return  keychainController.getCredentials()
     }
 }

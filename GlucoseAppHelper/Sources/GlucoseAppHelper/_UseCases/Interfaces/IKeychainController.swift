@@ -9,7 +9,9 @@ import Foundation
 
 public protocol IKeychainController {
     
-    func store(username: String, password: String)
+    func storeCredentials(username: String, password: String)
+    
+    func getCredentials() -> Credentials?
     
     func deleteAll()
 }
