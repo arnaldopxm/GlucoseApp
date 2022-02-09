@@ -18,4 +18,8 @@ public class KeychainController: IKeychainController {
         keychain.setValue(username, forKey: "username")
         keychain.setValue(password, forKey: "password")
     }
+    
+    public func deleteAll() {
+        keychain.removeAll()
+    }
 }

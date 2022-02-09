@@ -1,0 +1,17 @@
+//
+//  File.swift
+//  
+//
+//  Created by Arnaldo Quintero on 9/2/22.
+//
+
+import Foundation
+
+public class DeleteCredentials {
+    public static let singleton = DeleteCredentials()
+    private let keychainController: IKeychainController = KeychainController.singleton
+    
+    public func delete() {
+        keychainController.deleteAll()
+    }
+}

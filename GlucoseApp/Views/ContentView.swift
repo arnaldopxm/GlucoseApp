@@ -9,6 +9,9 @@ import SwiftUI
 import GlucoseAppHelper
 
 struct ContentView: View {
+    
+    @StateObject var presenter = ContentViewPresenter.singleton
+    
     var model = ViewModelPhone.singleton
     var client = CareLinkClient.singleton
     @StateObject var state = AppState.singleton
@@ -87,7 +90,8 @@ struct ContentView: View {
             Spacer()
             Button(action: {
                 print("logout")
-                client.logout()
+                presenter.logout()
+//                client.logout()
             }) {
                 Text("Cerrar sesión")
                     .modifier(ViewModifiers.GlucoseAppTextStyle(

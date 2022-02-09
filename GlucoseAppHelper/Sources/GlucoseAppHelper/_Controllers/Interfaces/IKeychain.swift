@@ -13,4 +13,7 @@ public protocol IKeychain {
     init(serviceName: String)
     
     @discardableResult func setValue(_ value: String, forKey key: String) -> Bool
+    func removeKey(_ key: String)
+    func removeAll()
+    
 }

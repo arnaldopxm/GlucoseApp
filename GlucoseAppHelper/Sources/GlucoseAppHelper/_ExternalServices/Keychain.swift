@@ -18,5 +18,13 @@ public class Keychain: KeychainWrapper, IKeychain {
         return set(value, forKey: key)
     }
     
+    public func removeKey(_ key: String) {
+        return remove(forKey: .init(rawValue: key))
+    }
+    
+    public func removeAll() {
+        removeAllKeys()
+    }
+    
     
 }
