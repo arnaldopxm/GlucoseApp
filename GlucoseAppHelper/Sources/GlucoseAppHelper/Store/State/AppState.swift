@@ -76,7 +76,7 @@ public class AppState: ObservableObject {
         if data.lastSG.datetime != nil && lastSG?.datetime != data.lastSG.datetime {
             newSg = "\(data.lastSG.sg)"
             newSgTime = AppState.getDateFormated(data.lastSG.datetime!)
-            if let timeOffset = SensorGlucose.getTimeOffsetInMinutes(from: lastSG?.datetime) {
+            if let timeOffset = SensorGlucose.getTimeOffsetInMinutes(from: data.lastSG.datetime!) {
                 newSgTimeOffset = "Hace \(timeOffset) min."
             }
             newSgTrend = data.lastSGTrend
@@ -84,7 +84,7 @@ public class AppState: ObservableObject {
             res = true
         }
         
-        if let timeOffset = SensorGlucose.getTimeOffsetInMinutes(from: lastSG?.datetime) {
+        if !res, let timeOffset = SensorGlucose.getTimeOffsetInMinutes(from: data.lastSG.datetime) {
             newSgTimeOffset = "Hace \(timeOffset) min."
         }
         
