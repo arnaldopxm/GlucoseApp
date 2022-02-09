@@ -18,7 +18,7 @@ class ViewModelWatch : NSObject,  WCSessionDelegate, ObservableObject{
         print("Activate session")
         session.activate()
         print("ViewModelWatch: Request current data")
-        self.send(message: ["CURRENT-DATA":true])
+        self.send(message: ["CURRENT-DATA":true], replyHandler: self.process)
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {

@@ -24,8 +24,10 @@ public class WatchState: ObservableObject {
         self.sgTime = sgTime
         self.sgTrend = sgTrend
         self.sgColor = SensorGlucose.getSgColor(sg: sg)
-
-        update(sg: sg, sgTime: sgTime, sgTrend: sgTrend)
+        
+        self.model.sg = sg
+        self.model.sgTime = sgTime
+        self.model.sgTrend = sgTrend
     }
     
     private func update(sg: String, sgTime: String, sgTrend: SgTrend) {
@@ -33,7 +35,7 @@ public class WatchState: ObservableObject {
         self.model.sgTime = sgTime
         self.model.sgTrend = sgTrend
         
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             self.sg = self.model.sg
             self.sgTime = self.model.sgTime
             self.sgTrend = self.model.sgTrend
@@ -41,9 +43,9 @@ public class WatchState: ObservableObject {
         }
     }
     
-    public func update(from state: WatchState) {
-        update(sg: state.sg, sgTime: state.sgTime, sgTrend: state.sgTrend)
-    }
+   public func update(from state: WatchState) {
+       update(sg: state.sg, sgTime: state.sgTime, sgTrend: state.sgTrend)
+   }
     
     private func update(from state: WatchStateModel) {
         update(sg: state.sg, sgTime: state.sgTime, sgTrend: state.sgTrend)

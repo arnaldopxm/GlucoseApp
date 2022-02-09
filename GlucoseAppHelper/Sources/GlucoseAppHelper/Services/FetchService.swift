@@ -24,8 +24,6 @@ func extractFromBody(body: String, pattern: String = HttpTranspontConst.ExtractI
     return parsedMatches
 }
 
-@available(watchOS 8.0, *)
-@available(iOS 15.0.0, *)
 func makeRequest(
     url u: String,
     method: HttpMethod = .GET,

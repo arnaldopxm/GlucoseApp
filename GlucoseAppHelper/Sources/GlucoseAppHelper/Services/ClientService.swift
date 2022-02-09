@@ -7,8 +7,6 @@
 
 import Foundation
 
-@available(iOS 15.0, *)
-@available(watchOS 8.0.0, *)
 struct ClientService {
     
     static func loginClient(username: String, password: String) async throws -> HTTPCookie {

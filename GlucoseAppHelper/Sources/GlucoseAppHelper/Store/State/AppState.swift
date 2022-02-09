@@ -114,7 +114,7 @@ public class AppState: ObservableObject {
     }
     
     public func clear() {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             self.lastDataResponse = nil
             self.firstDataLoaded = false
             self.isLoggedIn = false

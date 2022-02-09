@@ -10,7 +10,7 @@ import Foundation
 public struct WatchStatusModel {
     public static let CONNECTED = ("Conectado", ColorsConst.SG_OK)
     public static let DISCONNECTED = ("Desonectado", ColorsConst.SG_HIGH)
-    public static let NOT_INSTALLED = ("App No Instalada", ColorsConst.SG_LOW)
+    public static let NOT_INSTALLED = ("No Instalada", ColorsConst.SG_LOW)
 }
 
  

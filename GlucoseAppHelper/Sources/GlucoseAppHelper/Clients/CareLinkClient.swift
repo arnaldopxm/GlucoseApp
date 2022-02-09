@@ -1,10 +1,6 @@
 import Foundation
 import SwiftKeychainWrapper
 
-
-@available(macOS 12.0, *)
-@available(iOS 15.0.0, *)
-@available(watchOS 8.0.0, *)
 public class CareLinkClient {
     
     static public var singleton = CareLinkClient()
