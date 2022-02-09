@@ -7,6 +7,11 @@
 
 import Foundation
 
-public class StoreCredentialsUseCase {
-    public static let singleton = StoreCredentialsUseCase()
+public class StoreCredentials {
+    public static let singleton = StoreCredentials()
+    private let keychainController: IKeychainController = KeychainController.singleton
+    
+    public func store(username: String, password: String) {
+        keychainController.store(username: username, password: password)
+    }
 }
