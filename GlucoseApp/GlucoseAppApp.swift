@@ -11,6 +11,10 @@ import GlucoseAppHelper
 
 @main
 struct GlucoseAppApp: App {
+    
+    @StateObject var presenter = GlucoseAppPresenter.singleton
+    
+    
     var model = ViewModelPhone.singleton
     var client = CareLinkClient.singleton
     var store = PersistStore.singleton
@@ -56,7 +60,7 @@ struct GlucoseAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if state.isLoggedIn {
+            if presenter.isLoggedIn {
                 ContentView()
             } else {
                 LoginView()
@@ -66,9 +70,9 @@ struct GlucoseAppApp: App {
             if (phase == .active) {
                 print("AppMain: goes to foreground")
                 if (checkForLogin) {
-                    state.setLoading(true)
+//                    state.setLoading(true)
                     client.checkLoginSync() { _ in
-                        state.setLoading(false)
+//                        state.setLoading(false)
                         checkForLogin = false
                     }
                 }

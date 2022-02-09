@@ -20,8 +20,6 @@ public class AppState: ObservableObject {
     
     @Published public var firstDataLoaded = false;
     
-    @Published public private(set) var loading = false
-    
     @Published public private(set) var isLoggedIn = false
     
     @Published public private(set) var sg: String = "---"
@@ -104,12 +102,6 @@ public class AppState: ObservableObject {
     public func setLogin(_ value: Bool) {
         DispatchQueue.main.sync {
             self.isLoggedIn = value
-        }
-    }
-    
-    public func setLoading(_ value: Bool) {
-        DispatchQueue.main.async {
-            self.loading = value
         }
     }
     
