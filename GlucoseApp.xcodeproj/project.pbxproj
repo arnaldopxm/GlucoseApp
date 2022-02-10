@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2306F808274147E900519C10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F807274147E900519C10 /* ContentView.swift */; };
-		2306F80A274187CA00519C10 /* ViewModelPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F809274187CA00519C10 /* ViewModelPhone.swift */; };
 		2306F80C2741883C00519C10 /* ViewModelWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306F80B2741883C00519C10 /* ViewModelWatch.swift */; };
 		230A51E527B4304E006E53D7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230A51E427B4304E006E53D7 /* LoginPresenter.swift */; };
 		230A51E827B430C2006E53D7 /* LoginViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230A51E727B430C2006E53D7 /* LoginViewHelper.swift */; };
@@ -114,7 +113,6 @@
 
 /* Begin PBXFileReference section */
 		2306F807274147E900519C10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2306F809274187CA00519C10 /* ViewModelPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelPhone.swift; sourceTree = "<group>"; };
 		2306F80B2741883C00519C10 /* ViewModelWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelWatch.swift; sourceTree = "<group>"; };
 		230A51E427B4304E006E53D7 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		230A51E727B430C2006E53D7 /* LoginViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewHelper.swift; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 				2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */,
 				2397C99927301D7F0079C4F8 /* Assets.xcassets */,
 				2397C99B27301D7F0079C4F8 /* Preview Content */,
-				2306F809274187CA00519C10 /* ViewModelPhone.swift */,
 			);
 			path = GlucoseApp;
 			sourceTree = "<group>";
@@ -661,7 +658,6 @@
 				2306F808274147E900519C10 /* ContentView.swift in Sources */,
 				230A51F027B476E2006E53D7 /* ContentViewHelper.swift in Sources */,
 				230A51E827B430C2006E53D7 /* LoginViewHelper.swift in Sources */,
-				2306F80A274187CA00519C10 /* ViewModelPhone.swift in Sources */,
 				2397C99627301D7C0079C4F8 /* GlucoseAppApp.swift in Sources */,
 				230A51E527B4304E006E53D7 /* LoginPresenter.swift in Sources */,
 				230A51EA27B4314F006E53D7 /* LoaderViewHelper.swift in Sources */,

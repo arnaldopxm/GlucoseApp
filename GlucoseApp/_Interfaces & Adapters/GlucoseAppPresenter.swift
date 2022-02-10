@@ -24,4 +24,11 @@ public class GlucoseAppPresenter: ObservableObject {
     func checkIfCredentialsAreSaved() {
         loginUseCase.loginFromSavedCredentials(completion: setLoggedIn)
     }
+    
+    func getData() {
+        if (isLoggedIn) {
+            let contentView = ContentViewPresenter.singleton
+            contentView.getData()
+        }
+    }
 }

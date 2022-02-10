@@ -33,7 +33,7 @@ struct GlucoseAppApp: App {
     func handleAppRefresh(task: BGAppRefreshTask) {
         scheduleAppRefresh()
         print("AppMain: Fetch BG")
-//        client.findLastGlucoseTaskSync(updateHandler: model.update)
+        presenter.getData()
         task.setTaskCompleted(success: true)
         print("AppMain: BG finished, Task handled")
     }
