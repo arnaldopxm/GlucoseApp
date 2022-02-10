@@ -25,15 +25,14 @@ public class iOSSessionController: NSObject, WCSessionDelegate, IiOSSessionContr
     
     public func session(
         _ session: WCSession,
-        didReceiveMessage message: [String : Any],
-        replyHandler: @escaping ([String : Any]) -> Void
+        didReceiveMessage message: [String : Any]
     ) {
         if let _ = extractValueFromMessage(from: message, key: .REQUEST_INFO_WATCH_2_PHONE) {
             requestSendData.requestSend()
         }
     }
     
-    public func send(_ message: [String: String]) {
+    public func send(_ message: [String: Any]) {
         if session.isReachable {
             session.sendMessage(message, replyHandler: nil) { (error) in
                 print(error.localizedDescription)

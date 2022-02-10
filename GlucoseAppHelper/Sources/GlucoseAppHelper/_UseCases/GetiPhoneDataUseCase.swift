@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public class GetiPhoneDataUseCase {
     
@@ -15,4 +16,11 @@ public class GetiPhoneDataUseCase {
     public func getLatestData(completion: ((_WatchState) -> Void)? = nil) {
         dataUseCase.getLatestData(completion: completion)
     }
+    
+    #if os(iOS)
+    public func getCurrentWatchStatus() -> (String, Color) {
+        let iOSSession = iOSSessionController.singleton
+        return iOSSession.getWatchStatus
+    }
+    #endif
 }

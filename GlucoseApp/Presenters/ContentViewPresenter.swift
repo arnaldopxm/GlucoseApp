@@ -17,7 +17,6 @@ public class ContentViewPresenter: ObservableObject {
     private let mainApp = GlucoseAppPresenter.singleton
     
     @Published public var sgValue: String = "---"
-    
     @Published public var sgColor: Color = ColorsConst.SG_HIGH
     @Published public var sgTime: String = "---"
     @Published public var sgTimeOffset: String = "Hace X min."
@@ -41,7 +40,7 @@ public class ContentViewPresenter: ObservableObject {
                 self.sgTrend = newState.gsTrend
                 self.sgTime = newState.gsTime.getFormattedHourTime()
                 self.sgTimeOffset = newState.gsTime.getPastTimeSinceNowString()
-                //                self.watchStatus =
+                self.watchStatus = self.getiPhoneDataUseCase.getCurrentWatchStatus()
                 
             }
         }

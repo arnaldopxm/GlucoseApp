@@ -14,9 +14,10 @@ class SendDataToWatch {
     public func send(_ data: _WatchState) {
         let stringData = data.getStringSerialized()
         let session: IiOSSessionController = iOSSessionController.singleton
-        session.send([
-            MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH: stringData
-        ])
+        let payload = [
+            MessagesPayloadKeysEnum.SEND_INFO_PHONE_2_WATCH.rawValue: stringData
+        ]
+        session.send(payload)
     }
 
 }

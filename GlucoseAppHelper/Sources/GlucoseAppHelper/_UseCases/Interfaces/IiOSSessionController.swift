@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol IiOSSessionController {
-    func send(_ message: [String: String])
+    func send(_ message: [String: Any])
 }
