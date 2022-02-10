@@ -60,13 +60,6 @@ class WatchDelegate: NSObject, WKExtensionDelegate {
         print("ExtensionDelegate: requesting reload of complications")
         let contentPresenter = ContentViewPresenter.singleton
         contentPresenter.getData()
-        
-        let complications = CLKComplicationServer.sharedInstance()
-        if (complications.activeComplications != nil) {
-            for c in complications.activeComplications! {
-                complications.reloadTimeline(for: c)
-            }
-        }
     }
     
     func scheduleNextReload() {

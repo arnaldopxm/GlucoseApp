@@ -13,7 +13,7 @@ public class GetiPhoneDataUseCase {
     public static let singleton = GetiPhoneDataUseCase()
     private let dataUseCase = GetDataUseCase.singleton
     
-    public func getLatestData(completion: ((_WatchState) -> Void)? = nil) {
+    public func getLatestData(completion: ((AppState) -> Void)? = nil) {
         dataUseCase.getLatestData(completion: completion)
     }
     

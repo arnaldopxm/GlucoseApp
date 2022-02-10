@@ -11,7 +11,7 @@ class SendDataToWatch {
 
     public static let singleton = SendDataToWatch()
 
-    public func send(_ data: _WatchState) {
+    public func send(_ data: AppState) {
         let stringData = data.getStringSerialized()
         let session: IiOSSessionController = iOSSessionController.singleton
         let payload = [

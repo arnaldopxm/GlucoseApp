@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import GlucoseAppHelper
+import ClockKit
 
 public class ContentViewPresenter: ObservableObject {
     
@@ -30,14 +31,23 @@ public class ContentViewPresenter: ObservableObject {
         }
     }
     
-    func updateData(from newState: _WatchState) {
+    func updateData(from newState: AppState) {
         DispatchQueue.main.async {
             self.sgValue = newState.gs.value.formatted()
             self.sgColor = newState.gs.getColor()
             self.sgTrend = newState.gsTrend
             self.sgTime = newState.gsTime.getFormattedHourTime()
             self.sgTimeOffset = newState.gsTime.getPastTimeSinceNowString()
-            
+            self.updateComplications()
+        }
+    }
+    
+    func updateComplications() {
+        let complications = CLKComplicationServer.sharedInstance()
+        if (complications.activeComplications != nil) {
+            for c in complications.activeComplications! {
+                complications.reloadTimeline(for: c)
+            }
         }
     }
 }

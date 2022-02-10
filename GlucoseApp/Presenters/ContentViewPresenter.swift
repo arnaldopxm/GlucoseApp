@@ -23,7 +23,7 @@ public class ContentViewPresenter: ObservableObject {
     @Published public var sgTrend: GlucoseTrendModel = GlucoseTrendModel(trend: .NONE)
 
     //review
-    @Published public var watchStatus: (String, Color) = WatchStatusModel.NOT_INSTALLED
+    @Published public var watchStatus: (String, Color) = WatchStatusConst.NOT_INSTALLED
     
     
     func logout() {

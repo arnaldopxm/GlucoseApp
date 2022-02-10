@@ -9,12 +9,12 @@ import Foundation
 import WatchConnectivity
 import SwiftUI
 
-public class iOSSessionController: NSObject, WCSessionDelegate, IiOSSessionController {
+public class WatchSessionController: NSObject, WCSessionDelegate, IWatchSessionController {
     
-    public static let singleton = iOSSessionController()
+    public static let singleton: IWatchSessionController = WatchSessionController()
     
     private let session: WCSession
-    private let requestSendData: RequestSendDataToWatch = RequestSendDataToWatch.singleton
+    private let receiveDataUseCase: ReceiveDataFromiPhoneUseCase = ReceiveDataFromiPhoneUseCase.singleton
     
     init(session: WCSession = .default) {
         self.session = session
@@ -27,21 +27,20 @@ public class iOSSessionController: NSObject, WCSessionDelegate, IiOSSessionContr
         _ session: WCSession,
         didReceiveMessage message: [String : Any]
     ) {
-        if let _ = extractValueFromMessage(from: message, key: .REQUEST_INFO_WATCH_2_PHONE) {
-            requestSendData.requestSend()
+        if let payload = extractValueFromMessage(from: message, key: .SEND_INFO_PHONE_2_WATCH) as? String{
+            receiveDataUseCase.receiveData(payload)
         }
     }
     
     public func send(_ message: [String: Any]) {
-        if session.isReachable {
+//        if session.isPaired {
             session.sendMessage(message, replyHandler: nil) { (error) in
                 print(error.localizedDescription)
             }
-        }
+//        }
     }
     
     public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        
     }
     
     
@@ -52,26 +51,21 @@ public class iOSSessionController: NSObject, WCSessionDelegate, IiOSSessionContr
         return nil
     }
     
-#if os(iOS)
-    public var getWatchStatus: (String, Color) {
-        
-        if session.isWatchAppInstalled {
-            if session.isReachable {
-                return WatchStatusModel.CONNECTED
-            } else {
-                return WatchStatusModel.DISCONNECTED
-            }
+    public func sessionReachabilityDidChange(_ session: WCSession) {
+        if (session.isReachable) {
+            //            TOFIX`
+            //            print("ViewModelWatch: Request current data")
+            //            self.send(message: ["CURRENT-DATA":true], replyHandler: self.process)
         }
-        return WatchStatusModel.NOT_INSTALLED
     }
     
+#if os(iOS)
     public func sessionDidBecomeInactive(_ session: WCSession) {
-        //        code
+        //    code
     }
     
     public func sessionDidDeactivate(_ session: WCSession) {
-        //        code
+        //    code
     }
 #endif
-    
 }

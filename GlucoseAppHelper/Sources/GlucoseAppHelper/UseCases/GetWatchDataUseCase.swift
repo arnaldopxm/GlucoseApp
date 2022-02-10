@@ -13,14 +13,14 @@ public class GetWatchDataUseCase {
     public static let singleton = GetWatchDataUseCase()
     
     private var requestDataUseCase = RequestDataFromiPhone.singleton
-    private var appState: _WatchState? = nil
-    private var onNewDataHandle: ((_WatchState) -> Void)? = nil
+    private var appState: AppState? = nil
+    private var onNewDataHandle: ((AppState) -> Void)? = nil
 
-    public func setOnNewDataHandler(_ handler: ((_WatchState) -> Void)? = nil) {
+    public func setOnNewDataHandler(_ handler: ((AppState) -> Void)? = nil) {
         onNewDataHandle = handler
     }
     
-    public func getLatestData(completion: ((_WatchState) -> Void)? = nil) {
+    public func getLatestData(completion: ((AppState) -> Void)? = nil) {
         if appState == nil || appState!.isValid() {
             requestDataUseCase.request()
         }
@@ -29,7 +29,7 @@ public class GetWatchDataUseCase {
         }
     }
     
-    public func updateData(from newState: _WatchState) {
+    public func updateData(from newState: AppState) {
         if (appState == nil){
             appState = newState
         } else {

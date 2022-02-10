@@ -211,14 +211,14 @@
 			path = Presenters;
 			sourceTree = "<group>";
 		};
-		230A51E627B430B1006E53D7 /* _ViewHelpers */ = {
+		230A51E627B430B1006E53D7 /* ViewHelpers */ = {
 			isa = PBXGroup;
 			children = (
 				230A51E727B430C2006E53D7 /* LoginViewHelper.swift */,
 				230A51E927B4314F006E53D7 /* LoaderViewHelper.swift */,
 				230A51EF27B476E2006E53D7 /* ContentViewHelper.swift */,
 			);
-			path = _ViewHelpers;
+			path = ViewHelpers;
 			sourceTree = "<group>";
 		};
 		230A51F327B5486A006E53D7 /* Presenters */ = {
@@ -271,7 +271,7 @@
 		2397C99427301D7C0079C4F8 /* GlucoseApp */ = {
 			isa = PBXGroup;
 			children = (
-				230A51E627B430B1006E53D7 /* _ViewHelpers */,
+				230A51E627B430B1006E53D7 /* ViewHelpers */,
 				230A51E327B4301E006E53D7 /* Presenters */,
 				23EECB6227A1D057004B7CEA /* Views */,
 				2327E9DF274195C900858BAB /* Info.plist */,

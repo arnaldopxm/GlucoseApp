@@ -12,7 +12,7 @@ public class ReceiveDataFromiPhoneUseCase {
     public static let singleton = ReceiveDataFromiPhoneUseCase()
     
     public func receiveData(_ data: String) {
-        guard let newState = _WatchState.parseFrom(jsonString: data)  else{
+        guard let newState = AppState.parseFrom(jsonString: data)  else{
             print("Watch: no new data")
             return
         }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class _WatchState: Codable {
+public class AppState: Codable {
     
     public var gs: GlucoseModel
     public var gsTrend: GlucoseTrendModel
@@ -24,7 +24,7 @@ public class _WatchState: Codable {
         return offset <= 5
     }
     
-    public func updateNeededFields(from data: _WatchState) {
+    public func updateNeededFields(from data: AppState) {
         if (!self.gs.Equals(data.gs)) {
             self.gs = data.gs
         }
@@ -48,10 +48,10 @@ public class _WatchState: Codable {
         return jsonString
     }
     
-    public static func parseFrom(jsonString: String) -> _WatchState? {
+    public static func parseFrom(jsonString: String) -> AppState? {
         guard
             let jsonData = jsonString.data(using: .utf8),
-            let json = try? JSONDecoder().decode(_WatchState.self, from: jsonData)
+            let json = try? JSONDecoder().decode(AppState.self, from: jsonData)
         else {
             return nil
         }

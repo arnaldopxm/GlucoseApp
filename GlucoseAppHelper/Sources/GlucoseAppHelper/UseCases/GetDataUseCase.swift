@@ -11,9 +11,9 @@ class GetDataUseCase {
     
     public static let singleton = GetDataUseCase()
     private let carelink: ICareLinkController = CareLinkController.singleton
-    private var appState: _WatchState?;
+    private var appState: AppState?;
     
-    public func getLatestData(completion: ((_WatchState) -> Void)? = nil) {
+    public func getLatestData(completion: ((AppState) -> Void)? = nil) {
         if let data = appState, data.isValid() {
             if (completion != nil) {
                 completion!(data)
@@ -30,7 +30,7 @@ class GetDataUseCase {
         }
     }
     
-    private func getNewData(completion: ((_WatchState) -> Void)? = nil) {
+    private func getNewData(completion: ((AppState) -> Void)? = nil) {
         Task.init {
             let data = try await carelink.getLastSensorGlucose()
             
@@ -38,7 +38,7 @@ class GetDataUseCase {
             let newGsTrend = GlucoseTrendModel(trend: data.lastSGTrend)
             let newGsTime = GlucoseTimeModel(dateTime: data.lastSG.datetime)
 
-            let newState = _WatchState(gs: newGs, gsTrend: newGsTrend, gsTime: newGsTime)
+            let newState = AppState(gs: newGs, gsTrend: newGsTrend, gsTime: newGsTime)
             if (appState == nil){
                 appState = newState
             } else {
