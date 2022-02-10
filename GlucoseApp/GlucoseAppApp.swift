@@ -13,12 +13,6 @@ import GlucoseAppHelper
 struct GlucoseAppApp: App {
     
     @StateObject var presenter = GlucoseAppPresenter.singleton
-    
-    
-    var model = ViewModelPhone.singleton
-    var client = CareLinkClient.singleton
-    var store = PersistStore.singleton
-    @StateObject var state = AppState.singleton
     @Environment(\.scenePhase) private var scenePhase
     
     init() {
@@ -39,7 +33,7 @@ struct GlucoseAppApp: App {
     func handleAppRefresh(task: BGAppRefreshTask) {
         scheduleAppRefresh()
         print("AppMain: Fetch BG")
-        client.findLastGlucoseTaskSync(updateHandler: model.update)
+//        client.findLastGlucoseTaskSync(updateHandler: model.update)
         task.setTaskCompleted(success: true)
         print("AppMain: BG finished, Task handled")
     }

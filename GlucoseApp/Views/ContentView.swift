@@ -10,12 +10,8 @@ import GlucoseAppHelper
 
 struct ContentView: View {
     
+    private let session: IiOSSessionController = iOSSessionController.singleton
     @StateObject var presenter = ContentViewPresenter.singleton
-    
-    var model = ViewModelPhone.singleton
-    var client = CareLinkClient.singleton
-
-    @State var watchStatus: (String, Color) = WatchStatusModel.NOT_INSTALLED
     @Environment(\.scenePhase) private var scenePhase
     
     let timer = Timer.publish(every: TimeIntervalsConst.IPHONE_SCREEN_REFRESH_TIME, on: .main, in: .common).autoconnect()

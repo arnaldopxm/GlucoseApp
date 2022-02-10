@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GlucoseTimeModel {
+public struct GlucoseTimeModel: Codable {
     
     public let value: Date?
     

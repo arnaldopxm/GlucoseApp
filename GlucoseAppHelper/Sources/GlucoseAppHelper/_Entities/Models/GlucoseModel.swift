@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct GlucoseModel {
+public struct GlucoseModel: Codable {
     
     public let value: Int
     

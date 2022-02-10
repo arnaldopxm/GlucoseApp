@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-public struct GlucoseTrendModel {
+public struct GlucoseTrendModel: Codable {
     
     internal let _value: SgTrend
     

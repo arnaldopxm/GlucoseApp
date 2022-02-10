@@ -1,0 +1,22 @@
+//
+//  File.swift
+//
+//
+//  Created by Arnaldo Quintero on 10/2/22.
+//
+
+import Foundation
+
+class SendDataToWatch {
+
+    public static let singleton = SendDataToWatch()
+
+    public func send(_ data: _WatchState) {
+        let stringData = data.getStringSerialized()
+        let session: IiOSSessionController = iOSSessionController.singleton
+        session.send([
+            MessagesPayloadKeysConst.SEND_INFO_PHONE_2_WATCH: stringData
+        ])
+    }
+
+}
