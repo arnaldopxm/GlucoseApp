@@ -9,7 +9,10 @@ import SwiftUI
 import GlucoseAppHelper
 
 struct ContentView: View {
-    @StateObject var state = WatchState.singleton
+
+    @StateObject var presenter = ContentViewPresenter.singleton
+    
+    let timer = Timer.publish(every: TimeIntervalsConst.WATCH_SCREEN_REFRESH_TIME, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
@@ -18,28 +21,35 @@ struct ContentView: View {
                 Spacer()
             }
             StylesConst.GlucoseShowCircle(
-                sgColor: state.sgColor,
-                sg: state.sg,
-                sgTrend: GlucoseTrendModel(trend: state.sgTrend)
+                sgColor: presenter.sgColor,
+                sg: presenter.sgValue,
+                sgTrend: presenter.sgTrend
             )
                 .scaleEffect(0.5)
                 .frame(width: 140, height: 140, alignment: .center)
             Spacer().frame(height: 10)
-            Text(AppState.getDateFormated(state.sgTime))
+            Text(presenter.sgTime)
                 .modifier(ViewModifiers.GlucoseAppTextStyle(height: 21))
-            Text("Hace \(SensorGlucose.getTimeOffsetInMinutes(from: state.sgTime) ?? 0) min." )
+            Text(presenter.sgTimeOffset)
                 .modifier(ViewModifiers.GlucoseAppTextStyle(fontSize: 15, color: ColorsConst.TEXT_COLOR_SECONDARY, height: 19))
-            
         }
+        .onDisappear() {
+            timer.upstream.connect().cancel()
+        }
+        .onAppear(perform: presenter.getData)
+        .onReceive(timer, perform: { _ in
+            print("ContentView Watch: ask for glucose")
+            presenter.getData()
+        })
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(state: WatchState.sample_ok_notrend)
-            ContentView(state: WatchState.sample_high_down)
-            ContentView(state: WatchState.sample_low_up)
+//            ContentView(state: WatchState.sample_ok_notrend)
+//            ContentView(state: WatchState.sample_high_down)
+//            ContentView(state: WatchState.sample_low_up)
         }
     }
 }

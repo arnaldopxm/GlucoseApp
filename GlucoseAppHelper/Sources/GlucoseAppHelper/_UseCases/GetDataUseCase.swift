@@ -20,7 +20,13 @@ class GetDataUseCase {
             }
             return
         } else {
-            getNewData(completion: completion)
+            getNewData() { newData in
+                let sendDataToWatch = SendDataToWatch.singleton
+                sendDataToWatch.send(newData)
+                if (completion != nil) {
+                    completion!(newData)
+                }
+            }
         }
     }
     

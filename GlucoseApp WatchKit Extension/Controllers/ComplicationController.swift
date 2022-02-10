@@ -46,17 +46,17 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the current timeline
         var entry: CLKComplicationTimelineEntry? = nil
         var template: CLKComplicationTemplate? = nil
-        let state = WatchState.singleton
+        let state = ContentViewPresenter.singleton
         
         switch complication.family {
         case .circularSmall:
             // face 2
-            template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: state.sg), fillFraction: 0.5, ringStyle: .closed)
+            template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: state.sgValue), fillFraction: 0.5, ringStyle: .closed)
         case .graphicCircular:
             //face 1
-            template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: state.sg), line2TextProvider: CLKSimpleTextProvider(text: state.sgTime))
+            template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: state.sgValue), line2TextProvider: CLKSimpleTextProvider(text: state.sgTime))
         case .utilitarianLarge:
-            template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: state.sg) )
+            template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: state.sgValue) )
         default:
             handler(nil)
             return

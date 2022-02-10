@@ -1,0 +1,23 @@
+//
+//  File.swift
+//  
+//
+//  Created by Arnaldo Quintero on 10/2/22.
+//
+
+import Foundation
+
+public class ReceiveDataFromiPhoneUseCase {
+    
+    public static let singleton = ReceiveDataFromiPhoneUseCase()
+    
+    public func receiveData(_ data: String) {
+        guard let newState = _WatchState.parseFrom(jsonString: data)  else{
+            print("Watch: no new data")
+            return
+        }
+        
+        let watchData = GetWatchDataUseCase.singleton
+        watchData.updateData(from: newState)
+    }
+}
