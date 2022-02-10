@@ -20,7 +20,7 @@ struct ContentView: View {
             StylesConst.GlucoseShowCircle(
                 sgColor: state.sgColor,
                 sg: state.sg,
-                sgTrend: state.sgTrend
+                sgTrend: GlucoseTrendModel(trend: state.sgTrend)
             )
                 .scaleEffect(0.5)
                 .frame(width: 140, height: 140, alignment: .center)

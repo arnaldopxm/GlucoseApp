@@ -11,7 +11,7 @@ public class CareLinkAPI: ICareLinkAPI {
     
     public static let singleton: ICareLinkAPI = CareLinkAPI()
     
-    public func loginClient(username: String, password: String) async throws -> HTTPCookie {
+    public func login(username: String, password: String) async throws -> HTTPCookie {
         
         var params: [(String, String)] = []
         let formEncodedHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
@@ -49,4 +49,63 @@ public class CareLinkAPI: ICareLinkAPI {
         
         return cookie
     }
+
+    public func getCountrySettings() async throws -> CountrySettings {
+        let queryParams = [
+            ("countryCode","es"),
+            ("language","en")
+        ]
+        guard let (data, _) = try? await makeRequest(url: HttpTranspontConst.CarelinkUrl + "/patient/countries/settings", queryParams: queryParams) else {
+            throw HttpErrors.GetSettingsError
+        }
+        
+        let stringData = data.data(using: .utf8)!
+        guard let json = try? JSONDecoder().decode(CountrySettings.self, from: stringData) else {
+            throw HttpErrors.JsonSerializationError
+        }
+        
+        return json
+    }
+    
+    public func getUserRole(token t: String) async throws -> UserSettings {
+        let headers = ["Authorization": "Bearer \(t)"]
+        
+        guard let (data, _) = try? await makeRequest(url: HttpTranspontConst.CarelinkUrl + "/patient/users/me", headers: headers) else {
+            throw HttpErrors.GetUserRoleError
+        }
+        
+        let stringData = data.data(using: .utf8)!
+        guard let json = try? JSONDecoder().decode(UserSettings.self, from: stringData) else {
+            throw HttpErrors.JsonSerializationError
+        }
+        
+        return json
+    }
+    
+    public func getData(url dataUrl: String, username: String, role: String, token t: String) async throws -> DataResponse {
+        let headers = [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer \(t)"
+        ]
+        let body = [
+            "username": username,
+            "role": role
+        ]
+        guard let jsonBody = try? JSONEncoder().encode(body) else {
+            throw HttpErrors.JsonSerializationError
+        }
+        
+        guard let (data, _) = try? await makeRequest(url: dataUrl, method: .POST, headers: headers, body: jsonBody) else {
+            throw HttpErrors.GetDataError
+        }
+        
+        let stringData =  data.data(using: .utf8)!
+        guard let json = try? JSONDecoder().decode(DataResponse.self, from: stringData)
+        else {
+            throw HttpErrors.JsonSerializationError
+        }
+        
+        return json
+    }
+
 }

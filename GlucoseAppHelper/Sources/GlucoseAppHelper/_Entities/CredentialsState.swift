@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Credentials {
+public class CredentialsState {
     
     public let username: String
     public let password: String

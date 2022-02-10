@@ -8,5 +8,11 @@
 import Foundation
 
 public protocol ICareLinkAPI {
-    func loginClient(username: String, password: String) async throws -> HTTPCookie
+    func login(username: String, password: String) async throws -> HTTPCookie
+    
+    func getCountrySettings() async throws -> CountrySettings
+    
+    func getUserRole(token t: String) async throws -> UserSettings
+    
+    func getData(url dataUrl: String, username: String, role: String, token t: String) async throws -> DataResponse
 }

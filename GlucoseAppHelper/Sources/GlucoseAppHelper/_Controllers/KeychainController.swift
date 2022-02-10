@@ -19,14 +19,14 @@ public class KeychainController: IKeychainController {
         keychain.setValue(password, forKey: "password")
     }
     
-    public func getCredentials() -> Credentials? {
+    public func getCredentials() -> CredentialsState? {
         guard
             let username = keychain.get(key: "username"),
             let password = keychain.get(key: "password")
         else {
             return nil
         }
-        return Credentials(username: username, password: password)
+        return CredentialsState(username: username, password: password)
     }
     
     public func deleteAll() {

@@ -8,16 +8,6 @@
 import Foundation
 import SwiftUI
 
-public enum SgTrend: String, Codable {
-    case NONE
-    case DOWN
-    case DOWN_DOUBLE
-    case DOWN_TRIPLE
-    case UP
-    case UP_DOUBLE
-    case UP_TRIPLE
-}
-
 public extension SgTrend {
     var icon: String {
         switch self {

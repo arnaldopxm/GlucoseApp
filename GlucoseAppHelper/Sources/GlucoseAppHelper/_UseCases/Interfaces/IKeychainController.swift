@@ -11,7 +11,7 @@ public protocol IKeychainController {
     
     func storeCredentials(username: String, password: String)
     
-    func getCredentials() -> Credentials?
+    func getCredentials() -> CredentialsState?
     
     func deleteAll()
 }
