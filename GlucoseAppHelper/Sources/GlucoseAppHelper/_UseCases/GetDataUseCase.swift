@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class GetDataUseCase {
+class GetDataUseCase {
     
     public static let singleton = GetDataUseCase()
     private let carelink: ICareLinkController = CareLinkController.singleton

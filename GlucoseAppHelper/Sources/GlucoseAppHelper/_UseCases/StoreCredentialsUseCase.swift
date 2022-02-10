@@ -8,7 +8,7 @@
 import Foundation
 
 
-public class StoreCredentials {
+class StoreCredentials {
     public static let singleton = StoreCredentials()
     private let keychainController: IKeychainController = KeychainController.singleton
     

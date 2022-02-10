@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class DeleteCredentials {
+class DeleteCredentials {
     public static let singleton = DeleteCredentials()
     private let keychainController: IKeychainController = KeychainController.singleton
     

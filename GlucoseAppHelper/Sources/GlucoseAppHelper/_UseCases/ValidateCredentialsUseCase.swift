@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ValidateCredentials {
+class ValidateCredentials {
     public static let singleton = ValidateCredentials()
     private let carelinkController: ICareLinkController = CareLinkController.singleton
     
