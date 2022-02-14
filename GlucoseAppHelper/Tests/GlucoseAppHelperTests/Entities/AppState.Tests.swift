@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+import XCTest
+@testable import GlucoseAppHelper
+
+final class AppStateTests: XCTestCase {
+}

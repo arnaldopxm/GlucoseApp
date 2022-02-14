@@ -33,10 +33,12 @@ public class iOSSessionController: NSObject, WCSessionDelegate, IiOSSessionContr
     }
     
     public func send(_ message: [String: Any]) {
-//        if session.isPaired {
+//        if session.isReachable {
             session.sendMessage(message, replyHandler: nil) { (error) in
                 print(error.localizedDescription)
             }
+//        } else {
+            try? session.updateApplicationContext(message)
 //        }
     }
     
