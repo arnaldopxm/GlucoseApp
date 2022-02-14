@@ -32,6 +32,12 @@ public class WatchSessionController: NSObject, WCSessionDelegate, IWatchSessionC
         }
     }
     
+    public func session(_ session: WCSession, didReceiveApplicationContext message: [String : Any]) {
+        if let payload = extractValueFromMessage(from: message, key: .SEND_INFO_PHONE_2_WATCH) as? String{
+            receiveDataUseCase.receiveData(payload)
+        }
+    }
+    
     public func send(_ message: [String: Any]) {
 //        if session.isPaired {
             session.sendMessage(message, replyHandler: nil) { (error) in

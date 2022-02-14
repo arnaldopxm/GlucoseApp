@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public enum SgTrend: String, Codable {
+public enum SgTrend: String, Codable, CaseIterable {
     case NONE
     case DOWN
     case DOWN_DOUBLE

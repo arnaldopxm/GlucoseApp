@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GlucoseTimeModel: Codable {
+public struct GlucoseTimeModel: Codable, CustomStringConvertible {
     
     public let value: Date?
     
@@ -60,7 +60,7 @@ public struct GlucoseTimeModel: Codable {
         return Int(offsetInMinutes)
     }
     
-    private static func getDate(datetimeString: String?, format: String = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") -> Date? {
+    internal static func getDate(datetimeString: String?, format: String = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") -> Date? {
         guard let date = datetimeString else {
             return nil
         }
@@ -69,5 +69,8 @@ public struct GlucoseTimeModel: Codable {
         return dateFormatter.date(from: date)
     }
     
+    public var description: String {
+        return "Time: \(self.value?.ISO8601Format())"
+    }
     
 }

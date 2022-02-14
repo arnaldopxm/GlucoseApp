@@ -32,7 +32,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        handler(Date(timeIntervalSinceNow: 30))
+        handler(nil)
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
@@ -46,17 +46,19 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the current timeline
         var entry: CLKComplicationTimelineEntry? = nil
         var template: CLKComplicationTemplate? = nil
-        let state = ContentViewPresenter.singleton
+        let state = ComplicationsPresenter.singleton
+        // print("ESTADO: \(state.sgTimeOffset) \(state.sgValue)")
+        GetWatchDataUseCase.singleton.getLatestData()
         
         switch complication.family {
         case .circularSmall:
             // face 2
-            template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: state.sgValue), fillFraction: 0.5, ringStyle: .closed)
+            template = CLKComplicationTemplateCircularSmallSimpleText(textProvider: CLKSimpleTextProvider(text: state.sgValue))
         case .graphicCircular:
             //face 1
-            template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: state.sgValue), line2TextProvider: CLKSimpleTextProvider(text: state.sgTime))
+            template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: state.sgValue), line2TextProvider: CLKSimpleTextProvider(text: state.sgTimeOffset))
         case .utilitarianLarge:
-            template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: state.sgValue) )
+            template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: "\(state.sgValue) - \(state.sgTimeOffset)") )
         default:
             handler(nil)
             return
@@ -92,10 +94,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     
     // MARK: - Update Scheduling
-    
-    
     func getNextRequestedUpdateDateWithHandler(handler: (NSDate?) -> Void) {
         // Call the handler with the date when you would next like to be given the opportunity to update your complication content
-        handler(NSDate(timeIntervalSinceNow: 5*60))
+        handler(NSDate(timeIntervalSinceNow: TimeIntervalsConst.WATCH_BG_REFRESH_TIME))
+    }
+    
+    func scheduleBackgroundRefresh(withPreferredDate preferredFireDate: Date,
+                          userInfo: (NSSecureCoding & NSObjectProtocol)?,
+                                   scheduledCompletion: @escaping (Error?) -> Void) {
+        
     }
 }

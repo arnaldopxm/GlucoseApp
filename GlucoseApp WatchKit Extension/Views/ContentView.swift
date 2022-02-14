@@ -12,7 +12,7 @@ struct ContentView: View {
 
     @StateObject var presenter = ContentViewPresenter.singleton
     
-    let timer = Timer.publish(every: TimeIntervalsConst.WATCH_SCREEN_REFRESH_TIME, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {

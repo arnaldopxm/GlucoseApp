@@ -25,7 +25,11 @@ struct LogoBlock : View {
     var body: some View {
         Spacer().frame(width: nil, height: 40, alignment: .center)
         StylesConst.GlucoseAppLogo()
+            .padding()
+            .frame(width: 100.0, height: 100.0)
         StylesConst.GlucoseAppName()
+            .padding()
+            .frame(height: 30.0)
         Spacer().frame(width: nil, height: 50, alignment: .center)
     }
 }

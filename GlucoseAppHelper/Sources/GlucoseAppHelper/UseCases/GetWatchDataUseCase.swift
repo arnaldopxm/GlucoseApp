@@ -13,15 +13,22 @@ public class GetWatchDataUseCase {
     public static let singleton = GetWatchDataUseCase()
     
     private var requestDataUseCase = RequestDataFromiPhone.singleton
-    private var appState: AppState? = nil
-    private var onNewDataHandle: ((AppState) -> Void)? = nil
+    public var appState: AppState? = nil
+    private var onNewDataHandleWatch: ((AppState) -> Void)? = nil
+    private var onNewDataHandleComplications: ((AppState) -> Void)? = nil
 
-    public func setOnNewDataHandler(_ handler: ((AppState) -> Void)? = nil) {
-        onNewDataHandle = handler
+
+    public func setOnNewDataHandlerWatch(_ handler: ((AppState) -> Void)? = nil) {
+        onNewDataHandleWatch = handler
+    }
+    
+    public func setOnNewDataHandlerComplications(_ handler: ((AppState) -> Void)? = nil) {
+        onNewDataHandleComplications = handler
     }
     
     public func getLatestData(completion: ((AppState) -> Void)? = nil) {
-        if appState == nil || appState!.isValid() {
+        requestDataUseCase.keepAlive()
+        if appState == nil || !appState!.isValid() {
             requestDataUseCase.request()
         }
         if completion != nil && appState != nil{
@@ -30,14 +37,22 @@ public class GetWatchDataUseCase {
     }
     
     public func updateData(from newState: AppState) {
+        
         if (appState == nil){
             appState = newState
         } else {
             appState!.updateNeededFields(from: newState)
         }
         
-        if onNewDataHandle != nil && appState != nil {
-            onNewDataHandle!(appState!)
+        if appState != nil {
+            if onNewDataHandleWatch != nil {
+                onNewDataHandleWatch!(appState!)
+            }
+            
+            if onNewDataHandleComplications != nil {
+                onNewDataHandleComplications!(appState!)
+            }
+            
         }
     }
 }

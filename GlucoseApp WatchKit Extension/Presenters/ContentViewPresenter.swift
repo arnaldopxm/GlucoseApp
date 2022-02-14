@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 import GlucoseAppHelper
-import ClockKit
 
 public class ContentViewPresenter: ObservableObject {
     
     public static let singleton = ContentViewPresenter()
     private let getWatchData = GetWatchDataUseCase.singleton
+    private let complications = ComplicationsPresenter.singleton
     
     @Published public var sgValue: String = "---"
     @Published public var sgColor: Color = ColorsConst.SG_HIGH
@@ -22,10 +22,19 @@ public class ContentViewPresenter: ObservableObject {
     @Published public var sgTrend: GlucoseTrendModel = GlucoseTrendModel(trend: .NONE)
     
     init() {
-        getWatchData.setOnNewDataHandler(self.updateData)
+        getWatchData.setOnNewDataHandlerWatch(self.updateData)
     }
     
     func getData() {
+        
+        if let newTimeOffset = self.getWatchData.appState?.gsTime.getPastTimeSinceNowString(), self.sgTimeOffset != newTimeOffset {
+            self.complications.updateTime(from: newTimeOffset)
+            DispatchQueue.main.async {
+                self.sgTimeOffset = newTimeOffset
+            }
+        }
+        
+        print("Content View Watch: ask for data")
         getWatchData.getLatestData() { newState in
             self.updateData(from: newState)
         }
@@ -38,16 +47,8 @@ public class ContentViewPresenter: ObservableObject {
             self.sgTrend = newState.gsTrend
             self.sgTime = newState.gsTime.getFormattedHourTime()
             self.sgTimeOffset = newState.gsTime.getPastTimeSinceNowString()
-            self.updateComplications()
         }
     }
     
-    func updateComplications() {
-        let complications = CLKComplicationServer.sharedInstance()
-        if (complications.activeComplications != nil) {
-            for c in complications.activeComplications! {
-                complications.reloadTimeline(for: c)
-            }
-        }
-    }
+    
 }

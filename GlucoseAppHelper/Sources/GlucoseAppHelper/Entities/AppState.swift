@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class AppState: Codable {
+public class AppState: Codable, CustomStringConvertible {
     
     public var gs: GlucoseModel
     public var gsTrend: GlucoseTrendModel
@@ -25,7 +25,7 @@ public class AppState: Codable {
     }
     
     public func updateNeededFields(from data: AppState) {
-        if (!self.gs.Equals(data.gs)) {
+        if self.gs != data.gs {
             self.gs = data.gs
         }
         
@@ -33,7 +33,7 @@ public class AppState: Codable {
             self.gsTime = data.gsTime
         }
         
-        if (!self.gsTrend.Equals(data.gsTrend)) {
+        if (self.gsTrend != data.gsTrend) {
             self.gsTrend = data.gsTrend
         }
     }
@@ -56,6 +56,10 @@ public class AppState: Codable {
             return nil
         }
         return json
+    }
+    
+    public var description: String {
+        return "\(self.gs) \(self.gsTrend) \(self.gsTime)"
     }
     
 }

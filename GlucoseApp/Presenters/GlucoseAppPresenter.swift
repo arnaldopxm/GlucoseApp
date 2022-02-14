@@ -14,6 +14,7 @@ public class GlucoseAppPresenter: ObservableObject {
     public var loginUseCase = LoginUseCase.singleton
     
     @Published var isLoggedIn: Bool = false
+    @Published var loading: Bool = false
     
     func setLoggedIn(_ value: Bool) {
         DispatchQueue.main.async {
@@ -22,13 +23,23 @@ public class GlucoseAppPresenter: ObservableObject {
     }
     
     func checkIfCredentialsAreSaved() {
-        loginUseCase.loginFromSavedCredentials(completion: setLoggedIn)
+        setLoading(true)
+        loginUseCase.loginFromSavedCredentials() { isLoggedIn in
+            self.setLoggedIn(isLoggedIn)
+            self.setLoading(false)
+        }
     }
     
     func getData() {
         if (isLoggedIn) {
             let contentView = ContentViewPresenter.singleton
             contentView.getData()
+        }
+    }
+    
+    private func setLoading(_ value: Bool) {
+        DispatchQueue.main.async {
+            self.loading = value
         }
     }
 }

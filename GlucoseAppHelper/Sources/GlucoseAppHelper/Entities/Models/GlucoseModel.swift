@@ -8,16 +8,12 @@
 import Foundation
 import SwiftUI
 
-public struct GlucoseModel: Codable {
+public struct GlucoseModel: Codable, Equatable, CustomStringConvertible {
     
     public let value: Int
     
     public init(value: Int) {
         self.value = value
-    }
-    
-    public func Equals(_ obj: GlucoseModel) -> Bool {
-        return obj.value == value
     }
     
     public func getColor() -> Color {
@@ -28,5 +24,9 @@ public struct GlucoseModel: Codable {
             return ColorsConst.SG_LOW
         }
         return ColorsConst.SG_OK
+    }
+    
+    public var description: String {
+        return "GS: \(value)"
     }
 }

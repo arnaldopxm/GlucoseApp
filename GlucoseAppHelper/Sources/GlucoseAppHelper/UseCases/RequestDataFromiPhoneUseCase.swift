@@ -20,5 +20,12 @@ class RequestDataFromiPhone {
         session.send(payload)
     }
     
+    public func keepAlive() {
+        let stringData = "keep_alive"
+        let session = WatchSessionController.singleton
+        let payload = [stringData:stringData]
+        session.send(payload)
+    }
+    
     
 }

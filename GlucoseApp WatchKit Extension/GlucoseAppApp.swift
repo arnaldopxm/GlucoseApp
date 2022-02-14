@@ -12,6 +12,7 @@ import GlucoseAppHelper
 struct GlucoseAppApp: App {
     
     private let session: IWatchSessionController = WatchSessionController.singleton
+    private let content = ContentViewPresenter.singleton
     @WKExtensionDelegateAdaptor(WatchDelegate.self) var delegate
     
     @SceneBuilder var body: some Scene {

@@ -53,10 +53,14 @@ struct GlucoseAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if presenter.isLoggedIn {
-                ContentView()
+            if presenter.loading {
+                LoaderView()
             } else {
-                LoginView()
+                if presenter.isLoggedIn {
+                    ContentView()
+                } else {
+                    LoginView()
+                }
             }
         }
         .onChange(of: scenePhase) { phase in

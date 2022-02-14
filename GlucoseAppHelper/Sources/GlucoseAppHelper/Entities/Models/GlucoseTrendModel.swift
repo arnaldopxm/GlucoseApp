@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-public struct GlucoseTrendModel: Codable {
+public struct GlucoseTrendModel: Codable, Equatable, CustomStringConvertible {
     
     internal let _value: SgTrend
     
@@ -19,11 +19,7 @@ public struct GlucoseTrendModel: Codable {
         self._value = trend
     }
     
-    public func Equals(_ obj: GlucoseTrendModel) -> Bool {
-        return obj.value == value
-    }
-    
-    func getArrows() -> String {
+    public func getArrows() -> String {
         switch _value {
         case .DOWN: return "↓"
         case .DOWN_DOUBLE: return "↓↓"
@@ -33,5 +29,9 @@ public struct GlucoseTrendModel: Codable {
         case .UP_TRIPLE: return "↑↑↑"
         case .NONE: return ""
         }
+    }
+    
+    public var description: String {
+        return "Trend: \(value)"
     }
 }
