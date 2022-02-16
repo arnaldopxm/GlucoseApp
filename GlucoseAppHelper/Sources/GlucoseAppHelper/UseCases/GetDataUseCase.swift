@@ -47,8 +47,9 @@ class GetDataUseCase {
             let newGs = GlucoseModel(value: data.lastSG.sg)
             let newGsTrend = GlucoseTrendModel(trend: data.lastSGTrend)
             let newGsTime = GlucoseTimeModel(dateTime: data.lastSG.datetime)
+            let newSensorState = data.lastSG.sensorState
 
-            let newState = AppState(gs: newGs, gsTrend: newGsTrend, gsTime: newGsTime)
+            let newState = AppState(gs: newGs, gsTrend: newGsTrend, gsTime: newGsTime, sensorState: newSensorState)
             if (appState == nil){
                 appState = newState
             } else {

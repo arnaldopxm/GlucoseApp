@@ -42,10 +42,15 @@ public class ContentViewPresenter: ObservableObject {
     
     func updateData(from newState: AppState) {
         DispatchQueue.main.async {
-            self.sgValue = newState.gs.value.formatted()
+            if (newState.gs.value == 0) {
+                self.sgValue = "---"
+                self.sgTime = newState.sensorState
+            } else {
+                self.sgValue = newState.gs.value.formatted()
+                self.sgTime = newState.gsTime.getFormattedHourTime()
+            }
             self.sgColor = newState.gs.getColor()
             self.sgTrend = newState.gsTrend
-            self.sgTime = newState.gsTime.getFormattedHourTime()
             self.sgTimeOffset = newState.gsTime.getPastTimeSinceNowString()
         }
     }

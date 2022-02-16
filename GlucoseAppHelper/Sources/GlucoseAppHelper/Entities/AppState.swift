@@ -12,11 +12,13 @@ public class AppState: Codable, CustomStringConvertible {
     public var gs: GlucoseModel
     public var gsTrend: GlucoseTrendModel
     public var gsTime: GlucoseTimeModel
+    public var sensorState: String?
     
-    public init(gs: GlucoseModel, gsTrend: GlucoseTrendModel, gsTime: GlucoseTimeModel) {
+    public init(gs: GlucoseModel, gsTrend: GlucoseTrendModel, gsTime: GlucoseTimeModel, sensorState: String? = nil) {
         self.gs = gs
         self.gsTrend = gsTrend
         self.gsTime = gsTime
+        self.sensorState = sensorState
     }
     
     public func isValid() -> Bool {
@@ -36,6 +38,8 @@ public class AppState: Codable, CustomStringConvertible {
         if (self.gsTrend != data.gsTrend) {
             self.gsTrend = data.gsTrend
         }
+        
+        self.sensorState = data.sensorState
     }
     
     public func getStringSerialized() -> String {

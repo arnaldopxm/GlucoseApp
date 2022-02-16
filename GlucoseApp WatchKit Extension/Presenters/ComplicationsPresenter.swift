@@ -32,7 +32,11 @@ public class ComplicationsPresenter {
     }
     
     func updateData(from newState: AppState) {
-        self.sgValue = newState.gs.value.formatted() + newState.gsTrend.getArrows()
+        if (newState.gs.value == 0) {
+            self.sgValue = newState.sensorState ?? "---"
+        } else {
+            self.sgValue = newState.gs.value.formatted() + newState.gsTrend.getArrows()
+        }
         self.sgTimeOffset = newState.gsTime.getPastTimeSinceNowString()
         reloadComplications()
     }
