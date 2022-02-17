@@ -37,7 +37,7 @@ public class ContentViewPresenter: ObservableObject {
             DispatchQueue.main.async {
                 if (newState.gs.value == 0) {
                     self.sgValue = "---"
-                    self.sgTime = newState.sensorState
+                    self.sgTime = newState.sensorState ?? "NO_DATA"
                 } else {
                     self.sgValue = newState.gs.value.formatted()
                     self.sgTime = newState.gsTime.getFormattedHourTime()

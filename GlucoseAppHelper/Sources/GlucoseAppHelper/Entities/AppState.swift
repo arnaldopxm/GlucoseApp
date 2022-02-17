@@ -31,7 +31,7 @@ public class AppState: Codable, CustomStringConvertible {
             self.gs = data.gs
         }
         
-        if (!self.gsTime.Equals(data.gsTime)) {
+        if (self.gsTime != data.gsTime) {
             self.gsTime = data.gsTime
         }
         

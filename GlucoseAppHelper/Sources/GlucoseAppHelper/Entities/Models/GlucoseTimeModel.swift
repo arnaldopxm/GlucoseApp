@@ -7,24 +7,28 @@
 
 import Foundation
 
-public struct GlucoseTimeModel: Codable, CustomStringConvertible {
+public struct GlucoseTimeModel: Codable, Equatable, CustomStringConvertible {
     
     public let value: Date?
     
     public init(dateTime: String?) {
-        self.value = GlucoseTimeModel.getDate(datetimeString: dateTime)
+        guard let date = dateTime else {
+            self.value = nil
+            return
+        }
+        self.value = DateTimeService.stringToDateTime(stringValue: date)
     }
     
     public init(dateTime: Date) {
         self.value = dateTime
     }
     
-    public func Equals(_ obj: GlucoseTimeModel) -> Bool {
-        if (value == nil) {
-            return obj.value == nil
+    public static func == (lhs: GlucoseTimeModel, rhs: GlucoseTimeModel) -> Bool {
+        if (lhs.value == nil) {
+            return rhs.value == nil
         } else {
-            if (obj.value != nil) {
-                return obj.value?.distance(to: value!) == 0
+            if (rhs.value != nil) {
+                return rhs.value?.distance(to: lhs.value!) == 0
             } else {
                 return false
             }
@@ -36,11 +40,7 @@ public struct GlucoseTimeModel: Codable, CustomStringConvertible {
         guard let date = self.value else {
             return "---"
         }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm 'h'"
-        let formatedDate = dateFormatter.string(from: date)
-        
-        return formatedDate
+        return DateTimeService.dateToString(date: date)
     }
     
     public func getPastTimeSinceNowString() -> String {
@@ -60,17 +60,8 @@ public struct GlucoseTimeModel: Codable, CustomStringConvertible {
         return Int(offsetInMinutes)
     }
     
-    internal static func getDate(datetimeString: String?, format: String = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") -> Date? {
-        guard let date = datetimeString else {
-            return nil
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.date(from: date)
-    }
-    
     public var description: String {
-        return "Time: \(self.value?.ISO8601Format())"
+        return "Time: \(self.value?.ISO8601Format() ?? "X")"
     }
     
 }
