@@ -40,7 +40,7 @@ public struct StylesConst {
     
     public struct GlucoseShowCircle: View {
         
-        public init(sgColor: Color, sg: String, sgTrend: SgTrend) {
+        public init(sgColor: Color, sg: String, sgTrend: GlucoseTrendModel) {
             self.sgColor = sgColor
             self.sg = sg
             self.sgTrend = sgTrend
@@ -48,7 +48,7 @@ public struct StylesConst {
         
         var sgColor: Color
         var sg: String
-        var sgTrend: SgTrend
+        var sgTrend: GlucoseTrendModel
         
         public var body: some View {
             ZStack {
@@ -69,7 +69,7 @@ public struct StylesConst {
                                 color: sgColor,
                                 height: 71
                             ))
-                        sgTrend.stacked_icons
+                        sgTrend.getIcons
                     }
                     Text("mg/dL").modifier(ViewModifiers.GlucoseAppTextStyle(
                         height: 21
@@ -77,6 +77,34 @@ public struct StylesConst {
                 }.frame(width: 256, height: 256, alignment: .center)
                 
             }.padding(.top)
+        }
+    }
+}
+
+private extension GlucoseTrendModel {
+    var getIcons: some View {
+        switch _value {
+        case .DOWN: return AnyView(VStack{ Image(systemName:"chevron.down") })
+        case .DOWN_DOUBLE: return AnyView(VStack{
+            Image(systemName:"chevron.down")
+            Image(systemName:"chevron.down")
+        })
+        case .DOWN_TRIPLE: return AnyView(VStack{
+            Image(systemName:"chevron.down")
+            Image(systemName:"chevron.down")
+            Image(systemName:"chevron.down")
+        })
+        case .UP: return AnyView(VStack{ Image(systemName:"chevron.up") })
+        case .UP_DOUBLE: return AnyView(VStack{
+            Image(systemName:"chevron.up")
+            Image(systemName:"chevron.up")
+        })
+        case .UP_TRIPLE: return AnyView(VStack{
+            Image(systemName:"chevron.up")
+            Image(systemName:"chevron.up")
+            Image(systemName:"chevron.up")
+        })
+        case .NONE: return AnyView(VStack{})
         }
     }
 }

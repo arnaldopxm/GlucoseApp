@@ -58,7 +58,8 @@ class WatchDelegate: NSObject, WKExtensionDelegate {
     
     func reloadActiveComplications() {
         print("ExtensionDelegate: requesting reload of complications")
-        ViewModelWatch.singleton.send(message: ["REQUEST":true])
+        let contentPresenter = ContentViewPresenter.singleton
+        contentPresenter.getData()
     }
     
     func scheduleNextReload() {

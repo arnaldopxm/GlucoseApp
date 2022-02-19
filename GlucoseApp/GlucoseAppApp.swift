@@ -11,11 +11,8 @@ import GlucoseAppHelper
 
 @main
 struct GlucoseAppApp: App {
-    var model = ViewModelPhone.singleton
-    var client = CareLinkClient.singleton
-    var store = PersistStore.singleton
-    @State var checkForLogin: Bool = true
-    @StateObject var state = AppState.singleton
+    
+    @StateObject var presenter = GlucoseAppPresenter.singleton
     @Environment(\.scenePhase) private var scenePhase
     
     init() {
@@ -36,7 +33,7 @@ struct GlucoseAppApp: App {
     func handleAppRefresh(task: BGAppRefreshTask) {
         scheduleAppRefresh()
         print("AppMain: Fetch BG")
-        client.findLastGlucoseTaskSync(updateHandler: model.update)
+        presenter.getData()
         task.setTaskCompleted(success: true)
         print("AppMain: BG finished, Task handled")
     }
@@ -56,22 +53,20 @@ struct GlucoseAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if state.isLoggedIn {
-                ContentView()
+            if presenter.loading {
+                LoaderView()
             } else {
-                LoginView()
+                if presenter.isLoggedIn {
+                    ContentView()
+                } else {
+                    LoginView()
+                }
             }
         }
         .onChange(of: scenePhase) { phase in
             if (phase == .active) {
                 print("AppMain: goes to foreground")
-                if (checkForLogin) {
-                    state.setLoading(true)
-                    client.checkLoginSync() { _ in
-                        state.setLoading(false)
-                        checkForLogin = false
-                    }
-                }
+                presenter.checkIfCredentialsAreSaved()
             }
             if (phase == .background) {
                 print("AppMain: goes to background")
