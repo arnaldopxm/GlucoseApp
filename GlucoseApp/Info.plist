@@ -2,13 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
+	<key>UISupportedInterfaceOrientations~iphone</key>
 	<array>
-		<string>Outfit.ttf</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>com.arnaldoquintero.GlucoseApp.Refresh</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Outfit.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -16,12 +26,12 @@
 	</array>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>launchBackground</string>
 		<key>UIImageName</key>
 		<string>launchImage</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
 		<true/>
-		<key>UIColorName</key>
-		<string>launchBackground</string>
 	</dict>
 </dict>
 </plist>

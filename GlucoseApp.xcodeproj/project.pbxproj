@@ -38,6 +38,7 @@
 		2397C9E027301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9DF27301D820079C4F8 /* GlucoseApp_WatchKit_AppTests.swift */; };
 		2397C9EA27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9E927301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift */; };
 		2397C9EC27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9EB27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift */; };
+		23CEA7DE27C18103003DE547 /* GlucoseAppHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 23CEA7DD27C18103003DE547 /* GlucoseAppHelper */; };
 		23EECB5E27A1C121004B7CEA /* WatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EECB5D27A1C121004B7CEA /* WatchDelegate.swift */; };
 		23EECB7527A1DD7B004B7CEA /* GlucoseAppHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 23EECB7427A1DD7B004B7CEA /* GlucoseAppHelper */; };
 /* End PBXBuildFile section */
@@ -175,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23CEA7DE27C18103003DE547 /* GlucoseAppHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +452,9 @@
 				2397C9AE27301D7F0079C4F8 /* PBXTargetDependency */,
 			);
 			name = GlucoseAppUITests;
+			packageProductDependencies = (
+				23CEA7DD27C18103003DE547 /* GlucoseAppHelper */,
+			);
 			productName = GlucoseAppUITests;
 			productReference = 2397C9AC27301D7F0079C4F8 /* GlucoseAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -996,7 +1001,7 @@
 				INFOPLIST_FILE = GlucoseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1031,7 +1036,7 @@
 				INFOPLIST_FILE = GlucoseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1336,6 +1341,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		23114D6727A57D0700A70CFE /* GlucoseAppHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GlucoseAppHelper;
+		};
+		23CEA7DD27C18103003DE547 /* GlucoseAppHelper */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GlucoseAppHelper;
 		};

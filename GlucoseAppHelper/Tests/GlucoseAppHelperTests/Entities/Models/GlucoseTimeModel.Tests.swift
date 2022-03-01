@@ -41,10 +41,11 @@ final class GlucoseTimeModelTests: XCTestCase {
     // WHEN: creating a new GlucoseTimeModel instance using the string representation of the date
     // THEN: the property value must match the inital int value
     func testInitStringGetValue_OK() {
-        let value = Date.now
-        let stringValue = DateTimeService.dateToString(date: value)
-        let gsTime = GlucoseTimeModel(dateTime: stringValue)
-        let expected = gsTime.value
+        let format = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let date = Date.now
+        let value = DateTimeService.dateToString(date: date, format: format)
+        let gsTime = GlucoseTimeModel(dateTime: value)
+        let expected = DateTimeService.dateToString(date: gsTime.value!, format: format)
         XCTAssertEqual(value, expected)
     }
     

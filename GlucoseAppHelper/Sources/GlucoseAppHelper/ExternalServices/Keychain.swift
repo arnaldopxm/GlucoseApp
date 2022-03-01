@@ -12,6 +12,11 @@ public class Keychain: KeychainWrapper, IKeychain {
     
     public required init(serviceName: String) {
         super.init(serviceName: serviceName)
+        #if DEBUG
+        if CommandLine.arguments.contains(TestingConst.TESTING_FLAG) {
+            removeAll()
+        }
+        #endif
     }
     
     public func setValue(_ value: String, forKey key: String) -> Bool {
