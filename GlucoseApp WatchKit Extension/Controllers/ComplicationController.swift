@@ -16,7 +16,15 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
-            CLKComplicationDescriptor(identifier: "complication", displayName: "GlucoseApp", supportedFamilies: CLKComplicationFamily.allCases)
+            CLKComplicationDescriptor(identifier: "complication", displayName: "glucoseapp", supportedFamilies: [
+                .circularSmall,
+                .graphicCircular,
+                .utilitarianLarge,
+                .utilitarianSmall,
+                .modularSmall,
+                .graphicBezel,
+                .graphicCorner
+            ])
             // Multiple complication support can be added here with more descriptors
         ]
         
@@ -47,18 +55,27 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         var entry: CLKComplicationTimelineEntry? = nil
         var template: CLKComplicationTemplate? = nil
         let state = ComplicationsPresenter.singleton
-        // print("ESTADO: \(state.sgTimeOffset) \(state.sgValue)")
+        
+        let sgTextProvider = CLKSimpleTextProvider(text: state.sgValue)
+        let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .white, fillFraction: 0)
         GetWatchDataUseCase.singleton.getLatestData()
         
         switch complication.family {
         case .circularSmall:
-            // face 2
-            template = CLKComplicationTemplateCircularSmallSimpleText(textProvider: CLKSimpleTextProvider(text: state.sgValue))
+            template = CLKComplicationTemplateCircularSmallSimpleText(textProvider: sgTextProvider)
         case .graphicCircular:
-            //face 1
-            template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: state.sgValue), line2TextProvider: CLKSimpleTextProvider(text: state.sgTimeOffset))
+            template = CLKComplicationTemplateGraphicCircularClosedGaugeText(gaugeProvider: gaugeProvider, centerTextProvider: sgTextProvider)
         case .utilitarianLarge:
             template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: "\(state.sgValue) - \(state.sgTimeOffset)") )
+        case .modularSmall:
+            template = CLKComplicationTemplateModularSmallSimpleText(textProvider: sgTextProvider)
+        case .utilitarianSmall:
+            template = CLKComplicationTemplateUtilitarianSmallFlat(textProvider: sgTextProvider)
+        case .graphicBezel:
+            let circularTemplate = CLKComplicationTemplateGraphicCircularClosedGaugeText(gaugeProvider: gaugeProvider, centerTextProvider: sgTextProvider)
+            template = CLKComplicationTemplateGraphicBezelCircularText(circularTemplate: circularTemplate)
+        case .graphicCorner:
+            template = CLKComplicationTemplateGraphicCornerGaugeText(gaugeProvider: gaugeProvider, outerTextProvider: sgTextProvider)
         default:
             handler(nil)
             return
@@ -75,21 +92,31 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     // MARK: - Sample Templates
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
+        let sgTextProvider = CLKSimpleTextProvider(text: "---")
+        let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .white, fillFraction: 0)
         // This method will be called once per supported complication, and the results will be cached
+        var template: CLKComplicationTemplate? = nil
         switch complication.family {
         case .circularSmall:
-            let template = CLKComplicationTemplateCircularSmallRingText(textProvider: CLKSimpleTextProvider(text: "---"), fillFraction: 0.5, ringStyle: .closed)
-            handler(template)
+            template = CLKComplicationTemplateCircularSmallSimpleText(textProvider: sgTextProvider)
         case .graphicCircular:
-            let template = CLKComplicationTemplateGraphicCircularClosedGaugeText(gaugeProvider: CLKSimpleGaugeProvider(style: CLKGaugeProviderStyle.fill, gaugeColor: .gray, fillFraction: 1), centerTextProvider: CLKSimpleTextProvider(text: "---"))
-//            CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: "---"), line2TextProvider: CLKSimpleTextProvider(text: ""))
-            handler(template)
+            template = CLKComplicationTemplateGraphicCircularClosedGaugeText(gaugeProvider: gaugeProvider, centerTextProvider: sgTextProvider)
         case .utilitarianLarge:
-            let template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: "--- date-time"))
-            handler(template)
+            template = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKSimpleTextProvider(text: "--- - HACE X min."))
+        case .modularSmall:
+            template = CLKComplicationTemplateModularSmallSimpleText(textProvider: sgTextProvider)
+        case .utilitarianSmall:
+            template = CLKComplicationTemplateUtilitarianSmallFlat(textProvider: sgTextProvider)
+        case .graphicBezel:
+            let circularTemplate = CLKComplicationTemplateGraphicCircularClosedGaugeText(gaugeProvider: gaugeProvider, centerTextProvider: sgTextProvider)
+            template = CLKComplicationTemplateGraphicBezelCircularText(circularTemplate: circularTemplate)
+        case .graphicCorner:
+            template = CLKComplicationTemplateGraphicCornerGaugeText(gaugeProvider: gaugeProvider, outerTextProvider: sgTextProvider)
         default:
-            handler(nil)
+            template = nil
         }
+        
+        handler(template)
     }
     
     

@@ -17,7 +17,7 @@ public struct StylesConst {
         public init() { }
         
         public var body: some View {
-            Text("glucosapp")
+            Text("glucoseapp")
                 .modifier(ViewModifiers.GlucoseAppTextStyle(
                     fontSize: 24,
                     fontWeight: .medium,
