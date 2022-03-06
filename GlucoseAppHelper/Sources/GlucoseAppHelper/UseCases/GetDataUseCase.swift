@@ -1,6 +1,5 @@
 //
-//  File.swift
-//  
+//  GetDataUseCase.swift
 //
 //  Created by Arnaldo Quintero on 9/2/22.
 //
@@ -11,14 +10,12 @@ class GetDataUseCase {
     
     public static let singleton = GetDataUseCase()
     private let carelink: ICareLinkController = CareLinkController.singleton
-    private var appState: AppState?;
+    private var appState: AppState?
     private var semaphore = DispatchSemaphore(value: 1)
     
     public func getLatestData(completion: ((AppState) -> Void)? = nil) {
         if let data = appState, data.isValid() {
-            if (completion != nil) {
-                completion!(data)
-            }
+            self.handleCompletion(completion)
             return
         } else {
             semaphore.wait()
@@ -27,15 +24,11 @@ class GetDataUseCase {
                     self.semaphore.signal()
                     let sendDataToWatch = SendDataToWatch.singleton
                     sendDataToWatch.send(newData)
-                    if (completion != nil) {
-                        completion!(newData)
-                    }
+                    self.handleCompletion(completion)
                 }
             } else {
                 semaphore.signal()
-                if (completion != nil) {
-                    completion!(appState!)
-                }
+                self.handleCompletion(completion)
             }
         }
     }
@@ -43,24 +36,19 @@ class GetDataUseCase {
     private func getNewData(completion: ((AppState) -> Void)? = nil) {
         Task.init {
             let data = try await carelink.getLastSensorGlucose()
-            
             let newGs = GlucoseModel(value: data.lastSG.sg)
             let newGsTrend = GlucoseTrendModel(trend: data.lastSGTrend)
             let newGsTime = GlucoseTimeModel(dateTime: data.lastSG.datetime)
             let newSensorState = data.lastSG.sensorState
-
             let newState = AppState(gs: newGs, gsTrend: newGsTrend, gsTime: newGsTime, sensorState: newSensorState)
-            if (appState == nil){
-                appState = newState
-            } else {
-                appState?.updateNeededFields(from: newState)
-            }
-            
-            if (completion != nil) {
-                completion!(self.appState!)
-            }
+
+            if (appState == nil){ appState = newState }
+            else { appState?.updateNeededFields(from: newState) }
+            self.handleCompletion(completion)
         }
-        
     }
     
+    private func handleCompletion(_ completion: ((AppState) -> Void)?) {
+        if (completion != nil) { completion!(self.appState!) }
+    }
 }
