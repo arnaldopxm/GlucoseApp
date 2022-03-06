@@ -27,8 +27,10 @@ struct ContentView: View {
                 Spacer()
                 Text(presenter.sgTime)
                     .modifier(ViewModifiers.GlucoseAppTextStyle(height: 20))
+                    .accessibilityIdentifier("gsTimeValue")
                 Text(presenter.sgTimeOffset)
                     .modifier(ViewModifiers.GlucoseAppTextStyle(fontSize: 15, color: ColorsConst.TEXT_COLOR_SECONDARY, height: 20))
+                    .accessibilityIdentifier("gsTimeOffsetValue")
             }
         }
         .onDisappear() {

@@ -39,6 +39,7 @@
 		2397C9EA27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9E927301D820079C4F8 /* GlucoseApp_WatchKit_AppUITests.swift */; };
 		2397C9EC27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397C9EB27301D820079C4F8 /* GlucoseApp_WatchKit_AppUITestsLaunchTests.swift */; };
 		23CEA7DE27C18103003DE547 /* GlucoseAppHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 23CEA7DD27C18103003DE547 /* GlucoseAppHelper */; };
+		23E4AE1B27D56285007302C5 /* GlucoseAppHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 23E4AE1A27D56285007302C5 /* GlucoseAppHelper */; };
 		23EECB5E27A1C121004B7CEA /* WatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EECB5D27A1C121004B7CEA /* WatchDelegate.swift */; };
 		23EECB7527A1DD7B004B7CEA /* GlucoseAppHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 23EECB7427A1DD7B004B7CEA /* GlucoseAppHelper */; };
 /* End PBXBuildFile section */
@@ -199,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23E4AE1B27D56285007302C5 /* GlucoseAppHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +530,9 @@
 				2397C9E727301D820079C4F8 /* PBXTargetDependency */,
 			);
 			name = "GlucoseApp WatchKit AppUITests";
+			packageProductDependencies = (
+				23E4AE1A27D56285007302C5 /* GlucoseAppHelper */,
+			);
 			productName = "GlucoseApp WatchKit AppUITests";
 			productReference = 2397C9E527301D820079C4F8 /* GlucoseApp WatchKit AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -1347,6 +1352,10 @@
 			productName = GlucoseAppHelper;
 		};
 		23CEA7DD27C18103003DE547 /* GlucoseAppHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GlucoseAppHelper;
+		};
+		23E4AE1A27D56285007302C5 /* GlucoseAppHelper */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GlucoseAppHelper;
 		};

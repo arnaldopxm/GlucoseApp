@@ -35,6 +35,18 @@ class GetDataUseCase {
     
     private func getNewData(completion: ((AppState) -> Void)? = nil) {
         Task.init {
+            #if DEBUG
+            if CommandLine.arguments.contains(TestingConst.TESTING_FLAG) {
+                let randomIndex = Int.random(in: 0...AppState.samples.count-1)
+                let newState = AppState.samples[randomIndex]
+                
+                if (appState == nil) { appState = newState }
+                else { appState?.updateNeededFields(from: newState) }
+                self.handleCompletion(completion)
+                return
+            }
+            #endif
+
             let data = try await carelink.getLastSensorGlucose()
             let newGs = GlucoseModel(value: data.lastSG.sg)
             let newGsTrend = GlucoseTrendModel(trend: data.lastSGTrend)

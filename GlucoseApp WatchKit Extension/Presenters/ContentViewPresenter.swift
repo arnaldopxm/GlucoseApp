@@ -26,7 +26,6 @@ public class ContentViewPresenter: ObservableObject {
     }
     
     func getData() {
-        
         if let newTimeOffset = self.getWatchData.appState?.gsTime.getPastTimeSinceNowString(), self.sgTimeOffset != newTimeOffset {
             self.complications.updateTime(from: newTimeOffset)
             DispatchQueue.main.async {
@@ -35,6 +34,15 @@ public class ContentViewPresenter: ObservableObject {
         }
         
         print("Content View Watch: ask for data")
+        #if DEBUG
+        if CommandLine.arguments.contains(TestingConst.TESTING_FLAG) &&
+            CommandLine.arguments.contains(TestingConst.TESTING_FLAG_WATCH_LOGGED_IN) {
+            let randomIndex = Int.random(in: 0...AppState.samples.count-1)
+            let newState = AppState.samples[randomIndex]
+            self.updateData(from: newState)
+            return
+        }
+        #endif
         getWatchData.getLatestData() { newState in
             self.updateData(from: newState)
         }

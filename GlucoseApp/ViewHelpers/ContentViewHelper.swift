@@ -26,8 +26,8 @@ struct SensorInfoBlock: View {
                 .frame(height: 40)
                 Spacer()
                 VStack(alignment: .trailing) {
-                    Text(sgTime).modifier(titleModifier)
-                    Text(sgTimeOffset).modifier(subtitleModifier)
+                    Text(sgTime).modifier(titleModifier).accessibilityIdentifier("gsTimeValue")
+                    Text(sgTimeOffset).modifier(subtitleModifier).accessibilityIdentifier("gsTimeOffsetValue")
                 }
             }
             .frame(height: 20)

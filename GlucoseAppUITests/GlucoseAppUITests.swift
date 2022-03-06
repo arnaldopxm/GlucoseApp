@@ -10,48 +10,87 @@ import GlucoseAppHelper
 
 class GlucoseAppUITests: XCTestCase {
     
-    var app: XCUIApplication {
-        return XCUIApplication()
-    }
-    
+    var app: XCUIApplication { return XCUIApplication() }
     var loginScreenLogo: XCUIElement { return app.images["loginScreenLogo"] }
     var usernameField: XCUIElement { return app.staticTexts["Usuario CareLink™"] }
     var passwordField: XCUIElement { return app.staticTexts["Contraseña"] }
     var forgotPasswordLink: XCUIElement { return app.staticTexts["¿Ha olvidado su contraseña?"] }
     var loginButton: XCUIElement { return app.buttons["Iniciar sesión"] }
-    
-    
+    var logoutButton: XCUIElement { return app.buttons["Cerrar sesión"] }
+    var contentScreenLogo: XCUIElement { return app.images["dataDripIcon"] }
+    var gs: XCUIElement { return app.staticTexts["gsValue"] }
+    var gsTrend: XCUIElement { return app.descendants(matching: .any)["gsTrendValue"] }
+    var gsTime: XCUIElement { return app.staticTexts["gsTimeValue"] }
+    var gsTimeOffset: XCUIElement { return app.staticTexts["gsTimeOffsetValue"] }
     
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test  method in the class.
         let app = XCUIApplication()
         app.launchArguments = [TestingConst.TESTING_FLAG]
         app.launch()
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func loginPageElementsTest() throws {
-        XCTAssertTrue(loginScreenLogo.exists)
+    // Un usuario sin credenciales guardadas introduce credenciales incorrectas en el iPhone,
+    // presiona el botón de iniciar sesión y debe mantenerse en la página de inicio de sesión.
+    func testLogin_FAIL() throws {
+        usernameField.tap()
+        app.typeText(TestingConst.TESTING_USERNAME+"123")
+        passwordField.tap()
+        app.typeText(TestingConst.TESTING_PASSWORD+"123")
+        loginButton.tap()
+        
+        XCTAssertTrue(loginScreenLogo.waitForExistence(timeout: 10))
         XCTAssertTrue(usernameField.exists)
         XCTAssertTrue(passwordField.exists)
         XCTAssertTrue(forgotPasswordLink.exists)
         XCTAssertTrue(loginButton.exists)
     }
     
-    func login() throws {
-        
+    //Un usuario sin credenciales guardadas introduce credenciales en el iPhone correctas,
+    // presiona el botón de iniciar sesión y debe ser redirigido a la página principal de la aplicación.
+    func testLogin_OK() throws {
         usernameField.tap()
-        usernameField.typeText(TestingConst.TESTING_USERNAME)
+        app.typeText(TestingConst.TESTING_USERNAME)
         passwordField.tap()
-        passwordField.typeText(TestingConst.TESTING_USERNAME)
+        app.typeText(TestingConst.TESTING_PASSWORD)
+        loginButton.tap()
+
+        XCTAssertTrue(contentScreenLogo.waitForExistence(timeout: 10))
+        XCTAssertTrue(logoutButton.exists)
+        
+    }
+    
+    // Un usuario con credenciales guardadas presiona el botón de cerrar sesión
+    // y debe ser redirigido a la página de inicio de sesión de la aplicación.
+    func testLogout_OK() throws {
+        try testLogin_OK()
+        logoutButton.tap()
+        
+        XCTAssertTrue(loginScreenLogo.waitForExistence(timeout: 10))
+        XCTAssertTrue(usernameField.exists)
+        XCTAssertTrue(passwordField.exists)
+        XCTAssertTrue(forgotPasswordLink.exists)
+        XCTAssertTrue(loginButton.exists)
+    }
+    
+    // Un usuario con credenciales guardadas, sin interacción alguna,
+    // debe poder ver los datos de glucosa y tendencia en la pantalla principal.
+    func testLoggedInCanViewData_OK() throws {
+        try testLogin_OK()
+
+        XCTAssertTrue(gs.exists)
+        XCTAssertNotNil(gs.value)
+        XCTAssertTrue(gsTime.exists)
+        XCTAssertNotNil(gsTime.value)
+        XCTAssertTrue(gsTrend.exists)
+        XCTAssertNotNil(gsTrend.value)
+        XCTAssertTrue(gsTimeOffset.exists)
+        XCTAssertNotNil(gsTimeOffset.value)
+                                
     }
     
     func testLaunchPerformance() throws {

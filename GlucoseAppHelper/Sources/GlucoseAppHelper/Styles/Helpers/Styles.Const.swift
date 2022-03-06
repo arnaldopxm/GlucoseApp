@@ -69,7 +69,10 @@ public struct StylesConst {
                                 color: sgColor,
                                 height: 71
                             ))
+                            .accessibilityIdentifier("gsValue")
                         sgTrend.getIcons
+                            .accessibilityElement(children: .contain)
+                            .accessibilityIdentifier("gsTrendValue")
                     }
                     Text("mg/dL").modifier(ViewModifiers.GlucoseAppTextStyle(
                         height: 21

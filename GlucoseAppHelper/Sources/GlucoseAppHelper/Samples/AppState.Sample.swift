@@ -11,13 +11,10 @@ import SwiftUI
 extension AppState {
 
     public static let samples = [
-        sample_ok_notrend,
         sample_ok_up,
         sample_ok_down,
-        sample_high_notrend,
         sample_high_up,
         sample_high_down,
-        sample_low_notrend,
         sample_low_up,
         sample_low_down
     ]
