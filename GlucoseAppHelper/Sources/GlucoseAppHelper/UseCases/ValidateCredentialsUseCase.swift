@@ -17,8 +17,8 @@ class ValidateCredentials {
             if username == TestingConst.TESTING_USERNAME && password == TestingConst.TESTING_PASSWORD {
                 return true
             }
+            return false
         }
-        return false
         #endif
 
         let result = try? await carelinkController.validateCredentials(username: username, password: password)

@@ -50,8 +50,11 @@ extension DataResponse {
 }
 
 extension SensorGlucose {
-    private static let date = "2022-01-30T18:07:00.000Z"
-    static let sample_ok = SensorGlucose(sg: 120, datetime: date)
-    static let sample_high = SensorGlucose(sg: 300, datetime: date)
-    static let sample_low = SensorGlucose(sg: 60, datetime: date)
+    private static let interval = Double(Int.random(in: 0...5)) * -60.0
+    private static let date = Date.now.addingTimeInterval(interval)
+    private static let dateString = DateTimeService.dateToString(date: date, format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+
+    static let sample_ok = SensorGlucose(sg: 120, datetime: dateString)
+    static let sample_high = SensorGlucose(sg: 300, datetime: dateString)
+    static let sample_low = SensorGlucose(sg: 60, datetime: dateString)
 }
