@@ -8,6 +8,7 @@
 import Foundation
 import GlucoseAppHelper
 import ClockKit
+import GlucoseApp_Core
 
 public class ComplicationsPresenter {
     
