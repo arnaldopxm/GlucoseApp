@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GlucoseApp_Core
 
 public class ReceiveDataFromiPhoneUseCase {
     

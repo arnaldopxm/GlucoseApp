@@ -1,20 +1,7 @@
-//
-//  File.swift
-//  
-//
-//  Created by Arnaldo Quintero on 9/2/22.
-//
-
-import Foundation
 import SwiftUI
+import GlucoseApp_Core
 
-public struct GlucoseModel: Codable, Equatable, CustomStringConvertible {
-    
-    public let value: Int
-    
-    public init(value: Int) {
-        self.value = value
-    }
+extension GlucoseModel {
     
     public func getColor() -> Color {
         if (value > 180) {
@@ -25,8 +12,5 @@ public struct GlucoseModel: Codable, Equatable, CustomStringConvertible {
         }
         return ColorsConst.SG_OK
     }
-    
-    public var description: String {
-        return "GS: \(value)"
-    }
+
 }

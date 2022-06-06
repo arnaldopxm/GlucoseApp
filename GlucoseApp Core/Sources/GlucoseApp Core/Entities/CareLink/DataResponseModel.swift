@@ -10,4 +10,9 @@ import Foundation
 public struct DataResponse: Codable {
     public let lastSG: SensorGlucose
     public let lastSGTrend: SgTrend
+    
+    public init(lastSG: SensorGlucose, lastSGTrend: SgTrend) {
+        self.lastSG = lastSG
+        self.lastSGTrend = lastSGTrend
+    }
 }

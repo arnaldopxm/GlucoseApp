@@ -1,15 +1,14 @@
 //
-//  File.swift
+//  GlucoseTrendModel.swift
 //  
 //
 //  Created by Arnaldo Quintero on 9/2/22.
 //
 
 import Foundation
-import SwiftUI
 public struct GlucoseTrendModel: Codable, Equatable, CustomStringConvertible {
     
-    internal let _value: SgTrend
+    public let _value: SgTrend
     
     public var value: String {
         return _value.rawValue

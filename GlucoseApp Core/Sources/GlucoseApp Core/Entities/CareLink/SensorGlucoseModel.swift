@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import SwiftUI
 
 public struct SensorGlucose: Codable {
     
-    internal init(sg: Int, datetime: String?, sensorState: String? = nil) {
+    public init(sg: Int, datetime: String?, sensorState: String? = nil) {
         self.sg = sg
         self.datetime = datetime
         self.sensorState = sensorState

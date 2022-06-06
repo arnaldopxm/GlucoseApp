@@ -13,8 +13,7 @@ let package = Package(
             targets: ["GlucoseAppHelper"]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(path: "../GlucoseApp Core"),
         .package(url: "https://github.com/jrendel/SwiftKeychainWrapper.git", from: "4.0.0")
     ],
     targets: [
@@ -23,6 +22,7 @@ let package = Package(
         .target(
             name: "GlucoseAppHelper",
             dependencies: [
+                "GlucoseApp Core",
                 "SwiftKeychainWrapper"
             ]),
         .testTarget(

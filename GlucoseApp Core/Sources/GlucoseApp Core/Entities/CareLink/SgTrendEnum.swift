@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 public enum SgTrend: String, Codable, CaseIterable {
     case NONE

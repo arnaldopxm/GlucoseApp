@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import GlucoseApp_Core
 
 class GetDataUseCase {
     
