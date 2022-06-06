@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CredentialsState {
+public class CredentialsState: Codable {
     
     public let username: String
     public let password: String
