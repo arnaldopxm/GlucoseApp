@@ -1,20 +1,30 @@
 import AWSLambdaRuntime
-import GlucoseAppHelper
+import GlucoseApp_Core
 
-struct Input: Codable {
-    let username: String
-    let password: String
-}
+Lambda.run { (context, input: CredentialsState, completion: @escaping (Result<DataResponse, Error>) -> Void) in
+    let carelink = CareLinkController.singleton
 
-struct Output: Codable {
-    let message: String
-}
-
-Lambda.run { (context, input: Input, completion: @escaping (Result<Output, Error>) -> Void) in
-    let carelink = LoginUseCase.singleton
-    
     Task.init {
-//        let loggedIn = try? await carelink.validateCredentials(username: input.username, password: input.password)
-//        completion(.success(Output(message: "Result: \(loggedIn ?? false)")))
+        var loggedIn = false
+
+        do {
+            loggedIn = try await carelink.validateCredentials(username: input.username, password: input.password)
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        guard loggedIn == true else {
+            completion(.failure(HttpErrors.CredentialsError))
+            return
+        }
+        
+        do {
+            let data = try await carelink.getLastSensorGlucose()
+            completion(.success(data))
+        } catch {
+            completion(.failure(error))
+            return
+        }
     }
 }
