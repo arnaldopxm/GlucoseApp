@@ -125,7 +125,9 @@
 		230A51F427B54885006E53D7 /* ContentViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewPresenter.swift; sourceTree = "<group>"; };
 		231DB7DA27B9639B00613F5F /* ComplicationsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationsPresenter.swift; sourceTree = "<group>"; };
 		2327E9DF274195C900858BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2380E4CA284E6965006D2930 /* GlucoseApp Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "GlucoseApp Core"; sourceTree = "<group>"; };
 		2381223B27A5C4F000CD4658 /* Outfit.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Outfit.ttf; sourceTree = "<group>"; };
+		23892D48284E1296009F43BB /* GlucoseApp Backend */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "GlucoseApp Backend"; sourceTree = "<group>"; };
 		2397C99227301D7C0079C4F8 /* GlucoseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2397C99527301D7C0079C4F8 /* GlucoseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseAppApp.swift; sourceTree = "<group>"; };
 		2397C99727301D7C0079C4F8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -154,7 +156,6 @@
 		2397CA06273060F60079C4F8 /* GlucoseAppRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlucoseAppRelease.entitlements; sourceTree = "<group>"; };
 		23EECB5D27A1C121004B7CEA /* WatchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDelegate.swift; sourceTree = "<group>"; };
 		23EECB6F27A1D48A004B7CEA /* GlucoseAppHelper */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GlucoseAppHelper; sourceTree = "<group>"; };
-		23EECB7127A1D638004B7CEA /* GlucoseAppHelper */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GlucoseAppHelper; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,7 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				2381223B27A5C4F000CD4658 /* Outfit.ttf */,
-				23EECB7027A1D638004B7CEA /* Packages */,
+				2380E4CA284E6965006D2930 /* GlucoseApp Core */,
+				23892D48284E1296009F43BB /* GlucoseApp Backend */,
 				23EECB6F27A1D48A004B7CEA /* GlucoseAppHelper */,
 				2397C99427301D7C0079C4F8 /* GlucoseApp */,
 				2397C9A527301D7F0079C4F8 /* GlucoseAppTests */,
@@ -387,14 +389,6 @@
 				2397C99727301D7C0079C4F8 /* LoginView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		23EECB7027A1D638004B7CEA /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				23EECB7127A1D638004B7CEA /* GlucoseAppHelper */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

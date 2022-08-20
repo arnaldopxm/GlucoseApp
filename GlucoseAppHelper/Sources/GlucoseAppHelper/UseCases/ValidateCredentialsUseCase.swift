@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GlucoseApp_Core
 
 class ValidateCredentials {
     public static let singleton = ValidateCredentials()

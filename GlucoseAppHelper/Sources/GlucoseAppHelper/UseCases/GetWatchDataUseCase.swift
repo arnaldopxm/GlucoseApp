@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import GlucoseApp_Core
 
 public class GetWatchDataUseCase {
     

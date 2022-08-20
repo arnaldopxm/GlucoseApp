@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import GlucoseApp_Core
 
 public struct StylesConst {
     static func appFont(fontSize: CGFloat, fontWeight: Font.Weight) -> Font {

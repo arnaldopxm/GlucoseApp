@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import GlucoseAppHelper
+import GlucoseApp_Core
 
 public class ContentViewPresenter: ObservableObject {
     

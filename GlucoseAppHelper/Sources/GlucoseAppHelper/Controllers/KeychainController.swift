@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import GlucoseApp_Core
 
 public class KeychainController: IKeychainController {
     
