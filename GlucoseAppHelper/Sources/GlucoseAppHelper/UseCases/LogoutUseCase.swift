@@ -12,7 +12,7 @@ public class LogoutUseCase {
     public static let singleton = LogoutUseCase()
     private let deleteCredentials = DeleteCredentials.singleton
     
-    public func logout() {
-        deleteCredentials.delete()
+    public func logout(provider: ProvidersEnum) {
+        deleteCredentials.delete(provider: provider)
     }
 }

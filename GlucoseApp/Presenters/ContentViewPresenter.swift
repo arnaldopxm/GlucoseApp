@@ -13,8 +13,8 @@ import GlucoseApp_Core
 public class ContentViewPresenter: ObservableObject {
     
     public static let singleton = ContentViewPresenter()
-    private let logoutUseCase = LogoutUseCase.singleton
     private let getiPhoneDataUseCase = GetiPhoneDataUseCase.singleton
+    private let providersPresenter = ProvidersPresenter.singleton
     private let mainApp = GlucoseAppPresenter.singleton
     
     @Published public var sgValue: String = "---"
@@ -25,14 +25,7 @@ public class ContentViewPresenter: ObservableObject {
 
     //review
     @Published public var watchStatus: (String, Color) = WatchStatusConst.NOT_INSTALLED
-    
-    
-    func logout() {
-        print("logout")
-        logoutUseCase.logout()
-        mainApp.setLoggedIn(false)
-    }
-    
+
     func getData() {
         getiPhoneDataUseCase.getLatestData() { newState in
             DispatchQueue.main.async {

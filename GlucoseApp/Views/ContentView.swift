@@ -26,12 +26,6 @@ struct ContentView: View {
             WatchInfoBlock(watchStatusText: $presenter.watchStatus.0, watchStatusColor: $presenter.watchStatus.1)
             Divider().background(ColorsConst.TEXT_COLOR_SECONDARY)
             Spacer()
-            Button(action: presenter.logout) {
-                Text("Cerrar sesión")
-                    .modifier(ViewModifiers.GlucoseAppTextStyle(
-                        color: ColorsConst.TEXT_COLOR_SECONDARY
-                    ))
-            }
         }
         .padding()
         .background(ColorsConst.APP_BACKGROUND_COLOR)
@@ -49,12 +43,12 @@ struct ContentView: View {
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             return Group {
-//                ContentView(state: .sample_low_notrend)
+                ContentView()
 //                ContentView(state: .sample_ok_up).preferredColorScheme(.dark)
 //                ContentView(state: .sample_high_up).preferredColorScheme(.dark)
 //                ContentView(state: .sample_low_down)
 //                ContentView(state: .sample_ok_down).preferredColorScheme(.dark)
-//                ContentView(state: .sample_high_down)
+//                ContentView(presenter: .sample_ok_up)
             }
         }
     }

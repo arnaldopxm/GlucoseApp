@@ -13,11 +13,11 @@ class StoreCredentials {
     public static let singleton = StoreCredentials()
     private let keychainController: IKeychainController = KeychainController.singleton
     
-    public func store(username: String, password: String) {
-        keychainController.storeCredentials(username: username, password: password)
+    public func store(username: String, password: String, provider: ProvidersEnum) {
+        keychainController.storeCredentials(username: username, password: password, provider: provider)
     }
     
-    public func getCredentials() -> CredentialsState? {
-        return  keychainController.getCredentials()
+    public func getCredentials(provider: ProvidersEnum) -> CredentialsState? {
+        return  keychainController.getCredentials(provider: provider)
     }
 }

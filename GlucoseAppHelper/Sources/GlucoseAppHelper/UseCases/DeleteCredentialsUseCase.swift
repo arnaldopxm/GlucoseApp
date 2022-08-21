@@ -11,7 +11,7 @@ class DeleteCredentials {
     public static let singleton = DeleteCredentials()
     private let keychainController: IKeychainController = KeychainController.singleton
     
-    public func delete() {
-        keychainController.deleteAll()
+    public func delete(provider: ProvidersEnum) {
+        keychainController.deleteCredentialsFrom(provider: provider)
     }
 }

@@ -10,9 +10,9 @@ import GlucoseApp_Core
 
 public protocol IKeychainController {
     
-    func storeCredentials(username: String, password: String)
+    func storeCredentials(username: String, password: String, provider: ProvidersEnum)
     
-    func getCredentials() -> CredentialsState?
+    func getCredentials(provider: ProvidersEnum) -> CredentialsState?
     
-    func deleteAll()
+    func deleteCredentialsFrom(provider: ProvidersEnum)
 }

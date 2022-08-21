@@ -17,13 +17,11 @@ struct InputBlock : View {
         Spacer().frame(width: nil, height: 15, alignment: .center)
         PasswordSecureField(password: $password)
         Spacer().frame(width: nil, height: 15, alignment: .center)
-        ForgottenPasswordField()
     }
 }
 
 struct LogoBlock : View {
     var body: some View {
-        Spacer().frame(width: nil, height: 40, alignment: .center)
         StylesConst.GlucoseAppLogo()
             .padding()
             .frame(width: 100.0, height: 100.0)
@@ -65,7 +63,7 @@ struct SaveButtonContent : View {
             RoundedRectangle(cornerRadius: 23)
                 .fill(ColorsConst.BUTTON_LOGIN_BACKGROUND_COLOR)
                 .frame(width: nil, height: height, alignment: .center)
-            Text("Iniciar sesión")
+            Text("Conectar")
                 .modifier(ViewModifiers.GlucoseAppTextStyle(
                     color: ColorsConst.BUTTON_LOGIN_TEXT_COLOR,
                     height: height

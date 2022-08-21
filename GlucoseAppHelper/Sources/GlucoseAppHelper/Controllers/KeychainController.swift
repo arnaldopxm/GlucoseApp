@@ -15,22 +15,23 @@ public class KeychainController: IKeychainController {
     
     private let keychain: IKeychain = Keychain(serviceName: "com.arnaldoquintero.glucoseapp")
     
-    public func storeCredentials(username: String, password: String) {
-        keychain.setValue(username, forKey: "username")
-        keychain.setValue(password, forKey: "password")
+    public func storeCredentials(username: String, password: String, provider: ProvidersEnum) {
+        keychain.setValue(username, forKey: "\(provider)_username")
+        keychain.setValue(password, forKey: "\(provider)_password")
     }
     
-    public func getCredentials() -> CredentialsState? {
+    public func getCredentials(provider: ProvidersEnum) -> CredentialsState? {
         guard
-            let username = keychain.get(key: "username"),
-            let password = keychain.get(key: "password")
+            let username = keychain.get(key: "\(provider)_username"),
+            let password = keychain.get(key: "\(provider)_password")
         else {
             return nil
         }
         return CredentialsState(username: username, password: password)
     }
     
-    public func deleteAll() {
-        keychain.removeAll()
+    public func deleteCredentialsFrom(provider: ProvidersEnum) {
+        keychain.removeKey("\(provider)_username")
+        keychain.removeKey("\(provider)_password")
     }
 }

@@ -8,9 +8,9 @@
 import SwiftUI
 import GlucoseAppHelper
 
-struct LoginView: View {
+struct CarelinkLoginView: View {
     
-    @StateObject var presenter: LoginPresenter = LoginPresenter.singleton
+    @StateObject var presenter: CareLinkLoginPresenter = CareLinkLoginPresenter.singleton
     
     var body: some View {
         if (presenter.loading) {
@@ -22,6 +22,7 @@ struct LoginView: View {
                 Spacer()
                 Button(action: presenter.login) { SaveButtonContent() }
                 .padding(.vertical)
+                Spacer().frame(height: 10)
             }
             .padding()
             .background(ColorsConst.APP_BACKGROUND_COLOR)
@@ -32,8 +33,8 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
-        LoginView()
+        CarelinkLoginView()
+        CarelinkLoginView()
             .preferredColorScheme(.dark)
     }
 }

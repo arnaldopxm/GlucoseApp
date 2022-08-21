@@ -23,13 +23,10 @@ public class GlucoseAppPresenter: ObservableObject {
     }
     
     func checkIfCredentialsAreSaved() {
-        if (!isLoggedIn) {
-            setLoading(true)
-        }
-        loginUseCase.loginFromSavedCredentials() { isLoggedIn in
-            self.setLoggedIn(isLoggedIn)
-            self.setLoading(false)
-        }
+//        loginUseCase.loginFromSavedCredentials() { isLoggedIn in
+//            self.setLoggedIn(isLoggedIn)
+//            self.setLoading(false)
+//        }
     }
     
     func getData() {

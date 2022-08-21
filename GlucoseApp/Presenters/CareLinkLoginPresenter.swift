@@ -7,12 +7,13 @@
 
 import Foundation
 import GlucoseAppHelper
+import GlucoseApp_Core
 
-class LoginPresenter: ObservableObject {
+class CareLinkLoginPresenter: ObservableObject {
     
-    public static let singleton = LoginPresenter()
+    public static let singleton = CareLinkLoginPresenter()
     private let useCase = LoginUseCase.singleton
-    private let mainApp = GlucoseAppPresenter.singleton
+    private let providers = ProvidersPresenter.singleton
     
     @Published public var username: String = ""
     @Published public var password: String = ""
@@ -21,9 +22,9 @@ class LoginPresenter: ObservableObject {
     
     public func login() {
         setLoading(true)
-        useCase.login(username: username, password: password) { isLoggedIn in
+        useCase.login(username: username, password: password, provider: .CARELINK) { logInValid in
             self.setLoading(false)
-            self.mainApp.setLoggedIn(isLoggedIn)
+            self.providers.updateData()
         }
     }
     

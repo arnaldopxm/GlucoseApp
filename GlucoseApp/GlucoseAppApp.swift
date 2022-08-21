@@ -56,17 +56,24 @@ struct GlucoseAppApp: App {
             if presenter.loading {
                 LoaderView()
             } else {
-                if presenter.isLoggedIn {
+                TabView {
                     ContentView()
-                } else {
-                    LoginView()
+                        .tabItem {
+                            Image(systemName: "house")
+                            Text("Home")
+                        }
+
+                    ProvidersView()
+                        .tabItem {
+                            Image(systemName: "gear")
+                            Text("Ajustes")
+                        }
                 }
             }
         }
         .onChange(of: scenePhase) { phase in
             if (phase == .active) {
                 print("AppMain: goes to foreground")
-                presenter.checkIfCredentialsAreSaved()
             }
             if (phase == .background) {
                 print("AppMain: goes to background")

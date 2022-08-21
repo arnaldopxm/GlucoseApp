@@ -12,10 +12,16 @@ import GlucoseApp_Core
 public class GetiPhoneDataUseCase {
     
     public static let singleton = GetiPhoneDataUseCase()
+    private let loginUseCase = LoginUseCase.singleton
     private let dataUseCase = GetDataUseCase.singleton
     
     public func getLatestData(completion: ((AppState) -> Void)? = nil) {
-        dataUseCase.getLatestData(completion: completion)
+        loginUseCase.loginFromSavedCredentials(provider: .CARELINK) { isLoggedIn in
+            if (!isLoggedIn) {
+                return
+            }
+            self.dataUseCase.getLatestData(completion: completion)
+        }
     }
     
     #if os(iOS)
